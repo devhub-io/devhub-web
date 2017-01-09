@@ -9,6 +9,8 @@
 
 /* eslint-disable max-len */
 
+require('dotenv').config();
+
 export const port = process.env.PORT || 3000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 
@@ -25,7 +27,7 @@ export const analytics = {
 
 export const auth = {
 
-  jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
+  jwt: { secret: process.env.JWT_SECRET || 'website' },
 
   // https://developers.facebook.com/
   facebook: {

@@ -22,8 +22,8 @@ class Header extends React.Component {
               <div className="col-md-8">
                 <div className="user-menu">
                   <ul>
-                    <li><a href="javascript:void(0)"><i className="fa fa-user" />My Account</a></li>
-                    <li><a href="javascript:void(0)"><i className="fa fa-sitemap" />Sites</a></li>
+                    <li><Link to="/"><i className="fa fa-user" />My Account</Link></li>
+                    <li><Link to="/sites"><i className="fa fa-sitemap" />Sites</Link></li>
                   </ul>
                 </div>
               </div>
@@ -36,7 +36,7 @@ class Header extends React.Component {
             <div className="row">
               <div className="col-sm-6">
                 <div className="logo">
-                  <h1><a href="/"><span>Dev</span>Hub</a></h1>
+                  <h1><Link to="/"><span>Dev</span>Hub</Link></h1>
                 </div>
               </div>
 
