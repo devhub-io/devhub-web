@@ -2,6 +2,7 @@ import React from 'react'
 import 'isomorphic-fetch'
 import Layout from '../components/layout'
 import Top from '../components/top'
+import Link from 'next/link'
 
 export default class extends React.Component {
   static async getInitialProps () {
@@ -32,10 +33,10 @@ export default class extends React.Component {
                         <div className="product-f-image">
                           <img src={item.cover ? item.cover + '&s=210' : '/static/img/210x269.png'} alt={item.title} title={item.title} className="lazyload" width="210" />
                           <div className="product-hover">
-                            <a href="{{ l_url('repos', [$item->slug]) }}" className="view-details-link"><i className="fa fa-link"/> See Details</a>
+                            <a href={'/repos/' + item.slug} className="view-details-link"><i className="fa fa-link"/> See Details</a>
                           </div>
                         </div>
-                        <h2><a href="{{ l_url('repos', [$item->slug]) }}">{ item.title }</a></h2>
+                        <h2><a href={'/repos/' + item.slug}>{ item.title }</a></h2>
                         <div className="product-carousel-price">
                           <div/>
                         </div>
