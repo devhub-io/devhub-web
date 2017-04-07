@@ -2,10 +2,9 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 
 build
-*.sqlite
 node_modules
 ncp-debug.log
 npm-debug.log
 .idea
-.env
 .DS_Store
+.next
