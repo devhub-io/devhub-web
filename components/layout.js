@@ -224,6 +224,14 @@ export default ({ children, title = 'DevHub - Development Tools Repositories Dev
           </div>
         </div>
       </div>
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js" />
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js" />
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" />
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js" />
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/peity/3.2.0/jquery.peity.min.js" />
+      <script async src='https://www.google-analytics.com/analytics.js' />
+      <script type="text/javascript" src="/static/js/main.js" />
     </body>
   </div>
 )

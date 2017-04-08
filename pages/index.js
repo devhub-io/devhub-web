@@ -2,20 +2,19 @@ import React from 'react'
 import 'isomorphic-fetch'
 import Layout from '../components/layout'
 import Top from '../components/top'
-import Link from 'next/link'
 
 export default class extends React.Component {
   static async getInitialProps () {
-    const topRes = await fetch('http://api.develophub.local/v1/repos/top')
-    const top = await topRes.json()
+    const res = await fetch('http://api.develophub.local/v1/front/home')
+    const json = await res.json()
 
-    const collectionsRes = await fetch('http://api.develophub.local/v1/repos/collections')
-    const collections = await collectionsRes.json()
-
-    const recommendRes = await fetch('http://api.develophub.local/v1/repos/recommend')
-    const recommend = await recommendRes.json()
-
-    return { hottest: top.hottest, newest: top.newest, trend: top.trend, collections: collections.collections, recommend: recommend.repos }
+    return {
+      hottest: json.hottest,
+      newest: json.newest,
+      trend: json.trend,
+      collections: json.collections,
+      recommend: json.recommend
+    }
   }
 
   render () {
@@ -31,9 +30,11 @@ export default class extends React.Component {
                     this.props.recommend.map((item, index) => (
                       <div className="single-product" key={index}>
                         <div className="product-f-image">
-                          <img src={item.cover ? item.cover + '&s=210' : '/static/img/210x269.png'} alt={item.title} title={item.title} className="lazyload" width="210" />
+                          <img src={item.cover ? item.cover + '&s=210' : '/static/img/210x269.png'} alt={item.title}
+                               title={item.title} className="lazyload" width="210"/>
                           <div className="product-hover">
-                            <a href={'/repos/' + item.slug} className="view-details-link"><i className="fa fa-link"/> See Details</a>
+                            <a href={'/repos/' + item.slug} className="view-details-link"><i className="fa fa-link"/>
+                              See Details</a>
                           </div>
                         </div>
                         <h2><a href={'/repos/' + item.slug}>{ item.title }</a></h2>
@@ -51,7 +52,7 @@ export default class extends React.Component {
       </div>
 
       <div className="brands-area">
-        <div className="zigzag-bottom" />
+        <div className="zigzag-bottom"/>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -61,7 +62,8 @@ export default class extends React.Component {
                   {
                     this.props.collections.map((item, index) => (
                       <a href={'/collection/' + item.slug} key={index}>
-                        <img src={item.image ? item.image : '/static/img/270x270.png'} alt={item.title} title={item.title} width="270" height="270" className="lazyload" />
+                        <img src={item.image ? item.image : '/static/img/270x270.png'} alt={item.title}
+                             title={item.title} width="270" height="270" className="lazyload"/>
                       </a>
                     ))
                   }
@@ -73,17 +75,17 @@ export default class extends React.Component {
       </div>
 
       <div className="product-widget-area">
-        <div className="zigzag-bottom" />
+        <div className="zigzag-bottom"/>
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-              <Top title="Popular" repos={this.props.hottest} />
+              <Top title="Popular" repos={this.props.hottest}/>
             </div>
             <div className="col-md-4">
-              <Top title="Latest" repos={this.props.newest} />
+              <Top title="Latest" repos={this.props.newest}/>
             </div>
             <div className="col-md-4">
-              <Top title="Trend" repos={this.props.trend} />
+              <Top title="Trend" repos={this.props.trend}/>
             </div>
           </div>
         </div>
