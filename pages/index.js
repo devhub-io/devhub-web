@@ -1,93 +1,191 @@
 import React from 'react'
 import 'isomorphic-fetch'
 import Layout from '../components/layout'
-import Top from '../components/top'
 import Link from 'next/link'
 
 export default class extends React.Component {
   static async getInitialProps () {
-    const topRes = await fetch('http://api.develophub.local/v1/repos/top')
-    const top = await topRes.json()
-
-    const collectionsRes = await fetch('http://api.develophub.local/v1/repos/collections')
-    const collections = await collectionsRes.json()
-
-    const recommendRes = await fetch('http://api.develophub.local/v1/repos/recommend')
-    const recommend = await recommendRes.json()
-
-    return { hottest: top.hottest, newest: top.newest, trend: top.trend, collections: collections.collections, recommend: recommend.repos }
+    return { }
   }
 
   render () {
     return <Layout>
-      <div className="product-widget-area" style={{paddingBottom: '50px'}}>
+      <section id="topics">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <div className="latest-product">
-                <div className="section-title"/>
-                <div className="product-carousel">
-                  {
-                    this.props.recommend.map((item, index) => (
-                      <div className="single-product" key={index}>
-                        <div className="product-f-image">
-                          <img src={item.cover ? item.cover + '&s=210' : '/static/img/210x269.png'} alt={item.title} title={item.title} className="lazyload" width="210" />
-                          <div className="product-hover">
-                            <a href={'/repos/' + item.slug} className="view-details-link"><i className="fa fa-link"/> See Details</a>
-                          </div>
-                        </div>
-                        <h2><a href={'/repos/' + item.slug}>{ item.title }</a></h2>
-                        <div className="product-carousel-price">
-                          <div/>
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
+            <h1 className="wow fadeInUp text-center">Topics</h1>
+
+            <div className="row top-50" data-wow-delay=".3s" data-effect="mfp-zoom-in">
+              <div className="col-md-4 center">
+                <img src="/static/img/repos/1bc739766f8ee436161dd2299fe24b37.jpg" alt="" width="300"/>
+              </div>
+              <div className="col-md-4 center">
+                <img src="/static/img/repos/1bc739766f8ee436161dd2299fe24b37.jpg" alt="" width="300"/>
+              </div>
+              <div className="col-md-4 center">
+                <img src="/static/img/repos/1bc739766f8ee436161dd2299fe24b37.jpg" alt="" width="300"/>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="brands-area">
-        <div className="zigzag-bottom" />
+      <section id="guess">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <div className="brand-wrapper">
-                <h2 className="section-title">Topic</h2>
-                <div className="brand-list">
-                  {
-                    this.props.collections.map((item, index) => (
-                      <a href={'/collection/' + item.slug} key={index}>
-                        <img src={item.image ? item.image : '/static/img/270x270.png'} alt={item.title} title={item.title} width="270" height="270" className="lazyload" />
-                      </a>
-                    ))
-                  }
-                </div>
+            <h1 className="wow fadeInUp text-center">Guess you like it</h1>
+
+            <div className="row top-50" data-wow-delay=".3s" data-effect="mfp-zoom-in">
+              <div className="col-md-2 center guess-item">
+                <a href="#">
+                  <img src="/static/img/repos/2918581.png" alt="" width="200"/>
+                  <p>electron</p>
+                </a>
+              </div>
+              <div className="col-md-2 center guess-item">
+                <a href="#">
+                  <img src="/static/img/repos/2918581.png" alt="" width="200"/>
+                  <p>electron</p>
+                </a>
+              </div>
+              <div className="col-md-2 center guess-item">
+                <a href="#">
+                  <img src="/static/img/repos/2918581.png" alt="" width="200"/>
+                  <p>electron</p>
+                </a>
+              </div>
+              <div className="col-md-2 center guess-item">
+                <a href="#">
+                  <img src="/static/img/repos/2918581.png" alt="" width="200"/>
+                  <p>electron</p>
+                </a>
+              </div>
+              <div className="col-md-2 center guess-item">
+                <a href="#">
+                  <img src="/static/img/repos/2918581.png" alt="" width="200"/>
+                  <p>electron</p>
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="product-widget-area">
-        <div className="zigzag-bottom" />
+      <section id="top">
         <div className="container">
+          <h1>Popular</h1>
           <div className="row">
-            <div className="col-md-4">
-              <Top title="Popular" repos={this.props.hottest} />
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
             </div>
-            <div className="col-md-4">
-              <Top title="Latest" repos={this.props.newest} />
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
             </div>
-            <div className="col-md-4">
-              <Top title="Trend" repos={this.props.trend} />
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <h1>Top new</h1>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <h1>Trend</h1>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-2 col-md-offset-1 title">zeit/now-cli</div>
+            <div className="col-md-6 desc">the command line interface for Now</div>
+            <div className="col-md-2 col-md-offset-1 stars">1112 <img src="/static/img/repos/20170722134804.png" alt=""/>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section id="subscribe">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 text-center">
+              <p className="subtitle"/>
+              <h2>Subscribe our newsletters</h2>
+              <form action="">
+                <div className="form-group">
+                  <input type="email" placeholder="Email here"/>
+                  <a href="#" className="btn btn-green">Subscribe</a>
+                </div>
+              </form>
+              <p className="promise">We promise to never spam you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   }
 }

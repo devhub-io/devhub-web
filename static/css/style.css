@@ -269,6 +269,8 @@ input[type="email"]:focus {
 #main-nav .logo {
   display: inline-block;
   padding-top: 11px;
+  color: #26272d;
+  font-weight: 500;
 }
 
 #main-nav #slide_out_menu {
@@ -445,6 +447,10 @@ input[type="email"]:focus {
 
 .pagination .li a {
   border: none;
+}
+
+.repos-topic a {
+  margin-right: 10px;
 }
 
 /*****************************************************
@@ -627,7 +633,9 @@ Responsive Styles
     display: none;
   }
   #main-nav .logo {
-    padding-top: 0px;
+    padding-top: 0;
+    color: #26272d;
+    font-weight: 500;
   }
   #main-nav #slide_out_menu {
     position: fixed;
