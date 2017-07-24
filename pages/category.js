@@ -1,6 +1,5 @@
 import React from 'react'
 import 'isomorphic-fetch'
-import Layout from '../components/layout'
 import Link from 'next/link'
 
 export default class extends React.Component {
@@ -9,7 +8,7 @@ export default class extends React.Component {
   }
 
   render () {
-    return <Layout>
+    return <div>
       <section id="content">
         <div className="container">
           <div className="container">
@@ -96,6 +95,6 @@ export default class extends React.Component {
           </div>
         </div>
       </section>
-    </Layout>
+    </div>
   }
 }
