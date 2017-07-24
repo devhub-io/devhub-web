@@ -42,7 +42,7 @@ export default () => (
           </ul>
         </div>
         <div className="col-md-4 text-center">
-          <a href="#" className="logo">DevHub.io</a>
+          <Link href="/"><a className="logo">DevHub.io</a></Link>
         </div>
         <div className="col-md-4">
           <ul className="right">
