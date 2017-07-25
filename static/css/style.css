@@ -523,6 +523,23 @@ input[type="email"]:focus {
   font-size: 10px;
 }
 
+.app-pagination {
+  margin-top: 30px;
+}
+
+.app-pagination li {
+  float: left;
+  width: 50px;
+}
+
+.app-pagination a {
+  font-size: 15px;
+}
+
+.thumbnail {
+  border: 1px dashed #e6e6e6;
+}
+
 /*****************************************************
 *** Topics ***
 *****************************************************/
