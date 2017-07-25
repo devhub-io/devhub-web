@@ -540,6 +540,12 @@ input[type="email"]:focus {
   border: 1px dashed #e6e6e6;
 }
 
+.favicon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
 /*****************************************************
 *** Topics ***
 *****************************************************/
