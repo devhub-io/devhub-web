@@ -1,6 +1,7 @@
 import React from 'react'
 import 'isomorphic-fetch'
 import Link from 'next/link'
+import Markdown from 'react-markdown'
 
 export default class extends React.Component {
   static async getInitialProps () {
@@ -8,6 +9,31 @@ export default class extends React.Component {
   }
 
   render () {
+    const md = `[![Electron Logo](https://electron.atom.io/images/electron-logo.svg)](https://electron.atom.io/)
+
+[![Travis Build Status](https://travis-ci.org/electron/electron.svg?branch=master)](https://travis-ci.org/electron/electron)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/bc56v83355fi3369/branch/master?svg=true)](https://ci.appveyor.com/project/electron-bot/electron/branch/master)
+[![devDependency Status](https://david-dm.org/electron/electron/dev-status.svg)](https://david-dm.org/electron/electron?type=dev)
+[![Join the Electron Community on Slack](http://atom-slack.herokuapp.com/badge.svg)](http://atom-slack.herokuapp.com/)
+
+:memo: Available Translations: [Korean](https://github.com/electron/electron/tree/master/docs-translations/ko-KR/project/README.md) | [Simplified Chinese](https://github.com/electron/electron/tree/master/docs-translations/zh-CN/project/README.md) | [Brazilian Portuguese](https://github.com/electron/electron/tree/master/docs-translations/pt-BR/project/README.md) | [Traditional Chinese](https://github.com/electron/electron/tree/master/docs-translations/zh-TW/project/README.md) | [Spanish](https://github.com/electron/electron/tree/master/docs-translations/es/project/README.md) | [Turkish](https://github.com/electron/electron/tree/master/docs-translations/tr-TR/project/README.md) | [German](https://github.com/electron/electron/tree/master/docs-translations/de-DE/project/README.md)
+
+The Electron framework lets you write cross-platform desktop applications
+using JavaScript, HTML and CSS. It is based on [Node.js](https://nodejs.org/) and
+[Chromium](http://www.chromium.org) and is used by the [Atom
+editor](https://github.com/atom/atom) and many other [apps](https://electron.atom.io/apps).
+
+Follow [@ElectronJS](https://twitter.com/electronjs) on Twitter for important
+announcements.
+
+This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code. Please report unacceptable
+behavior to electron@github.com.
+
+## Downloads
+
+To install prebuilt Electron binaries, use npm
+`
     return <div>
       <section id="content">
         <div className="container">
@@ -19,19 +45,16 @@ export default class extends React.Component {
           </ol>
           <div className="row" style={{margin: '50px 0 50px 0'}}>
             <div className="col-md-4 col-sm-4 hidden-xs">
-              <img className="cover" src="https://avatars2.githubusercontent.com/u/13409222?v=3" alt="electron"
-                   title="electron" width="300"/>
+              <img className="cover" src="https://avatars2.githubusercontent.com/u/13409222?v=3" alt="electron" title="electron" width="300"/>
             </div>
             <div className="col-md-7 col-sm-8">
               <div className="repo-title">
-                <h1 style={{fontSize: '42px'}}>
-                  electron <span className="line" title="Trends" style={{display: 'none'}}>0,50,45,86,0,60,0,83</span>
+                <h1 style={{fontSize: '42px'}}>electron <span className="line" title="Trends" style={{display: 'none'}}>0,50,45,86,0,60,0,83</span>
                   <svg className="peity" height="16" width="32">
                     <polygon fill="#c6d9fd" points="0 15.5 0 15.5 4.571428571428571 6.779069767441859 9.142857142857142 7.651162790697674 13.714285714285714 0.5 18.285714285714285 15.5 22.857142857142854 5.034883720930232 27.428571428571427 15.5 32 1.0232558139534884 32 15.5"/>
                     <polyline fill="none" points="0 15.5 4.571428571428571 6.779069767441859 9.142857142857142 7.651162790697674 13.714285714285714 0.5 18.285714285714285 15.5 22.857142857142854 5.034883720930232 27.428571428571427 15.5 32 1.0232558139534884" stroke="#4d89f9" stroke-width="1" stroke-linecap="square"/>
                   </svg>
-                  <a href="https://devhub.io/link?target=https%3A%2F%2Ftravis-ci.org%2Felectron%2Felectron"
-                     rel="nofollow" target="_blank" title="travis-ci" style={{textDecoration: 'none'}}>
+                  <a href="https://devhub.io/link?target=https%3A%2F%2Ftravis-ci.org%2Felectron%2Felectron" rel="nofollow" target="_blank" title="travis-ci" style={{textDecoration: 'none'}}>
                     <img src="//devhub.io/img/badges/travis-ci.png" alt="travis-ci" width="20" height="20"/>
                   </a>
                   <img src="//devhub.io/img/badges/npm.png" alt="npm" title="npm" width="20" height="20"/>
@@ -55,23 +78,17 @@ export default class extends React.Component {
                   <a href="https://devhub.io/link?target=https%3A%2F%2Fspdx.org%2Flicenses%2FMIT.html" target="_blank" rel="nofollow" title="MIT License" style={{color: '#333', textDecoration: 'none'}}><i className="fa fa-copyright"/> <span>MIT</span></a>
                 </div>
                 <div style={{marginBottom: '10px'}} className="repos-topic">
-                  <a className="label label-primary" style={{display: 'inline-block'}}
-                     href="https://devhub.io/topic/c-plus-plus">c-plus-plus</a>
-                  <a className="label label-primary" style={{display: 'inline-block'}}
-                     href="https://devhub.io/topic/chrome">chrome</a>
+                  <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/c-plus-plus">c-plus-plus</a>
+                  <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/chrome">chrome</a>
                   <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/css">css</a>
-                  <a className="label label-primary" style={{display: 'inline-block'}}
-                     href="https://devhub.io/topic/electron">electron</a>
+                  <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/electron">electron</a>
                   <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/html">html</a>
-                  <a className="label label-primary" style={{display: 'inline-block'}}
-                     href="https://devhub.io/topic/javascript">javascript</a>
-                  <a className="label label-primary" style={{display: 'inline-block'}}
-                     href="https://devhub.io/topic/nodejs">nodejs</a>
-                  <a className="label label-primary" style={{display: 'inline-block'}}
-                     href="https://devhub.io/topic/v8">v8</a>
+                  <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/javascript">javascript</a>
+                  <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/nodejs">nodejs</a>
+                  <a className="label label-primary" style={{display: 'inline-block'}} href="https://devhub.io/topic/v8">v8</a>
                 </div>
                 <div>
-                  <button type="button" className="btn btn-info" data-toggle="modal" data-target="#reviewModal">
+                  <button type="button" className="btn btn-info use-repos" data-toggle="modal" data-target="#reviewModal">
                     I use electron/electron
                   </button>
                 </div>
@@ -80,14 +97,12 @@ export default class extends React.Component {
           </div>
           <div className="row">
             <article className="col-md-8 markdown-body">
-              <h2>Quick Start</h2>
-              <p>Clone and run the <a rel="nofollow noreferrer" target="_blank"
-                                      href="https://github.com/electron/electron-quick-start"><code>electron/electron-quick-start</code></a>
-                repository to see a minimal Electron app in action.</p>
+              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=devhubio" id="_carbonads_js" />
+              <Markdown source={md} />
             </article>
             <div className="col-md-4" style={{marginBottom: '50px'}}>
               <h3>Related Repositories</h3>
-              <div className="row" style={{marginBottom: '10px'}}>
+              <div className="row related-repos" style={{marginBottom: '10px'}}>
                 <div className="col-md-4">
                   <a href="https://devhub.io/repos/sindresorhus-awesome-electron"><img src="https://avatars2.githubusercontent.com/u/170270?v=3&amp;s=100" alt="awesome-electron" title="awesome-electron" className="lazyload" width="100"/></a>
                 </div>
@@ -96,7 +111,7 @@ export default class extends React.Component {
                   <p>Useful resources for creating apps with Electron ...</p>
                 </div>
               </div>
-              <div className="row" style={{marginBottom: '10px'}}>
+              <div className="row related-repos" style={{marginBottom: '10px'}}>
                 <div className="col-md-4">
                   <a href="https://devhub.io/repos/electron-userland-electron-packager"><img src="https://avatars1.githubusercontent.com/u/17519142?v=3&amp;s=100" alt="electron-packager" title="electron-packager" className="lazyload" width="100"/></a>
                 </div>
@@ -105,7 +120,7 @@ export default class extends React.Component {
                   <p>Customize and package your Electron app with OS-specific bundles (.app, .exe, et ...</p>
                 </div>
               </div>
-              <div className="row" style={{marginBottom: '10px'}}>
+              <div className="row related-repos" style={{marginBottom: '10px'}}>
                 <div className="col-md-4">
                   <a href="https://devhub.io/repos/electron-userland-electron-builder"><img src="https://avatars1.githubusercontent.com/u/17519142?v=3&amp;s=100" alt="electron-builder" title="electron-builder" className="lazyload" width="100"/></a>
                 </div>
@@ -114,7 +129,7 @@ export default class extends React.Component {
                   <p>A complete solution to package and build a ready for distribution Electron app w ...</p>
                 </div>
               </div>
-              <div className="row" style={{marginBottom: '10px'}}>
+              <div className="row related-repos" style={{marginBottom: '10px'}}>
                 <div className="col-md-4">
                   <a href="https://devhub.io/repos/electron-userland-electron-prebuilt"><img src="https://avatars.githubusercontent.com/u/17519142?v=3&amp;s=100" alt="electron-prebuilt" title="electron-prebuilt" className="lazyload" width="100"/></a>
                 </div>
@@ -123,7 +138,7 @@ export default class extends React.Component {
                   <p>Install precompiled versions of Electron using npm ...</p>
                 </div>
               </div>
-              <div className="row" style={{marginBottom: '10px'}}>
+              <div className="row related-repos" style={{marginBottom: '10px'}}>
                 <div className="col-md-4">
                   <a href="https://devhub.io/repos/felixrieseberg-ember-electron"><img src="https://avatars.githubusercontent.com/u/1426799?v=3&amp;s=100" alt="ember-electron" title="ember-electron" className="lazyload" width="100"/></a>
                 </div>

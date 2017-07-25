@@ -22,6 +22,7 @@ export default class AppDocument extends Document {
         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"/>
         <link rel="stylesheet" href="/static/css/animate.min.css"/>
         <link rel="stylesheet" href="/static/css/style.css"/>
+        <link rel="stylesheet" href="/static/css/github-markdown.css"/>
         {styleTags}
       </Head>
       <body>
