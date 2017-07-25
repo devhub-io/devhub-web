@@ -2,6 +2,8 @@ import React from 'react'
 import 'isomorphic-fetch'
 import Link from 'next/link'
 import Markdown from 'react-markdown'
+import Breadcrumb from '../components/breadcrumb'
+import Adv from '../components/adv'
 
 export default class extends React.Component {
   static async getInitialProps () {
@@ -37,12 +39,7 @@ To install prebuilt Electron binaries, use npm
     return <div>
       <section id="content">
         <div className="container">
-          <ol className="breadcrumb">
-            <li><a href="https://devhub.io/">Home</a></li>
-            <li><a href="https://devhub.io/list/popular">Repositories</a></li>
-            <li><a href="https://devhub.io/category/cpp">C++</a></li>
-            <li className="active">electron</li>
-          </ol>
+          <Breadcrumb />
           <div className="row" style={{margin: '50px 0 50px 0'}}>
             <div className="col-md-4 col-sm-4 hidden-xs">
               <img className="cover" src="https://avatars2.githubusercontent.com/u/13409222?v=3" alt="electron" title="electron" width="300"/>
@@ -97,7 +94,7 @@ To install prebuilt Electron binaries, use npm
           </div>
           <div className="row">
             <article className="col-md-8 markdown-body">
-              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=devhubio" id="_carbonads_js" />
+              <Adv />
               <Markdown source={md} />
             </article>
             <div className="col-md-4" style={{marginBottom: '50px'}}>
