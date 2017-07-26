@@ -593,14 +593,13 @@ input[type="email"]:focus {
 }
 
 #top .row {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 #top h1 {
   font-size: 25px;
-  padding-left: 80px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /*****************************************************
