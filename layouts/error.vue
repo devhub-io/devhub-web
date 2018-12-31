@@ -1,26 +1,28 @@
 <template>
-  <div>
-    <!-- page-title -->
-    <!--<page-title :title="error.statusCode" :category="error.statusCode"/>-->
-    <!-- page-title end -->
-
-    <!-- error-section -->
-    <section v-if="error.statusCode === 404" class="error-section centred">
+  <section id="content">
+    <div v-if="error.statusCode === 404" class="single-product-area">
+      <div class="zigzag-bottom"/>
       <div class="container">
-        <div class="error-title">404</div>
-        <div class="error-text">哎呀，找不到这个页面！</div>
-        <div class="text">找不到你需要的东西？ 花一点时间在下面搜索或从我们的 <nuxt-link to="/">首页</nuxt-link> 开始。</div>
+        <div class="row">
+          <div class="col-md-12" style="text-align: center;min-height: 300px;">
+            <h1>OOPS! - Could not Find it</h1>
+            <a href="/" class="btn btn-info">Back</a>
+          </div>
+        </div>
       </div>
-    </section>
-    <section v-else-if="error.statusCode === 500" class="error-section centred">
+    </div>
+    <div v-else-if="error.statusCode === 500" class="single-product-area">
+      <div class="zigzag-bottom"/>
       <div class="container">
-        <div class="error-title">500</div>
-        <div class="error-text">哎呀，服务器异常，稍后重试！</div>
-        <div class="text">找不到你需要的东西？ 花一点时间在下面搜索或从我们的 <nuxt-link to="/">首页</nuxt-link> 开始。</div>
+        <div class="row">
+          <div class="col-md-12" style="text-align: center;min-height: 300px;">
+            <h1>OOPS! - Server Error</h1>
+            <a href="/" class="btn btn-info">Back</a>
+          </div>
+        </div>
       </div>
-    </section>
-    <!-- error-section end -->
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
