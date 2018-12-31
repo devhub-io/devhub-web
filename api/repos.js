@@ -7,3 +7,11 @@ export function getCategories(params) {
     params: params
   })
 }
+
+export function getNews(params) {
+  return request({
+    url: `/news`,
+    method: 'get',
+    params: params
+  })
+}

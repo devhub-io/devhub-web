@@ -3,28 +3,37 @@
     <div class="single-product-area">
       <div class="zigzag-bottom"/>
       <div class="container site-index">
-
-        @foreach($sites as $category => $group)
-        <div class="panel panel-default">
-
+        <div v-for="(item, key) in sites" :key="key" class="panel panel-default">
           <div class="panel-heading">
-            <i class="fa fa-globe text-md"/> @lang("category.{$category}")
+            <i class="fa fa-globe text-md"/> {{ key }}
           </div>
 
           <div class="panel-body row">
-            @foreach($group as $item)
-            <div class="col-md-2 site">
-              <a data-content=" $item->description " href=" link_url($item->url) " target="_blank" rel="nofollow" title=" $item->description "><img src=" cdn_asset($item->icon) " class="favicon" alt=" $item->title " title=" $item->title "> $item->title </a>
+            <div v-for="site in item" :key="site.title" class="col-md-2 site">
+              <a :href="site.url" :title="site.description" data-content=" $item->description " target="_blank" rel="nofollow">
+                <img :alt="site.title" :title="site.title" :src="site.icon" class="favicon"> {{ site.title }}
+              </a>
             </div>
-            @endforeach
           </div>
-
         </div>
-        @endforeach
       </div>
     </div>
   </section>
 </template>
+
+<script>
+import { getSites } from '@/api/site'
+
+export default {
+  layout: 'default',
+  async asyncData({ query }) {
+    const sites = await getSites().then(res => {
+      return res
+    })
+    return { sites }
+  }
+}
+</script>
 
 <style scoped>
   .favicon {

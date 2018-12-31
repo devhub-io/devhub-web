@@ -7,3 +7,10 @@ export function getCategories(params) {
     params: params
   })
 }
+
+export function getSites() {
+  return request({
+    url: `/sites`,
+    method: 'get'
+  })
+}

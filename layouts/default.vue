@@ -12,7 +12,7 @@
             <li><a href="/topics">Topics</a></li>
             <li><a href="/news">News</a></li>
             <li><a href="javascript:alert('Coming soon.')">My account</a></li>
-            <li><a href="/sites">Sites</a></li>
+            <li><nuxt-link to="/sites">Sites</nuxt-link></li>
             <li><a href="search" class="btn btn-blue">Search...</a></li>
           </ul>
 
