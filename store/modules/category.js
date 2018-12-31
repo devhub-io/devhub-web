@@ -1,4 +1,4 @@
-import { getCategories } from '@/api/ext'
+import { getCategories } from '@/api/repos'
 
 const category = {
   state: {
@@ -15,18 +15,9 @@ const category = {
     // 获取栏目
     nuxtServerInit({ commit }) {
       return new Promise((resolve, reject) => {
-        getCategories({ site_id: process.env.SITE_ID }).then(res => {
-          const data = res
-          if (data.code === 200) {
-            commit('SET_CATEGORIES', data.data)
-            resolve()
-          } else {
-            alert(data.message)
-            reject({
-              message: data.message,
-              type: 'error'
-            })
-          }
+        getCategories().then(res => {
+          commit('SET_CATEGORIES', res)
+          resolve()
         }).catch(error => {
           reject(error)
         })

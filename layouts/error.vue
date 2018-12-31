@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- page-title -->
-    <page-title :title="error.statusCode" :category="error.statusCode"/>
+    <!--<page-title :title="error.statusCode" :category="error.statusCode"/>-->
     <!-- page-title end -->
 
     <!-- error-section -->
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import PageTitle from '@/components/general/page-title'
+// import PageTitle from '@/components/general/page-title'
 /* eslint-disable */
 export default {
   props: ['error'],
   layout: 'default',
-  components: { PageTitle }
+  // components: { PageTitle }
 }
 </script>

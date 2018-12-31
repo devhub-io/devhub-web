@@ -70,7 +70,7 @@
 
 <script>
 import moment from 'moment'
-import { getGoodsCalendar } from '@/api/ext'
+import { getGoodsCalendar } from '@/api/repos'
 
 const month_olympic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 const month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
