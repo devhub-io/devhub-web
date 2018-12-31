@@ -2,7 +2,6 @@
   <div>
     <header id="main-nav">
       <div class="container">
-
         <a id="navigation" href="#"><i class="fa fa-bars"/></a>
 
         <div id="slide_out_menu">
@@ -19,8 +18,7 @@
 
           <div class="slide_out_menu_footer">
             <div class="more-info">
-              <p>Made with love by <a href="http://getcraftwork.com">Craft Work</a></p>
-              <p>Developed by <a href="http://ruibogasdesign.net/">Rui Bogas</a>
+              <p>Developed by <a href="#">Devhub</a>
             </p></div>
             <ul class="socials">
               <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fa fa-twitter"/></a></li>
@@ -71,11 +69,11 @@
           </div>
           <div class="col-md-2 col-md-offset-4 col-sm-4 col-xs-6 footer-links">
             <ul>
-              <li><p class="title">@lang('front.website')</p></li>
-              <li><a href="#">@lang('front.about')</a></li>
-              <li><a href="#">@lang('front.contact_us')</a></li>
-              <li><a href="//status.devhub.io/">@lang('front.status')</a></li>
-              <li><a href="#">@lang('front.api')</a></li>
+              <li><p class="title">WEBSITE</p></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="//status.devhub.io/">Status</a></li>
+              <li><a href="#">Api</a></li>
               <li><a href="feed">Feed</a></li>
             </ul>
           </div>
@@ -156,8 +154,8 @@
                   <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
                     <text x="37" y="13" fill="#010101" fill-opacity=".3">Framework</text>
                     <text x="37" y="12">Framework</text>
-                    <text x="97" y="13" fill="#010101" fill-opacity=".3">Laravel</text>
-                    <text x="97" y="12">Laravel</text>
+                    <text x="97" y="13" fill="#010101" fill-opacity=".3">Egg</text>
+                    <text x="97" y="12">Egg</text>
                   </g>
                 </svg>
               </div>
