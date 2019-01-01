@@ -70,3 +70,10 @@ export function getTrend(params) {
     params: params
   })
 }
+
+export function getRepos(slug) {
+  return request({
+    url: `/repos/${slug}`,
+    method: 'get'
+  })
+}
