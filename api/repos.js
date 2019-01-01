@@ -30,3 +30,43 @@ export function getTopicRepos(topic, params) {
     params: params
   })
 }
+
+export function getCollections(params) {
+  return request({
+    url: `/repos/collections`,
+    method: 'get',
+    params: params
+  })
+}
+
+export function getRecommend(params) {
+  return request({
+    url: `/repos/recommend`,
+    method: 'get',
+    params: params
+  })
+}
+
+export function getHottest(params) {
+  return request({
+    url: `/repos/hottest`,
+    method: 'get',
+    params: params
+  })
+}
+
+export function getNewest(params) {
+  return request({
+    url: `/repos/newest`,
+    method: 'get',
+    params: params
+  })
+}
+
+export function getTrend(params) {
+  return request({
+    url: `/repos/trend`,
+    method: 'get',
+    params: params
+  })
+}

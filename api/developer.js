@@ -1,39 +1,16 @@
 import request from '@/utils/request'
 
-export function requestLogin(params) {
+export function getDevelopers(params) {
   return request({
-    url: `/member/login`,
-    method: 'post',
-    data: params
+    url: `/developer/list`,
+    method: 'get',
+    params: params
   })
 }
 
-export function captchaInfo() {
+export function getDeveloper(slug) {
   return request({
-    url: `/captcha/info`,
-    method: 'get'
-  })
-}
-
-export function createUser(params) {
-  return request({
-    url: `/member/register`,
-    method: 'post',
-    data: params
-  })
-}
-
-export function updateUser(params) {
-  return request({
-    url: `/member/update`,
-    method: 'post',
-    data: params
-  })
-}
-
-export function getUser() {
-  return request({
-    url: `/member`,
+    url: `/developer/${slug}`,
     method: 'get'
   })
 }

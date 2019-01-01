@@ -8,17 +8,17 @@
           <a href="#" class="menu-close"><i class="fa fa-times"/></a>
           <div class="logo" style="color: #ffffff">DevHub.io</div>
           <ul>
-            <li><a href="/developers">Developers</a></li>
-            <li><a href="/topics">Topics</a></li>
-            <li><a href="/news">News</a></li>
+            <li><nuxt-link to="/developers">Developers</nuxt-link></li>
+            <li><nuxt-link to="/topics">Topics</nuxt-link></li>
+            <li><nuxt-link to="/news">News</nuxt-link></li>
             <li><a href="javascript:alert('Coming soon.')">My account</a></li>
             <li><nuxt-link to="/sites">Sites</nuxt-link></li>
-            <li><a href="search" class="btn btn-blue">Search...</a></li>
+            <li><nuxt-link to="search" class="btn btn-blue">Search...</nuxt-link></li>
           </ul>
 
           <div class="slide_out_menu_footer">
             <div class="more-info">
-              <p>Developed by <a href="#">Devhub</a>
+              <p>Developed by <nuxt-link to="/">Devhub</nuxt-link>
             </p></div>
             <ul class="socials">
               <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fa fa-twitter"/></a></li>
@@ -33,17 +33,17 @@
             <ul class="left">
               <li><a href="/developers">Developers</a></li>
               <li><a href="/topics">Topics</a></li>
-              <li><a href="/news">News</a></li>
+              <li><nuxt-link to="/news">News</nuxt-link></li>
             </ul>
           </div>
           <div class="col-md-4 text-center">
-            <a href="/" class="logo">DevHub.io</a>
+            <nuxt-link to="/" class="logo">DevHub.io</nuxt-link>
           </div>
           <div class="col-md-4">
             <ul class="right">
               <li><a href="javascript:alert('Coming soon.')" class="help">My account</a></li>
-              <li><a href="/sites">Sites</a></li>
-              <li><a href="/search" class="btn btn-blue">Search...</a></li>
+              <li><nuxt-link to="/sites">Sites</nuxt-link></li>
+              <li><nuxt-link to="/search" class="btn btn-blue">Search...</nuxt-link></li>
             </ul>
           </div>
         </div>
@@ -56,11 +56,11 @@
       <div class="container footer-container">
         <div class="row">
           <div class="col-md-3">
-            <a href="/" style="color: #26272d; font-weight: 700; text-transform: uppercase;font-size: 12px;">DevHub.io</a>
+            <nuxt-link to="/" style="color: #26272d; font-weight: 700; text-transform: uppercase;font-size: 12px;">DevHub.io</nuxt-link>
             <p>Recommended high-quality free and open source development tools, resources, reading. <br>
               Currently tracking
-              <a href="list/newest">{{ 0 }}</a> open source projects,
-            <a href="developers">{{ 0 }}</a> developers</p>
+              <nuxt-link to="/list/newest">{{ 0 }}</nuxt-link> open source projects,
+            <nuxt-link to="/developers">{{ 0 }}</nuxt-link> developers</p>
             <ul class="socials">
               <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fa fa-twitter"/></a></li>
               <li><a href="https://www.facebook.com/devhubdotio" target="_blank"><i class="fa fa-facebook"/></a></li>
@@ -70,8 +70,8 @@
           <div class="col-md-2 col-md-offset-4 col-sm-4 col-xs-6 footer-links">
             <ul>
               <li><p class="title">WEBSITE</p></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><nuxt-link to="#">About</nuxt-link></li>
+              <li><nuxt-link to="#">Contact Us</nuxt-link></li>
               <li><a href="//status.devhub.io/">Status</a></li>
               <li><a href="#">Api</a></li>
               <li><a href="feed">Feed</a></li>
@@ -82,7 +82,7 @@
               <li><p class="title">GATEGORY</p></li>
               @if(isset($one_column))
               @foreach($one_column as $item)
-              <li><a href="/category">@lang('category.'.$item->slug)</a></li>
+              <li><nuxt-link to="/category">@lang('category.'.$item->slug)</nuxt-link></li>
               @endforeach
               @endif
             </ul>
@@ -168,21 +168,10 @@
 </template>
 
 <script>
-// import HeaderNav from '~/components/general/nav.vue'
-
 export default {
-  // components: {
-  //   HeaderNav
-  // },
   data() {
     return {
-      isLogin: false
-    }
-  },
-  created() {
-    const token = this.$storage.getUniversal('token')
-    if (token !== undefined && token !== null && token !== '') {
-      this.isLogin = true
+      a: false
     }
   }
 }
