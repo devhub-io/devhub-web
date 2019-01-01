@@ -15,3 +15,18 @@ export function getNews(params) {
     params: params
   })
 }
+
+export function getTopics() {
+  return request({
+    url: `/topics`,
+    method: 'get'
+  })
+}
+
+export function getTopicRepos(topic, params) {
+  return request({
+    url: `/topic/${topic}`,
+    method: 'get',
+    params: params
+  })
+}
