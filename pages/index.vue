@@ -23,10 +23,10 @@
 
           <div class="row top-50" data-wow-delay=".3s" data-effect="mfp-zoom-in">
             <div v-for="(item, index) in recommend" :key="index" class="col-md-2 center guess-item">
-              <a href="l_url('repos', [$item->slug])">
+              <nuxt-link :to="`/repos/${item.slug}`">
                 <img :src="item.cover ? item.cover : '/img/210x269.png'" :title="item.title" :alt="item.title" width="200" class="lazyload">
                 <p>{{ item.title }}</p>
-              </a>
+              </nuxt-link>
             </div>
           </div>
         </div>
