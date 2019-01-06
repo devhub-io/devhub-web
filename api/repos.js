@@ -77,3 +77,10 @@ export function getRepos(slug) {
     method: 'get'
   })
 }
+
+export function getHomeRepos() {
+  return request({
+    url: `/repos/home`,
+    method: 'get'
+  })
+}

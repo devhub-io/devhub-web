@@ -83,24 +83,12 @@
 </template>
 
 <script>
-import { getHottest, getNewest, getTrend, getRecommend, getCollections } from '@/api/repos'
+import { getHomeRepos } from '@/api/repos'
 import moment from 'moment'
 
 export default {
   async asyncData() {
-    const hottest = await getHottest({ limit: 3, page: 1 }).then(res => {
-      return res
-    })
-    const newest = await getNewest({ limit: 3, page: 1 }).then(res => {
-      return res
-    })
-    const trend = await getTrend({ limit: 3, page: 1 }).then(res => {
-      return res
-    })
-    const recommend = await getRecommend({ limit: 3, page: 1 }).then(res => {
-      return res
-    })
-    const collections = await getCollections({ limit: 3, page: 1 }).then(res => {
+    const { hottest, newest, trend, recommend, collections } = await getHomeRepos().then(res => {
       return res
     })
 
