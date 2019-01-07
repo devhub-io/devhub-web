@@ -84,3 +84,10 @@ export function getHomeRepos() {
     method: 'get'
   })
 }
+
+export function getCollectionRepos(slug) {
+  return request({
+    url: `/repos/collection/${slug}`,
+    method: 'get'
+  })
+}

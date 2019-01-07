@@ -5,24 +5,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="sidebar-title" style="text-align: center;font-size: 36px;"> $collection->title </h1>
+            <h1 class="sidebar-title" style="text-align: center;font-size: 36px;"> {{ collection.title }} </h1>
           </div>
 
           <div class="col-md-12">
             <div class="product-content-right">
               <div class="row">
-                @foreach($repos as $item)
-                <div class="col-sm-4 col-md-3">
+                <div v-for="(item, index) in repos" :key="index" class="col-sm-4 col-md-3">
                   <div class="thumbnail" style="height: 362px;">
-                    <a href=" l_url('repos', [$item->repos ? $item->repos->slug : '-']) "><img src=" $item->repos && $item->repos->cover ? $item->repos->cover : cdn_asset('img/200x200.png') " alt=" $item->repos ? $item->repos->title : '' " title=" $item->repos ? $item->repos->title : '' " width="200"></a>
+                    <nuxt-link :to="`/repos/${item.repos.slug}`"><img :src="item.repos && item.repos.cover.length > 0 ? item.repos.cover : '/img/200x200.png'" :alt="item.repos.title" :title="item.repos.title" width="200"></nuxt-link>
                     <div class="caption">
-                      <a href=" l_url('repos', [$item->repos ? $item->repos->slug : '-']) "><h3> $item->repos ? $item->repos->title : '' </h3></a>
-                      <span class="line"> $item->repos ? $item->repos->trends : '' </span>
-                      <p> mb_substr($item->repos ? $item->repos->description : '' , 0, 100) </p>
+                      <nuxt-link :to="`/repos/${item.repos.slug}`"><h3> {{ item.repos.title }} </h3></nuxt-link>
+                      <span class="line"> {{ item.repos.trends }} </span>
+                      <p> {{ item.repos.description }}} </p>
                     </div>
                   </div>
                 </div>
-                @endforeach
               </div>
             </div>
           </div>
@@ -31,3 +29,21 @@
     </div>
   </section>
 </template>
+
+<script>
+import { getCollectionRepos } from '@/api/repos'
+
+export default {
+  layout: 'default',
+  async asyncData({ query, params, error }) {
+    const slug = params.slug
+    const { collection, repos } = await getCollectionRepos(slug).then(res => {
+      return res
+    })
+    if (repos === undefined || repos === null || repos.length === 0) {
+      error({ statusCode: 404, message: 'Post not found' })
+    }
+    return { repos, collection }
+  }
+}
+</script>
