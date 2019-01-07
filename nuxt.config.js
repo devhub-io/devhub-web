@@ -44,7 +44,6 @@ module.exports = {
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/peity/3.2.0/jquery.peity.min.js' },
       { src: '/js/wow.min.js' },
       { src: '/js/jquery.sticky.js' },
       { src: '/js/main.js' }

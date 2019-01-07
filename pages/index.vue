@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
-            <div class="col-md-2 col-md-offset-1 stars"><i class="fa fa-star"/>  {{ item.stargazers_count }}  <span class="line"> {{ item.trends }} </span></div>
+            <div class="col-md-2 col-md-offset-1 stars"><i class="fa fa-star"/>  {{ item.stargazers_count }} <peity :type="'line'" :data="item.trends" title="Trends"/></div>
           </div>
         </nuxt-link>
         <h1>Top new <nuxt-link to="/list/newest"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
@@ -48,7 +48,7 @@
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
-            <div class="col-md-2 col-md-offset-1 stars"><i class="fa fa-star"/>  {{ item.stargazers_count }}  <span class="line"> {{ item.trends }} </span></div>
+            <div class="col-md-2 col-md-offset-1 stars"><i class="fa fa-star"/>  {{ item.stargazers_count }}  <peity :type="'line'" :data="item.trends" title="Trends"/></div>
           </div>
         </nuxt-link>
         <h1>Trend <nuxt-link to="/list/trend"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
@@ -56,7 +56,7 @@
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
-            <div class="col-md-2 col-md-offset-1 stars"><i class="fa fa-star"/>  {{ item.stargazers_count }}  <span class="line"> {{ item.trends }} </span></div>
+            <div class="col-md-2 col-md-offset-1 stars"><i class="fa fa-star"/>  {{ item.stargazers_count }}  <peity :type="'line'" :data="item.trends" title="Trends"/></div>
           </div>
         </nuxt-link>
       </div>
@@ -85,8 +85,10 @@
 <script>
 import { getHomeRepos } from '@/api/repos'
 import moment from 'moment'
+import Peity from 'vue-peity'
 
 export default {
+  components: { Peity },
   async asyncData() {
     const { hottest, newest, trend, recommend, collections } = await getHomeRepos().then(res => {
       return res

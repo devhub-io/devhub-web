@@ -10,7 +10,7 @@
         <div class="col-md-9 col-sm-8">
           <div class="repo-title">
             <h1 style="font-size: 36px; margin-bottom: 20px;">
-              {{ repos.title }}  <span class="line" title="Trends"> {{ repos.trends }} </span>
+              {{ repos.title }} <peity :type="'line'" :data="repos.trends" title="Trends"/>
               @foreach($analytics_badges as $badge)
               @if($badge->url)
               <a href=" link_url($badge->url) " rel="nofollow" target="_blank" title=" $badge->name " style="text-decoration: none">
@@ -202,10 +202,11 @@ import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 import MarkdownIt from 'markdown-it'
 import emoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
+import Peity from 'vue-peity'
 
 export default {
   layout: 'default',
-  components: { Paginate, ReposBreadcrumbs },
+  components: { Paginate, ReposBreadcrumbs, Peity },
   head: {
     script: [
       { src: 'https://buttons.github.io/buttons.js' }

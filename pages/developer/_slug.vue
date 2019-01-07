@@ -60,7 +60,7 @@
                       <span title="star">
                         <i class="glyphicon glyphicon-star"/>  {{ item.stargazers_count }}
                       </span>
-                      <span class="line"> {{ item.trends }} </span>
+                      <peity :type="'line'" :data="item.trends" title="Trends"/>
                     </div>
                     <p> {{ item.description }} </p>
                   </div>
@@ -101,10 +101,11 @@
 import { getDeveloper } from '@/api/developer'
 import Paginate from '@/components/general/paginate'
 import DeveloperBreadcrumbs from '@/components/general/breadcrumbs/developer'
+import Peity from 'vue-peity'
 
 export default {
   layout: 'default',
-  components: { Paginate, DeveloperBreadcrumbs },
+  components: { Paginate, DeveloperBreadcrumbs, Peity },
   watchQuery: ['page', 'type'],
   head: {
     script: [

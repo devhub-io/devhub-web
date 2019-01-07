@@ -16,7 +16,7 @@
                     <nuxt-link :to="`/repos/${item.repos.slug}`"><img :src="item.repos && item.repos.cover.length > 0 ? item.repos.cover : '/img/200x200.png'" :alt="item.repos.title" :title="item.repos.title" width="200"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/repos/${item.repos.slug}`"><h3> {{ item.repos.title }} </h3></nuxt-link>
-                      <span class="line"> {{ item.repos.trends }} </span>
+                      <peity :type="'line'" :data="item.repos.trends" title="Trends"/>
                       <p> {{ item.repos.description }}} </p>
                     </div>
                   </div>
@@ -32,9 +32,11 @@
 
 <script>
 import { getCollectionRepos } from '@/api/repos'
+import Peity from 'vue-peity'
 
 export default {
   layout: 'default',
+  components: { Peity },
   async asyncData({ query, params, error }) {
     const slug = params.slug
     const { collection, repos } = await getCollectionRepos(slug).then(res => {

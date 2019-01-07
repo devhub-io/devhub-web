@@ -25,7 +25,7 @@
                         <span title="star">
                           <i class="glyphicon glyphicon-star"/> {{ item.stargazers_count }}
                         </span>
-                        <span class="line">{{ item.trends }}</span>
+                        <peity :type="'line'" :data="item.trends" title="Trends"/>
                       </div>
                       <p>{{ item.description }}</p>
                     </div>
@@ -48,10 +48,11 @@
 <script>
 import { getCategoryRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
+import Peity from 'vue-peity'
 
 export default {
   layout: 'default',
-  components: { Paginate },
+  components: { Paginate, Peity },
   watchQuery: ['page'],
   head: {
     script: [
