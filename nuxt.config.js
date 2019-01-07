@@ -62,7 +62,8 @@ module.exports = {
   css: [
     '@/assets/css/normalize.css',
     '@/assets/css/animate.min.css',
-    '@/assets/css/style.css'
+    '@/assets/css/style.css',
+    '@/assets/css/github-markdown.css'
   ],
 
   /*

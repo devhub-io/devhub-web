@@ -64,7 +64,7 @@
       <div class="row">
         <article class="col-md-8 markdown-body">
           <script id="_carbonads_js" async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=devhubio"/>
-          {!! $markdown !!}
+          <div v-html="markdown" />
         </article>
 
         <div class="col-md-4" style="margin-bottom: 50px">
@@ -199,6 +199,9 @@
 import { getRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
+import MarkdownIt from 'markdown-it'
+import emoji from 'markdown-it-emoji'
+import hljs from 'highlight.js'
 
 export default {
   layout: 'default',
@@ -206,13 +209,32 @@ export default {
   head: {
     script: [
       { src: 'https://buttons.github.io/buttons.js' }
+    ],
+    link: [
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css' }
     ]
   },
   async asyncData({ params }) {
     const slug = params.slug
-    return await getRepos(slug).then(res => {
+    const result = await getRepos(slug).then(res => {
       return res
     })
+    const md = new MarkdownIt({
+      highlight: (str, lang) => {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return '<pre class="hljs"><code>' +
+              hljs.highlight(lang, str, true).value +
+              '</code></pre>'
+          } catch (__) {
+            return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+          }
+        }
+        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+      }
+    })
+    result.markdown = md.use(emoji).render(result.repos.readme)
+    return result
   }
 }
 </script>
