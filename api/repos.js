@@ -91,3 +91,11 @@ export function getCollectionRepos(slug) {
     method: 'get'
   })
 }
+
+export function getCategoryRepos(slug, params) {
+  return request({
+    url: `/repos/category/${slug}`,
+    method: 'get',
+    params: params
+  })
+}
