@@ -57,10 +57,12 @@
         <div class="row">
           <div class="col-md-3">
             <nuxt-link to="/" style="color: #26272d; font-weight: 700; text-transform: uppercase;font-size: 12px;">DevHub.io</nuxt-link>
-            <p>Recommended high-quality free and open source development tools, resources, reading. <br>
+            <p>
+              Recommended high-quality free and open source development tools, resources, reading. <br>
               Currently tracking
-              <nuxt-link to="/list/newest">{{ 0 }}</nuxt-link> open source projects,
-            <nuxt-link to="/developers">{{ 0 }}</nuxt-link> developers</p>
+              <nuxt-link to="/list/newest">{{ $store.getters.count.repos || 0 }}</nuxt-link> open source projects,
+              <nuxt-link to="/developers">{{ $store.getters.count.developers || 0 }}</nuxt-link> developers
+            </p>
             <ul class="socials">
               <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fa fa-twitter"/></a></li>
               <li><a href="https://www.facebook.com/devhubdotio" target="_blank"><i class="fa fa-facebook"/></a></li>
@@ -80,11 +82,7 @@
           <div class="col-md-2 col-sm-4 col-xs-6 footer-links">
             <ul>
               <li><p class="title">GATEGORY</p></li>
-              @if(isset($one_column))
-              @foreach($one_column as $item)
-              <li><nuxt-link to="/category">@lang('category.'.$item->slug)</nuxt-link></li>
-              @endforeach
-              @endif
+              <li v-for="(item, index) in $store.getters.categories" :key="index"><nuxt-link :to="`/category/${item.slug}`">{{ item.title }}</nuxt-link></li>
             </ul>
           </div>
         </div>

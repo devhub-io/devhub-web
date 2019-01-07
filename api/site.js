@@ -14,3 +14,10 @@ export function getSites() {
     method: 'get'
   })
 }
+
+export function getCount() {
+  return request({
+    url: `/count`,
+    method: 'get'
+  })
+}
