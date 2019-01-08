@@ -6,7 +6,7 @@
           <h1 class="wow fadeInUp text-center">Topics</h1>
 
           <div class="row top-50" data-wow-delay=".3s" data-effect="mfp-zoom-in">
-            <div v-for="(item, index) in collections.rows" :key="index" class="col-md-4 center">
+            <div v-for="(item, index) in collections.rows" :key="'topics' + index" class="col-md-4 center">
               <nuxt-link :to="`/collection/${item.slug}`">
                 <img :src="item.image ? item.image : '/img/270x270.png'" :title="item.title" :alt="item.title" width="270" height="270" class="lazyload">
               </nuxt-link>
@@ -36,7 +36,7 @@
     <section id="top">
       <div class="container">
         <h1>Popular <nuxt-link to="/list/popular"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
-        <nuxt-link v-for="(item, index) in hottest.rows" :key="index" :to="`/repos/${item.slug}`">
+        <nuxt-link v-for="(item, index) in hottest.rows" :key="'popular' + index" :to="`/repos/${item.slug}`">
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
@@ -44,7 +44,7 @@
           </div>
         </nuxt-link>
         <h1>Top new <nuxt-link to="/list/newest"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
-        <nuxt-link v-for="(item, index) in newest.rows" :key="index" :to="`/repos/${item.slug}`">
+        <nuxt-link v-for="(item, index) in newest.rows" :key="'newest' + index" :to="`/repos/${item.slug}`">
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
@@ -52,7 +52,7 @@
           </div>
         </nuxt-link>
         <h1>Trend <nuxt-link to="/list/trend"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
-        <nuxt-link v-for="(item, index) in trend.rows" :key="index" :to="`/repos/${item.slug}`">
+        <nuxt-link v-for="(item, index) in trend.rows" :key="'trend' + index" :to="`/repos/${item.slug}`">
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>

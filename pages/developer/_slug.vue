@@ -22,8 +22,8 @@
             <div v-if="developer.type === 'User'" style="margin-bottom: 10px;">
               <a :aria-label="`Follow @${developer.login} on GitHub`" :data-count-api="`/users/${developer.login} #followers`" :data-count-href="`/${developer.login} /followers`" :href="`https://github.com/${developer.login}`" data-count-aria-label="#followers on GitHub" class="github-button" target="_blank">Follow</a>
             </div>
-            <div title="@lang('front.last_updated')">
-              <i class="fa fa-clock-o"/> <span> {{ developer.site_updated_at }} </span>
+            <div title="Last updated">
+              <i class="fa fa-clock-o"/> <span> {{ developer.site_updated_at | fromNow }} </span>
             </div>
           </div>
         </div>
@@ -102,6 +102,7 @@ import { getDeveloper } from '@/api/developer'
 import Paginate from '@/components/general/paginate'
 import DeveloperBreadcrumbs from '@/components/general/breadcrumbs/developer'
 import Peity from 'vue-peity'
+import moment from 'moment'
 
 export default {
   layout: 'default',
@@ -117,6 +118,11 @@ export default {
     return await getDeveloper(slug).then(res => {
       return res
     })
+  },
+  filters: {
+    fromNow: (val) => {
+      return moment(val).fromNow()
+    }
   }
 }
 </script>

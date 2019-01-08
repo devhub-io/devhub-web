@@ -11,15 +11,12 @@
           <div class="repo-title">
             <h1 style="font-size: 36px; margin-bottom: 20px;">
               {{ repos.title }} <peity :type="'line'" :data="repos.trends" title="Trends"/>
-              @foreach($analytics_badges as $badge)
-              @if($badge->url)
-              <a href=" link_url($badge->url) " rel="nofollow" target="_blank" title=" $badge->name " style="text-decoration: none">
-                <img src=" /badge_image_url($badge->name) " alt=" $badge->name " width="20" height="20">
-              </a>
-              @else
-              <img src=" /badge_image_url($badge->name) " alt=" $badge->name " title=" $badge->name " width="20" height="20">
-              @endif
-              @endforeach
+              <template v-for="(badge, index) in badges">
+                <a v-if="badge.url.length > 0" :key="`badge-${index}`" :href="badge.url" :title="badge.name" rel="nofollow" target="_blank" style="text-decoration: none">
+                  <img :src="`//devhub.io/img/badges/${badge.name}.png`" alt=" $badge->name " width="20" height="20">
+                </a>
+                <img v-else :key="`badge-${index}`" :src="`//devhub.io/img/badges/${badge.name}.png`" :alt="badge.name" :title="badge.name" width="20" height="20">
+              </template>
             </h1>
             <p> {{ repos.description }} </p>
           </div>
@@ -27,28 +24,22 @@
             <a v-if="repos.homepage" :href="repos.homepage" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fa fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
             <a v-if="repos.github" :href="repos.github" target="_blank" rel="nofollow"><i class="fa fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
             <a v-if="repos.have_questions" :href="`/repos/${repos.slug}/questions`" target="_blank"><i class="fa fa-stack-overflow fa-2x"/> Questions </a> &nbsp;&nbsp;
-            @if($gitter_badge)
-            <a target="_blank" href=" link_url($gitter_badge->url) " rel="nofollow"><i class="fa fa-comments-o fa-2x"/> Gitter </a> &nbsp;&nbsp;
-            @endif
+            <a v-if="false" target="_blank" href="/" rel="nofollow"><i class="fa fa-comments-o fa-2x"/> Gitter </a> &nbsp;&nbsp;
             <nuxt-link :to="`/developer/${repos.owner}`" ><i class="fa fa-user fa-2x"/> Developer</nuxt-link> &nbsp;&nbsp;
             <a v-if="repos.document_url" :href="repos.document_url" rel="nofollow" target="_blank"><i class="fa fa-book fa-2x"/> Documentation</a> &nbsp;&nbsp;
-            @if($news_exists)
-            <a target="_blank" href=" repos/$repos->slug/news "><i class="fa fa-newspaper-o fa-2x"/> News </a> &nbsp;&nbsp;
-            @endif
+            <nuxt-link v-if="false" :to="`repos/${repos.slug}/news`" target="_blank"><i class="fa fa-newspaper-o fa-2x"/> News </nuxt-link> &nbsp;&nbsp;
           </div>
           <div class="params">
             <div style="margin-bottom: 10px;">
-              <a aria-label="Star  $repos->owner / $repos->repo  on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/ $repos->owner / $repos->repo #stargazers_count" data-count-href="/ $repos->owner / $repos->repo /stargazers" data-icon="octicon-star" href="https://github.com/ $repos->owner / $repos->repo " class="github-button">Star</a>
-              <a aria-label="Fork  $repos->owner / $repos->repo  on GitHub" data-count-aria-label="# forks on GitHub" data-count-api="/repos/ $repos->owner / $repos->repo #forks_count" data-count-href="/ $repos->owner / $repos->repo /network" data-icon="octicon-repo-forked" href="https://github.com/ $repos->owner / $repos->repo /fork" class="github-button">Fork</a>
-              <a aria-label="Watch  $repos->owner / $repos->repo  on GitHub" data-count-aria-label="# watchers on GitHub" data-count-api="/repos/ $repos->owner / $repos->repo #subscribers_count" data-count-href="/ $repos->owner / $repos->repo /watchers" data-icon="octicon-eye" href="https://github.com/ $repos->owner / $repos->repo " class="github-button">Watch</a>
-              <a aria-label="Issue  $repos->owner / $repos->repo  on GitHub" data-count-aria-label="# issues on GitHub" data-count-api="/repos/ $repos->owner / $repos->repo #open_issues_count" data-icon="octicon-issue-opened" href="https://github.com/ $repos->owner / $repos->repo /issues" class="github-button">Issue</a>
-              <a aria-label="Download  $repos->owner / $repos->repo  on GitHub" data-icon="octicon-cloud-download" href="https://github.com/ $repos->owner / $repos->repo /archive/master.zip" class="github-button">Download</a>
+              <a :aria-label="`Star ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#stargazers_count`" :data-count-href="`/${repos.owner}/${repos.repo}/stargazers`" :href="`https://github.com/${repos.owner}/${repos.repo}`" data-count-aria-label="# stargazers on GitHub" data-icon="octicon-star" class="github-button">Star</a>
+              <a :aria-label="`Fork ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#forks_count`" :data-count-href="`/${repos.owner}/${repos.repo}/network`" :href="`https://github.com/${repos.owner}/${repos.repo}/fork`" data-count-aria-label="# forks on GitHub" data-icon="octicon-repo-forked" class="github-button">Fork</a>
+              <a :aria-label="`Watch ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#subscribers_count`" :data-count-href="`/${repos.owner}/${repos.repo}/watchers`" :href="`https://github.com/${repos.owner}/${repos.repo}`" data-count-aria-label="# watchers on GitHub" data-icon="octicon-eye" class="github-button">Watch</a>
+              <a :aria-label="`Issue ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#open_issues_count`" :href="`https://github.com/${repos.owner}/${repos.repo}/issues`" data-count-aria-label="# issues on GitHub" data-icon="octicon-issue-opened" class="github-button">Issue</a>
+              <a :aria-label="`Download ${repos.owner} / ${repos.repo} on GitHub`" :href="`https://github.com/${repos.owner}/${repos.repo}/archive/master.zip`" data-icon="octicon-cloud-download" class="github-button">Download</a>
             </div>
-            <div style="margin-bottom: 10px;" title="@lang('front.last_updated')">
-              <i class="fa fa-clock-o"/> <span> {{ repos.repos_updated_at }} </span>
-              @if($repos->license)
-              <a href=" https: spdx.org/licenses/{$repos->license->spdx_id}.html " target="_blank" rel="nofollow" title=" $repos->license->name " style="color: #333; text-decoration: none;"><i class="fa fa-copyright"/> <span> $repos->license->spdx_id </span></a>
-              @endif
+            <div style="margin-bottom: 10px;" title="Last updated">
+              <i class="fa fa-clock-o"/> <span> {{ repos.repos_updated_at | fromNow }} </span>
+              <a v-if="false" href=" https://spdx.org/licenses/{$repos->license->spdx_id}.html" target="_blank" rel="nofollow" title=" $repos->license->name " style="color: #333; text-decoration: none;"><i class="fa fa-copyright"/> <span> $repos->license->spdx_id </span></a>
             </div>
             <div v-if="topics.length > 0" style="margin-bottom: 10px;">
               <a v-for="(item, index) in topics" :key="index" :href="`/topic/${item.topic}`" class="label label-primary" style="display: inline-block;">{{ item.topic }}</a>
@@ -95,11 +86,10 @@
             <div style="clear: both"/>
           </template>
 
-          <template v-if="dependencies.length > 0">
+          <template v-if="Object.keys(dependencies).length > 0">
             <h3>Dependencies</h3>
             <div>
-              @foreach($dependencies as $dPackages)
-              <table class="table table-striped">
+              <table v-for="(one, k) in dependencies" :key="`on-${k}`" class="table table-striped">
                 <thead>
                   <tr>
                     <th/>
@@ -108,20 +98,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($dPackages as $env => $pEnv)
-                  @foreach($pEnv as $item)
-                  <tr>
-                    @if ($loop->first)
-                    <td rowspan=" count($pEnv) "> $env </td>
-                    @endif
-                    <td> $item->package </td>
-                    <td> $item->version </td>
-                  </tr>
-                  @endforeach
-                  @endforeach
+                  <template v-for="(two, kk) in one">
+                    <template v-for="(three, index) in two">
+                      <tr :key="`${kk}-${index}`">
+                        <td v-if="index === 0" :rowspan="two.length"> {{ kk }} </td>
+                        <td> {{ three.package }} </td>
+                        <td> {{ three.version }} </td>
+                      </tr>
+                    </template>
+                  </template>
                 </tbody>
               </table>
-              @endforeach
             </div>
           </template>
 
@@ -196,13 +183,14 @@
 </template>
 
 <script>
-import { getRepos } from '@/api/repos'
-import Paginate from '@/components/general/paginate'
-import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 import MarkdownIt from 'markdown-it'
 import emoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 import Peity from 'vue-peity'
+import moment from 'moment'
+import { getRepos } from '@/api/repos'
+import Paginate from '@/components/general/paginate'
+import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 
 export default {
   layout: 'default',
@@ -236,6 +224,11 @@ export default {
     })
     result.markdown = md.use(emoji).render(result.repos.readme)
     return result
+  },
+  filters: {
+    fromNow: (val) => {
+      return moment(val).fromNow()
+    }
   }
 }
 </script>
