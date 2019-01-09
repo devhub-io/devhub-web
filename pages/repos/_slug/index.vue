@@ -5,7 +5,7 @@
 
       <div class="row" style="margin: 50px 0 50px 0">
         <div class="col-md-3 col-sm-4 hidden-xs">
-          <img :src="repos.cover ? repos.cover : '/img/300x300.png'" class="cover" alt=" $repos->title " title=" $repos->title " width="250">
+          <img :src="repos.cover ? repos.cover : '/img/300x300.png'" :alt="repos.title" :title="repos.title" class="cover" width="250">
         </div>
         <div class="col-md-9 col-sm-8">
           <div class="repo-title">
@@ -13,7 +13,7 @@
               {{ repos.title }} <peity :type="'line'" :data="repos.trends" title="Trends"/>
               <template v-for="(badge, index) in badges">
                 <a v-if="badge.url.length > 0" :key="`badge-${index}`" :href="badge.url" :title="badge.name" rel="nofollow" target="_blank" style="text-decoration: none">
-                  <img :src="`//devhub.io/img/badges/${badge.name}.png`" alt=" $badge->name " width="20" height="20">
+                  <img :src="`//devhub.io/img/badges/${badge.name}.png`" :alt="badge.name " width="20" height="20">
                 </a>
                 <img v-else :key="`badge-${index}`" :src="`//devhub.io/img/badges/${badge.name}.png`" :alt="badge.name" :title="badge.name" width="20" height="20">
               </template>
@@ -31,11 +31,10 @@
           </div>
           <div class="params">
             <div style="margin-bottom: 10px;">
-              <a :aria-label="`Star ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#stargazers_count`" :data-count-href="`/${repos.owner}/${repos.repo}/stargazers`" :href="`https://github.com/${repos.owner}/${repos.repo}`" data-count-aria-label="# stargazers on GitHub" data-icon="octicon-star" class="github-button">Star</a>
-              <a :aria-label="`Fork ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#forks_count`" :data-count-href="`/${repos.owner}/${repos.repo}/network`" :href="`https://github.com/${repos.owner}/${repos.repo}/fork`" data-count-aria-label="# forks on GitHub" data-icon="octicon-repo-forked" class="github-button">Fork</a>
-              <a :aria-label="`Watch ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#subscribers_count`" :data-count-href="`/${repos.owner}/${repos.repo}/watchers`" :href="`https://github.com/${repos.owner}/${repos.repo}`" data-count-aria-label="# watchers on GitHub" data-icon="octicon-eye" class="github-button">Watch</a>
-              <a :aria-label="`Issue ${repos.owner} / ${repos.repo} on GitHub`" :data-count-api="`/repos/${repos.owner}/${repos.repo}#open_issues_count`" :href="`https://github.com/${repos.owner}/${repos.repo}/issues`" data-count-aria-label="# issues on GitHub" data-icon="octicon-issue-opened" class="github-button">Issue</a>
-              <a :aria-label="`Download ${repos.owner} / ${repos.repo} on GitHub`" :href="`https://github.com/${repos.owner}/${repos.repo}/archive/master.zip`" data-icon="octicon-cloud-download" class="github-button">Download</a>
+              <gh-btns-watch :slug="`${repos.owner}/${repos.repo}`" show-count/>
+              <gh-btns-star :slug="`${repos.owner}/${repos.repo}`" show-count/>
+              <gh-btns-fork :slug="`${repos.owner}/${repos.repo}`" show-count/>
+              <div style="clear: both"/>
             </div>
             <div style="margin-bottom: 10px;" title="Last updated">
               <i class="fa fa-clock-o"/> <span> {{ repos.repos_updated_at | fromNow }} </span>
@@ -134,16 +133,15 @@
             <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
             <h4 id="mcqReviewModalLabel" class="modal-title">Would you tell us more about {{ repos.owner }} / {{ repos.repo }} ?</h4>
           </div>
-          <form id="review-form" style="padding:10px;" action="/repos/review" method="POST" role="form" class="form-horizontal bv-form" novalidate="novalidate">
-            <input type="hidden" value=" $repos->id " name="repos_id">
+          <form id="review-form" style="padding:10px;" method="get" role="form" class="form-horizontal bv-form" novalidate="novalidate">
             <div style="padding-top:0;" class="modal-body">
               <div class="form-group mcq_input">
                 <h4>Is the project reliable?</h4>
                 <div class="input-group">
                   <div class="radio">
-                    <label><input type="radio" value="1" name="reliable">Yes, realiable</label>&nbsp;&nbsp;&nbsp;
-                    <label><input type="radio" value="0" name="reliable">Somewhat realiable</label>&nbsp;&nbsp;&nbsp;
-                    <label><input type="radio" value="-1" name="reliable">Not realiable</label>
+                    <label><input v-model="form.reliable" :value="1" type="radio" name="reliable">Yes, realiable</label>&nbsp;&nbsp;&nbsp;
+                    <label><input v-model="form.reliable" :value="0" type="radio" name="reliable">Somewhat realiable</label>&nbsp;&nbsp;&nbsp;
+                    <label><input v-model="form.reliable" :value="-1" type="radio" name="reliable">Not realiable</label>
                   </div>
                 </div>
               </div>
@@ -152,9 +150,9 @@
                 <h4>Would you recommend this project?</h4>
                 <div class="input-group">
                   <div class="radio">
-                    <label><input type="radio" class="definitely_recommend" value="1" name="recommendation">Yes, definitely</label>&nbsp;&nbsp;&nbsp;
-                    <label><input type="radio" class="no_recommend" value="0" name="recommendation">Not sure</label>&nbsp;&nbsp;&nbsp;
-                    <label><input type="radio" class="no_recommend" value="-1" name="recommendation">Nope</label>
+                    <label><input v-model="form.recommendation" :value="1" type="radio" class="definitely_recommend" name="recommendation">Yes, definitely</label>&nbsp;&nbsp;&nbsp;
+                    <label><input v-model="form.recommendation" :value="0" type="radio" class="no_recommend" name="recommendation">Not sure</label>&nbsp;&nbsp;&nbsp;
+                    <label><input v-model="form.recommendation" :value="-1" type="radio" class="no_recommend" name="recommendation">Nope</label>
                   </div>
                 </div>
               </div>
@@ -163,16 +161,16 @@
                 <h4>Is the documentation helpful?</h4>
                 <div class="input-group">
                   <div class="radio">
-                    <label><input type="radio" value="1" name="documentation">Yes, helpful</label>&nbsp;&nbsp;&nbsp;
-                    <label><input type="radio" value="0" name="documentation">Somewhat helpful</label>&nbsp;&nbsp;&nbsp;
-                    <label><input type="radio" value="-1" name="documentation">Not that helpful</label>
+                    <label><input v-model="form.documentation" :value="1" type="radio" name="documentation">Yes, helpful</label>&nbsp;&nbsp;&nbsp;
+                    <label><input v-model="form.documentation" :value="0" type="radio" name="documentation">Somewhat helpful</label>&nbsp;&nbsp;&nbsp;
+                    <label><input v-model="form.documentation" :value="-1" type="radio" name="documentation">Not that helpful</label>
                   </div>
                 </div>
               </div>
 
               <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                <button class="btn btn-primary" type="submit" name="button">Submit</button>
+                <button class="btn btn-primary" type="button" name="button" @click="submit">Submit</button>
               </div>
             </div>
           </form>
@@ -196,9 +194,6 @@ export default {
   layout: 'default',
   components: { Paginate, ReposBreadcrumbs, Peity },
   head: {
-    script: [
-      { src: 'https://buttons.github.io/buttons.js' }
-    ],
     link: [
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css' }
     ]
@@ -209,6 +204,7 @@ export default {
       return res
     })
     const md = new MarkdownIt({
+      html: true,
       highlight: (str, lang) => {
         if (lang && hljs.getLanguage(lang)) {
           try {
@@ -223,11 +219,30 @@ export default {
       }
     })
     result.markdown = md.use(emoji).render(result.repos.readme)
+    result.slug = slug
     return result
   },
   filters: {
     fromNow: (val) => {
       return moment(val).fromNow()
+    }
+  },
+  data() {
+    return {
+      form: {
+        reliable: '',
+        recommendation: '',
+        documentation: ''
+      }
+    }
+  },
+  methods: {
+    submit: async() => {
+      console.log(this)
+      // const result = await reviewRepos(this.slug, this.form).then(res => {
+      //   return res
+      // })
+      // console.log(result)
     }
   }
 }

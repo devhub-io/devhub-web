@@ -54,11 +54,6 @@ export default {
   layout: 'default',
   components: { Paginate, Peity },
   watchQuery: ['page'],
-  head: {
-    script: [
-      { src: 'https://buttons.github.io/buttons.js' }
-    ]
-  },
   async asyncData({ query, params, error }) {
     const slug = params.slug
     const page = query.page || 1

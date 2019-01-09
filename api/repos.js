@@ -99,3 +99,11 @@ export function getCategoryRepos(slug, params) {
     params: params
   })
 }
+
+export function reviewRepos(slug, data) {
+  return request({
+    url: `/repos/${slug}/review`,
+    method: 'post',
+    data: data
+  })
+}

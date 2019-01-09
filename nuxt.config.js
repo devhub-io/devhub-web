@@ -69,8 +69,10 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/swiper.js', ssr: false },
-    { src: '~/plugins/alert.js', ssr: false }
+    { src: '~/plugins/welcome.js', ssr: true },
+    { src: '~/plugins/alert.js', ssr: false },
+    { src: '~/plugins/analytics.js', ssr: false },
+    { src: '~/plugins/doorbell.js', ssr: false }
   ],
 
   /*
@@ -79,7 +81,8 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    'nuxt-universal-storage'
+    'nuxt-universal-storage',
+    'vue-github-buttons/nuxt'
   ],
   /*
   ** Axios module configuration

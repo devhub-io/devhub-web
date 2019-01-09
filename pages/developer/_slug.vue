@@ -20,7 +20,8 @@
           </div>
           <div class="params">
             <div v-if="developer.type === 'User'" style="margin-bottom: 10px;">
-              <a :aria-label="`Follow @${developer.login} on GitHub`" :data-count-api="`/users/${developer.login} #followers`" :data-count-href="`/${developer.login} /followers`" :href="`https://github.com/${developer.login}`" data-count-aria-label="#followers on GitHub" class="github-button" target="_blank">Follow</a>
+              <gh-btns-follow :user="developer.login" show-count/>
+              <div style="clear: both"/>
             </div>
             <div title="Last updated">
               <i class="fa fa-clock-o"/> <span> {{ developer.site_updated_at | fromNow }} </span>
@@ -108,11 +109,6 @@ export default {
   layout: 'default',
   components: { Paginate, DeveloperBreadcrumbs, Peity },
   watchQuery: ['page', 'type'],
-  head: {
-    script: [
-      { src: 'https://buttons.github.io/buttons.js' }
-    ]
-  },
   async asyncData({ params }) {
     const slug = params.slug
     return await getDeveloper(slug).then(res => {

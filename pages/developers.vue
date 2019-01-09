@@ -26,7 +26,7 @@
                       </nuxt-link>
                       <div style="margin-bottom: 10px">
                         <span v-if="item.type === 'User'" title="star">
-                          <a :aria-label="`Follow @${item.login} on GitHub`" :data-count-api="`/users/${item.login} #followers`" :data-count-href="`/${item.login} /followers`" :href="`https://github.com/${item.login}`" data-count-aria-label="#followers on GitHub" class="github-button" target="_blank">Follow</a>
+                          <gh-btns-follow :user="item.login" show-count/>
                         </span>
                       </div>
                     </div>
@@ -54,11 +54,6 @@ export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
-  head: {
-    script: [
-      { src: 'https://buttons.github.io/buttons.js' }
-    ]
-  },
   async asyncData({ query }) {
     const type = query.type || 'User'
     const page = query.page || 1
