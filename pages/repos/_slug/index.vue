@@ -58,19 +58,17 @@
         </article>
 
         <div class="col-md-4" style="margin-bottom: 50px">
-          <template v-if="news.length > 0">
+          <template v-if="related.length > 0">
             <h3>Related Repositories</h3>
-            @foreach($related_repos as $item)
-            <div class="row" style="margin-bottom: 10px">
+            <div v-for="item in related" :key="`related-${item.id}`" class="row" style="margin-bottom: 10px">
               <div class="col-md-4">
-                <a href=" l_url('repos', [$item->slug]) "><img src=" $item->cover ? $item->cover . '&s=100' : cdn_asset('img/200x200.png') " alt=" $item->title " title=" $item->title " class="lazyload" width="100"></a>
+                <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover.length > 0 ? item.cover : '/img/200x200.png'" :alt="item.title" :title="item.title" class="lazyload" width="100"></nuxt-link>
               </div>
               <div class="col-md-8">
-                <h4><a href=" l_url('repos', [$item->slug]) "> $item->title </a></h4>
-                <p> mb_substr($item->description, 0, 80)  ...</p>
+                <h4><nuxt-link :to="`/repos/${item.slug}`"> {{ item.title }} </nuxt-link></h4>
+                <p>{{ item.description }}</p>
               </div>
             </div>
-            @endforeach
           </template>
 
           <br>
@@ -186,7 +184,7 @@ import emoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 import Peity from 'vue-peity'
 import moment from 'moment'
-import { getRepos } from '@/api/repos'
+import { getRepos, reviewRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 
@@ -237,12 +235,15 @@ export default {
     }
   },
   methods: {
-    submit: async() => {
-      console.log(this)
-      // const result = await reviewRepos(this.slug, this.form).then(res => {
-      //   return res
-      // })
-      // console.log(result)
+    submit() {
+      if (this.form.documentation === '' || this.form.reliable === '' || this.form.recommendation === '') {
+        this.$Alert.info({ content: 'Please select an option' })
+        return false
+      }
+      reviewRepos(this.slug, this.form).then(() => {
+        this.$Alert.info({ content: 'Thanks so much' })
+        this.$router.go()
+      })
     }
   }
 }
