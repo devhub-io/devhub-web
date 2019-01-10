@@ -107,3 +107,11 @@ export function reviewRepos(slug, data) {
     data: data
   })
 }
+
+export function searchRepos(params) {
+  return request({
+    url: `/repos/search`,
+    method: 'get',
+    params: params
+  })
+}

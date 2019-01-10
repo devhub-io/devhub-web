@@ -18,7 +18,7 @@
                         <span title="star">
                           <i class="glyphicon glyphicon-star"/> {{ item.stargazers_count }}
                         </span>
-                        <peity :type="'line'" :data="item.trends" title="Trends"/>
+                        <Peity :type="'line'" :data="item.trends" title="Trends"/>
                       </div>
                       <p>{{ item.description }}</p>
                     </div>

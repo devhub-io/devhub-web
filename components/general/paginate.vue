@@ -1,6 +1,6 @@
 <template>
   <nav aria-label="Page navigation">
-    <ul class="pagination">
+    <ul v-if="page > 0" class="pagination">
       <li v-if="page - 1 >= 1">
         <nuxt-link :to="makeUrl(page - 1)" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
