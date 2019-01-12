@@ -41,7 +41,7 @@
           </div>
           <div class="col-md-4">
             <ul class="right">
-              <li><a href="javascript:alert('Coming soon.')" class="help">My account</a></li>
+              <li><a href="http://localhost:7001/passport/github" class="help">My account</a></li>
               <li><nuxt-link to="/sites">Sites</nuxt-link></li>
               <li><nuxt-link to="/search" class="btn btn-blue">Search...</nuxt-link></li>
             </ul>
@@ -138,22 +138,22 @@
                     <text x="70" y="12">CloudFlare</text>
                   </g>
                 </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="124" height="18">
+                <svg xmlns="http://www.w3.org/2000/svg" width="110" height="18">
                   <linearGradient id="smooth" x2="0" y2="100%">
                     <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
                     <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
                     <stop offset=".9" stop-color="#000" stop-opacity=".3"/>
                     <stop offset="1" stop-color="#000" stop-opacity=".5"/>
                   </linearGradient>
-                  <rect rx="4" width="124" height="18" fill="#555555"/>
-                  <rect rx="4" x="72" width="52" height="18" fill="#007ec6"/>
+                  <rect rx="4" width="110" height="18" fill="#555555"/>
+                  <rect rx="4" x="72" width="37" height="18" fill="#007ec6"/>
                   <rect x="72" width="4" height="18" fill="#007ec6"/>
-                  <rect rx="4" width="124" height="18" fill="url(#smooth)"/>
+                  <rect rx="4" width="110" height="18" fill="url(#smooth)"/>
                   <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
                     <text x="37" y="13" fill="#010101" fill-opacity=".3">Framework</text>
                     <text x="37" y="12">Framework</text>
-                    <text x="97" y="13" fill="#010101" fill-opacity=".3">Egg</text>
-                    <text x="97" y="12">Egg</text>
+                    <text x="90" y="13" fill="#010101" fill-opacity=".3">Egg</text>
+                    <text x="90" y="12">Egg</text>
                   </g>
                 </svg>
               </div>
