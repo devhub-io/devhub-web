@@ -11,7 +11,7 @@
             <li><nuxt-link to="/developers">Developers</nuxt-link></li>
             <li><nuxt-link to="/topics">Topics</nuxt-link></li>
             <li><nuxt-link to="/news">News</nuxt-link></li>
-            <li><a href="javascript:alert('Coming soon.')">My account</a></li>
+            <li><a :href="void(0)" rel="nofollow" @click="login">My account</a></li>
             <li><nuxt-link to="/sites">Sites</nuxt-link></li>
             <li><nuxt-link to="search" class="btn btn-blue">Search...</nuxt-link></li>
           </ul>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-md-4">
             <ul class="right">
-              <li><a href="http://localhost:7001/passport/github" class="help">My account</a></li>
+              <li><a :href="void(0)" :class="{ help: $store.getters.token === null || $store.getters.token === '' }" rel="nofollow" @click="login">My account</a></li>
               <li><nuxt-link to="/sites">Sites</nuxt-link></li>
               <li><nuxt-link to="/search" class="btn btn-blue">Search...</nuxt-link></li>
             </ul>
@@ -166,10 +166,18 @@
 </template>
 
 <script>
+import { getToken } from '@/utils/auth'
 export default {
-  data() {
-    return {
-      a: false
+  mounted() {
+    this.$store.commit('SET_TOKEN', getToken())
+  },
+  methods: {
+    login() {
+      if (process.client) {
+        if (this.$store.getters.token === null || this.$store.getters.token === '') {
+          window.location.href = `${process.env.BASE_API}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
+        }
+      }
     }
   }
 }
