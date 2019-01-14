@@ -21,7 +21,7 @@
                     <div class="caption">
                       <nuxt-link :to="`/developer/${item.login}`">
                         <h4>
-                          <i v-if="item.type === 'Organization'" class="fa fa-users" title="Organization"/><i v-else class="fa fa-user" title="User"/>  {{ item.name ? item.name : item.login }}
+                          <i v-if="item.type === 'Organization'" class="fas fa-users" title="Organization"/><i v-else class="fas fa-user" title="User"/>  {{ item.name ? item.name : item.login }}
                         </h4>
                       </nuxt-link>
                       <div style="margin-bottom: 10px">

@@ -19,7 +19,7 @@
                     </nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/repos/${item.slug}`"><h3> {{ item.owner }} / {{ item.repo }} </h3></nuxt-link>
-                      <span title="Stargazers count"><i class="fa fa-star"/> {{ item.stargazers_count }} </span>&nbsp;
+                      <span title="Stargazers count"><i class="fas fa-star"/> {{ item.stargazers_count }} </span>&nbsp;
                       <Peity :type="'line'" :data="item.trends || ''" title="Trends"/>
                       <p> {{ item.description }} </p>
                     </div>

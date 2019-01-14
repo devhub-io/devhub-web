@@ -21,13 +21,13 @@
             <p> {{ repos.description }} </p>
           </div>
           <div class="menu" style="margin-bottom: 10px;">
-            <a v-if="repos.homepage" :href="repos.homepage" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fa fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
-            <a v-if="repos.github" :href="repos.github" target="_blank" rel="nofollow"><i class="fa fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
-            <a v-if="repos.have_questions" :href="`/repos/${repos.slug}/questions`" target="_blank"><i class="fa fa-stack-overflow fa-2x"/> Questions </a> &nbsp;&nbsp;
-            <a v-if="false" target="_blank" href="/" rel="nofollow"><i class="fa fa-comments-o fa-2x"/> Gitter </a> &nbsp;&nbsp;
-            <nuxt-link :to="`/developer/${repos.owner}`" ><i class="fa fa-user fa-2x"/> Developer</nuxt-link> &nbsp;&nbsp;
-            <a v-if="repos.document_url" :href="repos.document_url" rel="nofollow" target="_blank"><i class="fa fa-book fa-2x"/> Documentation</a> &nbsp;&nbsp;
-            <nuxt-link v-if="false" :to="`repos/${repos.slug}/news`" target="_blank"><i class="fa fa-newspaper-o fa-2x"/> News </nuxt-link> &nbsp;&nbsp;
+            <a v-if="repos.homepage" :href="repos.homepage" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fas fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
+            <a v-if="repos.github" :href="repos.github" target="_blank" rel="nofollow"><i class="fab fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
+            <a v-if="repos.have_questions" :href="`/repos/${repos.slug}/questions`" target="_blank"><i class="fab fa-stack-overflow fa-2x"/> Questions </a> &nbsp;&nbsp;
+            <a v-if="false" target="_blank" href="/" rel="nofollow"><i class="fas fa-comments-o fa-2x"/> Gitter </a> &nbsp;&nbsp;
+            <nuxt-link :to="`/developer/${repos.owner}`" ><i class="fas fa-user fa-2x"/> Developer</nuxt-link> &nbsp;&nbsp;
+            <a v-if="repos.document_url" :href="repos.document_url" rel="nofollow" target="_blank"><i class="fas fa-book fa-2x"/> Documentation</a> &nbsp;&nbsp;
+            <nuxt-link v-if="false" :to="`repos/${repos.slug}/news`" target="_blank"><i class="fas fa-newspaper-o fa-2x"/> News </nuxt-link> &nbsp;&nbsp;
           </div>
           <div class="params">
             <div style="margin-bottom: 10px;">
@@ -37,8 +37,8 @@
               <div style="clear: both"/>
             </div>
             <div style="margin-bottom: 10px;" title="Last updated">
-              <i class="fa fa-clock-o"/> <span> {{ repos.repos_updated_at | fromNow }} </span>
-              <a v-if="false" href=" https://spdx.org/licenses/{$repos->license->spdx_id}.html" target="_blank" rel="nofollow" title=" $repos->license->name " style="color: #333; text-decoration: none;"><i class="fa fa-copyright"/> <span> $repos->license->spdx_id </span></a>
+              <i class="fas fa-clock-o"/> <span> {{ repos.repos_updated_at | fromNow }} </span>
+              <a v-if="false" href=" https://spdx.org/licenses/{$repos->license->spdx_id}.html" target="_blank" rel="nofollow" title=" $repos->license->name " style="color: #333; text-decoration: none;"><i class="fas fa-copyright"/> <span> $repos->license->spdx_id </span></a>
             </div>
             <div v-if="topics.length > 0" style="margin-bottom: 10px;">
               <a v-for="(item, index) in topics" :key="index" :href="`/topic/${item.topic}`" class="label label-primary" style="display: inline-block;">{{ item.topic }}</a>
@@ -115,8 +115,8 @@
             <h3>Releases</h3>
             <div>
               <div v-for="(item, index) in tags" :key="index">-&nbsp;&nbsp;  {{ item.name }}
-                <a :href="item.zipball_url" rel="nofollow"><i class="fa fa-file-archive-o"> zip</i></a>
-                <a :href="item.tarball_url" rel="nofollow"><i class="fa fa-file-archive-o"> tar</i></a>
+                <a :href="item.zipball_url" rel="nofollow"><i class="fas fa-file-archive-o"> zip</i></a>
+                <a :href="item.tarball_url" rel="nofollow"><i class="fas fa-file-archive-o"> tar</i></a>
               </div>
             </div>
           </template>

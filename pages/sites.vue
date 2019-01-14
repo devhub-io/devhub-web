@@ -5,7 +5,7 @@
       <div class="container site-index">
         <div v-for="(item, key) in sites" :key="key" class="panel panel-default">
           <div class="panel-heading">
-            <i class="fa fa-globe text-md"/> {{ key }}
+            <i class="fas fa-globe text-md"/> {{ key }}
           </div>
 
           <div class="panel-body row">

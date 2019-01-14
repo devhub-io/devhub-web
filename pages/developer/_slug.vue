@@ -10,13 +10,13 @@
         <div class="col-md-9 col-sm-8">
           <div class="repo-title">
             <h1 style="font-size: 36px; margin-bottom: 20px;">
-              <i v-if="developer.type === 'Organization'" class="fa fa-users" title="Organization"/> <i v-else class="fa fa-user" title="User"/> {{ developer.name }}  <span>( {{ developer.login }} )</span>
+              <i v-if="developer.type === 'Organization'" class="fas fa-users" title="Organization"/> <i v-else class="fas fa-user" title="User"/> {{ developer.name }}  <span>( {{ developer.login }} )</span>
             </h1>
           </div>
           <div class="menu" style="margin-bottom: 10px;">
-            <a v-if="developer.blog" :href="developer.blog" target="_blank" rel="nofollow" title=" $developer->blog "><i class="fa fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
-            <a :href="developer.html_url" target="_blank" class="gitbtn" rel="nofollow"><i class="fa fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
-            <a v-if="developer.public_gists > 0" :href="`https://gist.github.com/${developer.login}`" target="_blank" class="gitbtn" rel="nofollow"><i class="fa fa-github-square fa-2x"/> Github Gist </a> &nbsp;&nbsp;
+            <a v-if="developer.blog" :href="developer.blog" target="_blank" rel="nofollow" title=" $developer->blog "><i class="fas fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
+            <a :href="developer.html_url" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
+            <a v-if="developer.public_gists > 0" :href="`https://gist.github.com/${developer.login}`" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github-square fa-2x"/> Github Gist </a> &nbsp;&nbsp;
           </div>
           <div class="params">
             <div v-if="developer.type === 'User'" style="margin-bottom: 10px;">
@@ -24,7 +24,7 @@
               <div style="clear: both"/>
             </div>
             <div title="Last updated">
-              <i class="fa fa-clock-o"/> <span> {{ developer.site_updated_at | fromNow }} </span>
+              <i class="fas fa-clock-o"/> <span> {{ developer.site_updated_at | fromNow }} </span>
             </div>
           </div>
         </div>

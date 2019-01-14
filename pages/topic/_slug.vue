@@ -7,7 +7,7 @@
             <h1 style="text-align: center">
               {{ slug }}
               <a :href="`https://stackoverflow.com/documentation/${slug}/topics`" target="_blank" rel="nofollow">
-                <i class="fa fa-stack-overflow" aria-hidden="true"/>
+                <i class="fas fa-stack-overflow" aria-hidden="true"/>
               </a>
             </h1>
             <p v-if="topic.explain" style="margin-bottom: 25px;"> {{ topic.explain.text }} </p>
