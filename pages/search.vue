@@ -18,7 +18,7 @@
                       <img :alt="item.title" :title="item.title" :src="item.cover.length > 0 ? item.cover : '/img/300x300.png'" class="lazyload" width="200">
                     </nuxt-link>
                     <div class="caption">
-                      <nuxt-link :to="`/repos/${item.slug}`"><h3> {{ item.owner }} / {{ item.repo }} </h3></nuxt-link>
+                      <nuxt-link :to="`/repos/${item.slug}`"><h5> {{ item.owner }} / {{ item.repo }} </h5></nuxt-link>
                       <span title="Stargazers count"><i class="fas fa-star"/> {{ item.stargazers_count }} </span>&nbsp;
                       <Peity :type="'line'" :data="item.trends || ''" title="Trends"/>
                       <p> {{ item.description }} </p>

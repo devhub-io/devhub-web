@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="sidebar-title" style="text-align: center;font-size: 36px;"> {{ collection.title }} </h1>
+            <h1 class="sidebar-title text-center"> {{ collection.title }} </h1>
           </div>
 
           <div class="col-md-12">
@@ -15,7 +15,7 @@
                   <div class="card card-body" style="height: 362px;">
                     <nuxt-link :to="`/repos/${item.repos.slug}`"><img :src="item.repos && item.repos.cover.length > 0 ? item.repos.cover : '/img/200x200.png'" :alt="item.repos.title" :title="item.repos.title" width="200"></nuxt-link>
                     <div class="caption">
-                      <nuxt-link :to="`/repos/${item.repos.slug}`"><h3> {{ item.repos.title }} </h3></nuxt-link>
+                      <nuxt-link :to="`/repos/${item.repos.slug}`"><h5> {{ item.repos.title }} </h5></nuxt-link>
                       <peity :type="'line'" :data="item.repos.trends" title="Trends"/>
                       <p> {{ item.repos.description }}} </p>
                     </div>

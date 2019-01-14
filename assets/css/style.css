@@ -417,7 +417,7 @@ input[type="email"]:focus {
 *** Content ***
 *****************************************************/
 #content {
-    padding: 150px 0 100px;
+    padding: 150px 0 0;
     position: relative;
     overflow: hidden;
 }
@@ -726,6 +726,38 @@ input[type="email"]:focus {
 #footer .made-by a img {
     margin-top: -8px;
     margin-left: 8px;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+.single-sidebar li {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 10px 0 10px 20px;
+}
+.single-sidebar li.active {
+  color: #fff;
+  background-color: #1abc9c;
+}
+.single-sidebar li.active a {
+  color: #fff;
+}
+.pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+.card {
+  margin-bottom: 25px;
+}
+.card h5 {
+  height: 38px;
+  line-height: 38px;
+  white-space:nowrap;
+  overflow-x: hidden;
+}
+.card p {
+  font-size: 1rem;
+  line-height: 1.2rem;
 }
 
 /*****************************************************

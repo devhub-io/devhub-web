@@ -1,13 +1,13 @@
 <template>
   <section id="content">
     <div class="single-product-area">
-      <h1 style="text-align: center">Developers</h1>
+      <h1 class="text-center">Developers</h1>
       <div class="container">
         <div class="row">
           <div class="col-md-12" style="margin-bottom: 15px;">
-            <div class="btn-group float-right">
-              <nuxt-link :class="{ btn: true, 'btn-info': type === 'User' }" type="button" to="/developers">User</nuxt-link>
-              <nuxt-link :class="{ btn: true, 'btn-info': type === 'Organization' }" type="button" to="/developers?type=Organization">Organization</nuxt-link>
+            <div class="btn-group float-right" role="group" >
+              <button :class="{ btn: true, 'btn-primary': type === 'User' }" type="button" @click="$router.push('/developers')">User</button>
+              <button :class="{ btn: true, 'btn-primary': type === 'Organization' }" type="button" @click="$router.push('/developers?type=Organization')">Organization</button>
             </div>
           </div>
         </div>
@@ -16,13 +16,14 @@
             <div class="product-content-right">
               <div class="row">
                 <div v-for="(item, index) in developers.rows" :key="index" class="col-md-3">
-                  <div class="card card-body" style="height: 300px;">
+                  <div class="card card-body" style="height: 310px;">
                     <nuxt-link :to="`/developer/${item.login}`"><img :src="item.avatar_url ? item.avatar_url + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="200"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/developer/${item.login}`">
-                        <h4>
-                          <i v-if="item.type === 'Organization'" class="fas fa-users" title="Organization"/><i v-else class="fas fa-user" title="User"/>  {{ item.name ? item.name : item.login }}
-                        </h4>
+                        <h5>
+                          <i v-if="item.type === 'Organization'" class="fas fa-users" title="Organization"/><i v-else class="fas fa-user" title="User"/>
+                          {{ item.name ? item.name : item.login }}
+                        </h5>
                       </nuxt-link>
                       <div style="margin-bottom: 10px">
                         <span v-if="item.type === 'User'" title="star">
@@ -33,12 +34,12 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12 center">
-                  <Paginate :page="developers.page" :total="developers.count" :last-page="developers.last_page" :base-url="$route.path" />
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
+        <div class="row pagination">
+          <div class="col-md-12">
+            <Paginate :page="developers.page" :total="developers.count" :last-page="developers.last_page" :base-url="$route.path" />
           </div>
         </div>
       </div>
@@ -67,17 +68,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .single-sidebar li {
-    border-bottom: 1px solid #f1f1f1;
-    padding: 10px 0 10px 20px;
-  }
-  .single-sidebar li.active {
-    color: #fff;
-    background-color: #1abc9c;
-  }
-  .single-sidebar li.active a {
-    color: #fff;
-  }
-</style>

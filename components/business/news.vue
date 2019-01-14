@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-12 col-sm-12">
           <div class="repo-title">
-            <h1 style="font-size: 36px; margin-bottom: 0px;">What's hot on Github on {{ date }} </h1>
+            <h1 style="margin-bottom: 0px;">What's hot on Github on {{ date }} </h1>
           </div>
         </div>
       </div>

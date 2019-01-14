@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-9 col-sm-8">
           <div class="repo-title">
-            <h1 style="font-size: 36px; margin-bottom: 20px;">
+            <h1 style="margin-bottom: 20px;">
               {{ repos.title }} <peity :type="'line'" :data="repos.trends" title="Trends"/>
               <template v-for="(badge, index) in badges">
                 <a v-if="badge.url.length > 0" :key="`badge-${index}`" :href="badge.url" :title="badge.name" rel="nofollow" target="_blank" style="text-decoration: none">

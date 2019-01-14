@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-9 col-sm-8">
           <div class="repo-title">
-            <h1 style="font-size: 36px; margin-bottom: 20px;">
+            <h1 style="margin-bottom: 20px;">
               <i v-if="developer.type === 'Organization'" class="fas fa-users" title="Organization"/> <i v-else class="fas fa-user" title="User"/> {{ developer.name }}  <span>( {{ developer.login }} )</span>
             </h1>
           </div>

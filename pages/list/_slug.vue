@@ -1,7 +1,7 @@
 <template>
   <section id="content">
     <div class="single-product-area">
-      <h1 style="text-align: center">{{ slug }}</h1>
+      <h1 class="text-center">{{ slug }}</h1>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -12,7 +12,7 @@
                     <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover ? item.cover + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="200"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/repos/${item.slug}`">
-                        <h4>{{ item.title }}</h4>
+                        <h5>{{ item.title }}</h5>
                       </nuxt-link>
                       <div style="margin-bottom: 10px">
                         <span title="star">
@@ -25,12 +25,12 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-12 center">
-                  <Paginate :page="repos.page" :total="repos.count" :last-page="repos.last_page" :base-url="$route.path" />
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 center">
+            <Paginate :page="repos.page" :total="repos.count" :last-page="repos.last_page" :base-url="$route.path" />
           </div>
         </div>
       </div>
@@ -75,17 +75,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .single-sidebar li {
-    border-bottom: 1px solid #f1f1f1;
-    padding: 10px 0 10px 20px;
-  }
-  .single-sidebar li.active {
-    color: #fff;
-    background-color: #1abc9c;
-  }
-  .single-sidebar li.active a {
-    color: #fff;
-  }
-</style>

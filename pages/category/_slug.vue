@@ -3,23 +3,23 @@
     <div class="single-product-area">
       <div class="container">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-2">
             <div class="single-sidebar">
-              <h2 class="sidebar-title" style="font-size: 28px">Categories</h2>
+              <h1 class="sidebar-title">Categories</h1>
               <ul>
                 <li v-for="(item, index) in repos.category" :key="index" :class="{ active: item.slug === slug }"><nuxt-link :to="`/category/${item.slug}`" style="font-size: 19px;">{{ item.title }}</nuxt-link></li>
               </ul>
             </div>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-10">
             <div class="product-content-right">
               <div class="row">
                 <div v-for="(item, index) in repos.rows" :key="index" class="col-md-3">
                   <div class="card card-body" style="height: 400px;">
-                    <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover ? item.cover + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="200"></nuxt-link>
+                    <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover ? item.cover + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="165"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/repos/${item.slug}`">
-                        <h4>{{ item.title }}</h4>
+                        <h5>{{ item.title }}</h5>
                       </nuxt-link>
                       <div style="margin-bottom: 10px">
                         <span title="star">
@@ -75,17 +75,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .single-sidebar li {
-    border-bottom: 1px solid #f1f1f1;
-    padding: 10px 0 10px 20px;
-  }
-  .single-sidebar li.active {
-    color: #fff;
-    background-color: #1abc9c;
-  }
-  .single-sidebar li.active a {
-    color: #fff;
-  }
-</style>
