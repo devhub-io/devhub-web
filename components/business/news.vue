@@ -11,14 +11,12 @@
         </div>
       </div>
 
-      <br>
-
       <div class="row">
         <div v-for="(item, index) in news.rows" :key="index" class="col-md-12">
           <div>
             <div class="caption">
               <a :href="`https://news.ycombinator.com/item?id=${item.item_id}`" rel="nofollow" target="_blank" style="text-decoration: none;">
-                <h2 style="font-size: 26px; margin-bottom: 15px;"><span class="label label-default"> {{ item.score }} </span>  {{ item.title }} </h2>
+                <h2 style="font-size: 26px; margin-bottom: 15px;"><span class="badge badge-primary"> {{ item.score }} </span>  {{ item.title }} </h2>
               </a>
               <nuxt-link v-if="item.repos" :to="`/repos/${item.repos ? item.repos.slug : ''}`" style="font-size: 16px;text-decoration: none;" target="_blank">
                 <i class="fa fa-github"/>
@@ -34,12 +32,12 @@
         </div>
       </div>
 
-      <div class="row" style="font-size: 23px">
+      <div class="row date-pagination">
         <div v-if="news.prev" class="col-md-2">
-          <nuxt-link :to="`/news/daily/${news.prev.post_date}`" class="label label-info"> {{ news.prev.post_date }} </nuxt-link>
+          <nuxt-link :to="`/news/daily/${news.prev.post_date}`" class="badge badge-info">&laquo; {{ news.prev.post_date }} </nuxt-link>
         </div>
-        <div v-if="news.next" class="col-md-2 col-md-offset-8">
-          <nuxt-link :to="`/news/daily/${news.next.post_date}`" class="label label-info"> {{ news.next.post_date }}  ></nuxt-link>
+        <div v-if="news.next" class="col-md-2 offset-md-8">
+          <nuxt-link :to="`/news/daily/${news.next.post_date}`" class="badge badge-info"> {{ news.next.post_date }} &raquo;</nuxt-link>
         </div>
       </div>
     </div>
@@ -63,3 +61,13 @@ export default {
   }
 }
 </script>
+
+<style>
+  .date-pagination .badge {
+    font-size: 1.1rem;
+  }
+  .badge-primary {
+    width: 65px;
+  }
+</style>
+
