@@ -59,7 +59,7 @@
 
         <div class="col-md-4" style="margin-bottom: 50px">
           <template v-if="related.length > 0">
-            <h3>Related Repositories</h3>
+            <h4>Related Repositories</h4>
             <div v-for="item in related" :key="`related-${item.id}`" class="row" style="margin-bottom: 10px">
               <div class="col-md-4">
                 <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover.length > 0 ? item.cover : '/img/200x200.png'" :alt="item.title" :title="item.title" class="lazyload" width="100"></nuxt-link>
@@ -84,8 +84,8 @@
           </template>
 
           <template v-if="Object.keys(dependencies).length > 0">
-            <h3>Dependencies</h3>
-            <div>
+            <h4>Dependencies</h4>
+            <div class="dependencies">
               <table v-for="(one, k) in dependencies" :key="`on-${k}`" class="table table-striped">
                 <thead>
                   <tr>
@@ -112,8 +112,8 @@
           <br>
 
           <template v-if="tags.length > 0">
-            <h3>Releases</h3>
-            <div>
+            <h4>Releases</h4>
+            <div class="tags">
               <div v-for="(item, index) in tags" :key="index">-&nbsp;&nbsp;  {{ item.name }}
                 <a :href="item.zipball_url" rel="nofollow"><i class="fas fa-file-archive-o"> zip</i></a>
                 <a :href="item.tarball_url" rel="nofollow"><i class="fas fa-file-archive-o"> tar</i></a>
@@ -310,5 +310,9 @@ export default {
     display: block;
     text-transform: uppercase;
     font-size: 10px;
+  }
+
+  .dependencies, .tags {
+    font-size: .9rem;
   }
 </style>
