@@ -2,11 +2,10 @@
   <div>
     <section id="topics">
       <div class="container">
+        <h1 class="text-center">Topics</h1>
         <div class="row">
-          <h1 class="wow fadeInUp text-center">Topics</h1>
-
-          <div class="row top-50" data-wow-delay=".3s" data-effect="mfp-zoom-in">
-            <div v-for="(item, index) in collections.rows" :key="'topics' + index" class="col-md-4 center">
+          <div class="row top-50">
+            <div v-for="(item, index) in collections.rows" :key="'topics' + index" class="col-lg-4 center">
               <nuxt-link :to="`/collection/${item.slug}`">
                 <img :src="item.image ? item.image : '/img/270x270.png'" :title="item.title" :alt="item.title" width="270" height="270" class="lazyload">
               </nuxt-link>
@@ -18,14 +17,13 @@
 
     <section id="guess">
       <div class="container">
+        <h1 class="text-center">Guess you like it</h1>
         <div class="row">
-          <h1 class="wow fadeInUp text-center">Guess you like it</h1>
-
-          <div class="row top-50" data-wow-delay=".3s" data-effect="mfp-zoom-in">
+          <div class="row top-50">
             <div v-for="(item, index) in recommend" :key="index" class="col-md-2 center guess-item">
               <nuxt-link :to="`/repos/${item.slug}`">
                 <img :src="item.cover ? item.cover : '/img/210x269.png'" :title="item.title" :alt="item.title" width="200" class="lazyload">
-                <p>{{ item.title }}</p>
+                <p class="text-center">{{ item.title }}</p>
               </nuxt-link>
             </div>
           </div>
@@ -40,7 +38,7 @@
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
-            <div class="col-md-2 col-md-offset-1 stars"><i class="fas fa-star"/>  {{ item.stargazers_count }} <peity :type="'line'" :data="item.trends" title="Trends"/></div>
+            <div class="col-md-2 offset-md-1 stars"><i class="fas fa-star"/>  {{ item.stargazers_count }} <peity :type="'line'" :data="item.trends" title="Trends"/></div>
           </div>
         </nuxt-link>
         <h1>Top new <nuxt-link to="/list/newest"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
@@ -48,7 +46,7 @@
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
-            <div class="col-md-2 col-md-offset-1 stars"><i class="fas fa-star"/>  {{ item.stargazers_count }}  <peity :type="'line'" :data="item.trends" title="Trends"/></div>
+            <div class="col-md-2 offset-md-1 stars"><i class="fas fa-star"/>  {{ item.stargazers_count }}  <peity :type="'line'" :data="item.trends" title="Trends"/></div>
           </div>
         </nuxt-link>
         <h1>Trend <nuxt-link to="/list/trend"><span style="margin-left: 10px; font-size: 16px">more</span></nuxt-link></h1>
@@ -56,7 +54,7 @@
           <div class="row">
             <div class="col-md-3 title">{{ item.owner }} / {{ item.repo }}</div>
             <div class="col-md-6 desc">{{ item.description }} </div>
-            <div class="col-md-2 col-md-offset-1 stars"><i class="fas fa-star"/>  {{ item.stargazers_count }}  <peity :type="'line'" :data="item.trends" title="Trends"/></div>
+            <div class="col-md-2 offset-md-1 stars"><i class="fas fa-star"/>  {{ item.stargazers_count }}  <peity :type="'line'" :data="item.trends" title="Trends"/></div>
           </div>
         </nuxt-link>
       </div>

@@ -3,12 +3,12 @@
     <div class="single-product-area">
       <div class="zigzag-bottom"/>
       <div class="container site-index">
-        <div v-for="(item, key) in sites" :key="key" class="panel panel-default">
-          <div class="panel-heading">
+        <div v-for="(item, key) in sites" :key="key" class="card panel">
+          <div class="card-heading">
             <i class="fas fa-globe text-md"/> {{ key }}
           </div>
 
-          <div class="panel-body row">
+          <div class="card-body row">
             <div v-for="site in item" :key="site.title" class="col-md-2 site">
               <a :href="site.url" :title="site.description" data-content=" $item->description " target="_blank" rel="nofollow">
                 <img :alt="site.title" :title="site.title" :src="site.icon" class="favicon"> {{ site.title }}
@@ -49,5 +49,12 @@ export default {
   }
   .site-index {
     font-size: 15px;
+  }
+  .panel {
+    margin-bottom: 15px;
+  }
+  .panel .card-heading {
+    background-color: #eeeeee;
+    padding: 10px;
   }
 </style>

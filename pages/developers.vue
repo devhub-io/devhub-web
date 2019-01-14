@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12" style="margin-bottom: 15px;">
-            <div class="btn-group pull-right">
+            <div class="btn-group float-right">
               <nuxt-link :class="{ btn: true, 'btn-info': type === 'User' }" type="button" to="/developers">User</nuxt-link>
               <nuxt-link :class="{ btn: true, 'btn-info': type === 'Organization' }" type="button" to="/developers?type=Organization">Organization</nuxt-link>
             </div>
@@ -16,7 +16,7 @@
             <div class="product-content-right">
               <div class="row">
                 <div v-for="(item, index) in developers.rows" :key="index" class="col-md-3">
-                  <div class="thumbnail" style="height: 300px;">
+                  <div class="card card-body" style="height: 300px;">
                     <nuxt-link :to="`/developer/${item.login}`"><img :src="item.avatar_url ? item.avatar_url + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="200"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/developer/${item.login}`">

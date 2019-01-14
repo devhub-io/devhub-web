@@ -12,7 +12,7 @@
             <div class="product-content-right">
               <div class="row">
                 <div v-for="(item, index) in repos" :key="index" class="col-sm-4 col-md-3">
-                  <div class="thumbnail" style="height: 362px;">
+                  <div class="card card-body" style="height: 362px;">
                     <nuxt-link :to="`/repos/${item.repos.slug}`"><img :src="item.repos && item.repos.cover.length > 0 ? item.repos.cover : '/img/200x200.png'" :alt="item.repos.title" :title="item.repos.title" width="200"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/repos/${item.repos.slug}`"><h3> {{ item.repos.title }} </h3></nuxt-link>

@@ -54,7 +54,7 @@
             <h2>Repository</h2>
             <div class="row">
               <div v-for="(item, index) in owner_repos" :key="index" class="col-md-3">
-                <div class="thumbnail" style="height: 150px;">
+                <div class="card card-body" style="height: 150px;">
                   <div class="caption">
                     <nuxt-link :to="`/repos/${item.slug}`"><h4> {{ item.title }} </h4></nuxt-link>
                     <div style="margin-bottom: 10px">
@@ -74,7 +74,7 @@
             <h2>Contribute</h2>
             <div class="row">
               <div v-for="(item, index) in contribute_repos" :key="index" class="col-md-3">
-                <div class="thumbnail" style="height: 362px;">
+                <div class="card card-body" style="height: 362px;">
                   <nuxt-link :to="`/repos/${item.repos.slug}`">
                     <img :src="item.repos.cover ? item.repos.cover : '/img/200x200.png'" :title="item.repos.title" :alt="item.repos.title" class="lazyload" width="200">
                   </nuxt-link>

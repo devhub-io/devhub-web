@@ -77,7 +77,7 @@
             <h3>Top Contributors</h3>
             <div>
               <nuxt-link v-for="(item, index) in contributors" :key="index" :to="`/developer/${item.login}`">
-                <img :alt="item.login" :title="item.login" :src="item.avatar_url + '&s=60'" class="pull-left" width="60" height="60" style="width:60px;height:60px;" >
+                <img :alt="item.login" :title="item.login" :src="item.avatar_url + '&s=60'" class="float-left" width="60" height="60" style="width:60px;height:60px;" >
               </nuxt-link>
             </div>
             <div style="clear: both"/>
@@ -128,13 +128,13 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 id="mcqReviewModalLabel" class="modal-title">Would you tell us more about {{ repos.owner }} / {{ repos.repo }} ?</h5>
             <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <h4 id="mcqReviewModalLabel" class="modal-title">Would you tell us more about {{ repos.owner }} / {{ repos.repo }} ?</h4>
           </div>
           <form id="review-form" style="padding:10px;" method="get" role="form" class="form-horizontal bv-form" novalidate="novalidate">
             <div style="padding-top:0;" class="modal-body">
               <div class="form-group mcq_input">
-                <h4>Is the project reliable?</h4>
+                <h5>Is the project reliable?</h5>
                 <div class="input-group">
                   <div class="radio">
                     <label><input v-model="form.reliable" :value="1" type="radio" name="reliable">Yes, realiable</label>&nbsp;&nbsp;&nbsp;
@@ -145,7 +145,7 @@
               </div>
 
               <div class="form-group mcq_input has-feedback">
-                <h4>Would you recommend this project?</h4>
+                <h5>Would you recommend this project?</h5>
                 <div class="input-group">
                   <div class="radio">
                     <label><input v-model="form.recommendation" :value="1" type="radio" class="definitely_recommend" name="recommendation">Yes, definitely</label>&nbsp;&nbsp;&nbsp;
@@ -156,7 +156,7 @@
               </div>
 
               <div class="form-group mcq_input">
-                <h4>Is the documentation helpful?</h4>
+                <h5>Is the documentation helpful?</h5>
                 <div class="input-group">
                   <div class="radio">
                     <label><input v-model="form.documentation" :value="1" type="radio" name="documentation">Yes, helpful</label>&nbsp;&nbsp;&nbsp;
@@ -167,7 +167,7 @@
               </div>
 
               <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                <button data-dismiss="modal" class="btn btn-secondary" type="button">Close</button>
                 <button class="btn btn-primary" type="button" name="button" @click="submit">Submit</button>
               </div>
             </div>

@@ -15,7 +15,7 @@
             <div class="product-content-right">
               <div class="row">
                 <div v-for="(item, index) in repos.rows" :key="index" class="col-md-3">
-                  <div class="thumbnail" style="height: 400px;">
+                  <div class="card card-body" style="height: 400px;">
                     <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover ? item.cover + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="200"></nuxt-link>
                     <div class="caption">
                       <nuxt-link :to="`/repos/${item.slug}`">

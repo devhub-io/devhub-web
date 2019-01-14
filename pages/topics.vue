@@ -6,7 +6,7 @@
           <h2 style="margin-top: 50px;margin-bottom: 50px;">Topics</h2>
           <div class="row">
             <div v-for="(item, index) in topics" :key="index" class="col-md-3">
-              <div class="thumbnail" style="height: 50px;">
+              <div class="card card-body" style="height: 50px;">
                 <div class="caption">
                   <nuxt-link :to="`/topic/${item.topic}`"><h4> {{ item.topic }}  ( {{ item.number }} )</h4></nuxt-link>
                 </div>
