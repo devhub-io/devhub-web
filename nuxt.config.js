@@ -45,10 +45,7 @@ module.exports = {
     ],
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js' },
-      { src: '/js/wow.min.js' },
-      { src: '/js/jquery.sticky.js' },
-      { src: '/js/main.js' }
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js' }
     ]
   },
 
@@ -62,7 +59,6 @@ module.exports = {
   */
   css: [
     '@/assets/css/normalize.css',
-    '@/assets/css/animate.min.css',
     '@/assets/css/style.css',
     '@/assets/css/github-markdown.css'
   ],

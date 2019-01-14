@@ -1,11 +1,11 @@
 <template>
   <div>
-    <header id="main-nav">
+    <header id="main-nav" :class="{ active: scrolled }">
       <div class="container">
-        <a id="navigation" href="#"><i class="fa fa-bars"/></a>
+        <a id="navigation" :class="{ open: navigation }" href="#" @click="openMenu"><i class="fa fa-bars"/></a>
 
-        <div id="slide_out_menu">
-          <a href="#" class="menu-close"><i class="fa fa-times"/></a>
+        <div id="slide_out_menu" :class="{ scrolled: scrolled, open: navigation }">
+          <a :href="void(0)" class="menu-close" @click="closeMenu"><i class="fa fa-times"/></a>
           <div class="logo" style="color: #ffffff">DevHub.io</div>
           <ul>
             <li><nuxt-link to="/developers">Developers</nuxt-link></li>
@@ -168,8 +168,20 @@
 <script>
 import { getToken } from '@/utils/auth'
 export default {
+  data() {
+    return {
+      scrolled: false,
+      navigation: false
+    }
+  },
   mounted() {
     this.$store.commit('SET_TOKEN', getToken())
+  },
+  beforeMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     login() {
@@ -178,6 +190,15 @@ export default {
           window.location.href = `${process.env.BASE_API}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
         }
       }
+    },
+    handleScroll() {
+      this.scrolled = window.scrollY > 0
+    },
+    openMenu() {
+      this.navigation = true
+    },
+    closeMenu() {
+      this.navigation = false
     }
   }
 }
