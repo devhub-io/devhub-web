@@ -21,9 +21,9 @@
               <p>Developed by <nuxt-link to="/">Devhub</nuxt-link>
             </p></div>
             <ul class="socials">
-              <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fas fa-twitter"/></a></li>
-              <li><a href="https://www.facebook.com/devhubdotio" target="_blank"><i class="fas fa-facebook"/></a></li>
-              <li><a href="mailto:devhub.io@gmail.com"><i class="fas fa-envelope-o"/></a></li>
+              <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fab fa-twitter"/></a></li>
+              <li><a href="https://www.facebook.com/devhubdotio" target="_blank"><i class="fab fa-facebook"/></a></li>
+              <li><a href="mailto:devhub.io@gmail.com"><i class="fas fa-envelope"/></a></li>
             </ul>
           </div>
         </div>
@@ -64,9 +64,9 @@
               <nuxt-link to="/developers">{{ $store.getters.count.developers || 0 }}</nuxt-link> developers
             </p>
             <ul class="socials">
-              <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fas fa-twitter"/></a></li>
-              <li><a href="https://www.facebook.com/devhubdotio" target="_blank"><i class="fas fa-facebook"/></a></li>
-              <li><a href="mailto:devhub.io@gmail.com"><i class="fas fa-envelope-o"/></a></li>
+              <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fab fa-twitter"/></a></li>
+              <li><a href="https://www.facebook.com/devhubdotio" target="_blank"><i class="fab fa-facebook"/></a></li>
+              <li><a href="mailto:devhub.io@gmail.com"><i class="fas fa-envelope"/></a></li>
             </ul>
           </div>
           <div class="col-md-2 col-md-offset-4 col-sm-4 col-xs-6 footer-links">

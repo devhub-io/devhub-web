@@ -59,7 +59,7 @@
                     <nuxt-link :to="`/repos/${item.slug}`"><h4> {{ item.title }} </h4></nuxt-link>
                     <div style="margin-bottom: 10px">
                       <span title="star">
-                        <i class="glyphicon glyphicon-star"/>  {{ item.stargazers_count }}
+                        <i class="fas fa-star"/>  {{ item.stargazers_count }}
                       </span>
                       <peity :type="'line'" :data="item.trends" title="Trends"/>
                     </div>
@@ -82,7 +82,7 @@
                     <nuxt-link :to="`/repos/${item.repos.slug}`"><h4> {{ item.repos.title }} </h4></nuxt-link>
                     <div style="margin-bottom: 10px;">
                       <span title="star">
-                        <i class="glyphicon glyphicon-star"/>  {{ item.repos.stargazers_count }}
+                        <i class="fas fa-star"/>  {{ item.repos.stargazers_count }}
                       </span>
                       <span class="line"> {{ item.repos.trend }} </span>
                     </div>

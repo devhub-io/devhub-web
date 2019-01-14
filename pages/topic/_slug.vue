@@ -7,7 +7,7 @@
             <h1 style="text-align: center">
               {{ slug }}
               <a :href="`https://stackoverflow.com/documentation/${slug}/topics`" target="_blank" rel="nofollow">
-                <i class="fas fa-stack-overflow" aria-hidden="true"/>
+                <i class="fab fa-stack-overflow" aria-hidden="true"/>
               </a>
             </h1>
             <p v-if="topic.explain" style="margin-bottom: 25px;"> {{ topic.explain.text }} </p>
@@ -24,7 +24,7 @@
                       <nuxt-link :to="`/repos/${item.slug}`"><h4> {{ item.title }} </h4></nuxt-link>
                       <div style="margin-bottom: 10px">
                         <span title="star">
-                          <i class="glyphicon glyphicon-star"/>  {{ item.stargazers_count }}
+                          <i class="fas fa-star"/>  {{ item.stargazers_count }}
                         </span>
                         <peity :type="'line'" :data="item.trends" title="Trends"/>
                       </div>

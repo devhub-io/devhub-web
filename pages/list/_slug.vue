@@ -16,7 +16,7 @@
                       </nuxt-link>
                       <div style="margin-bottom: 10px">
                         <span title="star">
-                          <i class="glyphicon glyphicon-star"/> {{ item.stargazers_count }}
+                          <i class="fas fa-star"/> {{ item.stargazers_count }}
                         </span>
                         <Peity :type="'line'" :data="item.trends" title="Trends"/>
                       </div>
