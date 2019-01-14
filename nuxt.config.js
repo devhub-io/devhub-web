@@ -41,10 +41,6 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:400,300,700,500' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css' }
-    ],
-    script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js' }
     ]
   },
 
@@ -79,7 +75,8 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
     'nuxt-universal-storage',
-    'vue-github-buttons/nuxt'
+    'vue-github-buttons/nuxt',
+    ['bootstrap-vue/nuxt', { css: false }]
   ],
   /*
   ** Axios module configuration

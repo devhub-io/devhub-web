@@ -21,13 +21,13 @@
             <p> {{ repos.description }} </p>
           </div>
           <div class="menu" style="margin-bottom: 10px;">
-            <a v-if="repos.homepage" :href="repos.homepage" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fas fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
-            <a v-if="repos.github" :href="repos.github" target="_blank" rel="nofollow"><i class="fab fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
-            <a v-if="repos.have_questions" :href="`/repos/${repos.slug}/questions`" target="_blank"><i class="fab fa-stack-overflow fa-2x"/> Questions </a> &nbsp;&nbsp;
-            <a v-if="false" target="_blank" href="/" rel="nofollow"><i class="fas fa-comments-o fa-2x"/> Gitter </a> &nbsp;&nbsp;
-            <nuxt-link :to="`/developer/${repos.owner}`" ><i class="fas fa-user fa-2x"/> Developer</nuxt-link> &nbsp;&nbsp;
-            <a v-if="repos.document_url" :href="repos.document_url" rel="nofollow" target="_blank"><i class="fas fa-book fa-2x"/> Documentation</a> &nbsp;&nbsp;
-            <nuxt-link v-if="false" :to="`repos/${repos.slug}/news`" target="_blank"><i class="fas fa-newspaper-o fa-2x"/> News </nuxt-link> &nbsp;&nbsp;
+            <a v-if="repos.homepage" :href="repos.homepage" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fas fa-home"/> Homepage </a> &nbsp;&nbsp;
+            <a v-if="repos.github" :href="repos.github" target="_blank" rel="nofollow"><i class="fab fa-github"/> Github </a> &nbsp;&nbsp;
+            <a v-if="repos.have_questions" :href="`/repos/${repos.slug}/questions`" target="_blank"><i class="fab fa-stack-overflow"/> Questions </a> &nbsp;&nbsp;
+            <a v-if="false" target="_blank" href="/" rel="nofollow"><i class="fas fa-comments-o"/> Gitter </a> &nbsp;&nbsp;
+            <nuxt-link :to="`/developer/${repos.owner}`" ><i class="fas fa-user"/> Developer</nuxt-link> &nbsp;&nbsp;
+            <a v-if="repos.document_url" :href="repos.document_url" rel="nofollow" target="_blank"><i class="fas fa-book"/> Documentation</a> &nbsp;&nbsp;
+            <nuxt-link v-if="false" :to="`repos/${repos.slug}/news`" target="_blank"><i class="fas fa-newspaper-o"/> News </nuxt-link> &nbsp;&nbsp;
           </div>
           <div class="params">
             <div style="margin-bottom: 10px;">
@@ -41,10 +41,10 @@
               <a v-if="false" href=" https://spdx.org/licenses/{$repos->license->spdx_id}.html" target="_blank" rel="nofollow" title=" $repos->license->name " style="color: #333; text-decoration: none;"><i class="fas fa-copyright"/> <span> $repos->license->spdx_id </span></a>
             </div>
             <div v-if="topics.length > 0" style="margin-bottom: 10px;">
-              <a v-for="(item, index) in topics" :key="index" :href="`/topic/${item.topic}`" class="label label-primary" style="display: inline-block;">{{ item.topic }}</a>
+              <a v-for="(item, index) in topics" :key="index" :href="`/topic/${item.topic}`" class="badge badge-primary" style="display: inline-block;">{{ item.topic }}</a>
             </div>
             <div>
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#reviewModal" style="font-size: 12px; padding: 5px;">
+              <button v-b-modal.reviewModal type="button" class="btn btn-info" style="font-size: 12px; padding: 5px;">
                 I use {{ repos.owner }} / {{ repos.repo }}
               </button>
             </div>
@@ -124,57 +124,42 @@
       </div>
     </div>
 
-    <div id="reviewModal" aria-hidden="true" aria-labelledby="reviewModalLabel" role="dialog" tabindex="-1" class="modal fade in">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 id="mcqReviewModalLabel" class="modal-title">Would you tell us more about {{ repos.owner }} / {{ repos.repo }} ?</h5>
-            <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          </div>
-          <form id="review-form" style="padding:10px;" method="get" role="form" class="form-horizontal bv-form" novalidate="novalidate">
-            <div style="padding-top:0;" class="modal-body">
-              <div class="form-group mcq_input">
-                <h5>Is the project reliable?</h5>
-                <div class="input-group">
-                  <div class="radio">
-                    <label><input v-model="form.reliable" :value="1" type="radio" name="reliable">Yes, realiable</label>&nbsp;&nbsp;&nbsp;
-                    <label><input v-model="form.reliable" :value="0" type="radio" name="reliable">Somewhat realiable</label>&nbsp;&nbsp;&nbsp;
-                    <label><input v-model="form.reliable" :value="-1" type="radio" name="reliable">Not realiable</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group mcq_input has-feedback">
-                <h5>Would you recommend this project?</h5>
-                <div class="input-group">
-                  <div class="radio">
-                    <label><input v-model="form.recommendation" :value="1" type="radio" class="definitely_recommend" name="recommendation">Yes, definitely</label>&nbsp;&nbsp;&nbsp;
-                    <label><input v-model="form.recommendation" :value="0" type="radio" class="no_recommend" name="recommendation">Not sure</label>&nbsp;&nbsp;&nbsp;
-                    <label><input v-model="form.recommendation" :value="-1" type="radio" class="no_recommend" name="recommendation">Nope</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group mcq_input">
-                <h5>Is the documentation helpful?</h5>
-                <div class="input-group">
-                  <div class="radio">
-                    <label><input v-model="form.documentation" :value="1" type="radio" name="documentation">Yes, helpful</label>&nbsp;&nbsp;&nbsp;
-                    <label><input v-model="form.documentation" :value="0" type="radio" name="documentation">Somewhat helpful</label>&nbsp;&nbsp;&nbsp;
-                    <label><input v-model="form.documentation" :value="-1" type="radio" name="documentation">Not that helpful</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-secondary" type="button">Close</button>
-                <button class="btn btn-primary" type="button" name="button" @click="submit">Submit</button>
-              </div>
+    <b-modal id="reviewModal" ref="reviewModalRef" :title="`Would you tell us more about ${repos.owner} / ${repos.repo } ?`" ok-title="Submit" @ok="submit">
+      <form id="review-form" style="padding:10px;" method="get" role="form" class="form-horizontal bv-form" novalidate="novalidate">
+        <div class="form-group mcq_input">
+          <h5>Is the project reliable?</h5>
+          <div class="input-group">
+            <div class="radio">
+              <label><input v-model="form.reliable" :value="1" type="radio" name="reliable">Yes, realiable</label>&nbsp;&nbsp;&nbsp;
+              <label><input v-model="form.reliable" :value="0" type="radio" name="reliable">Somewhat realiable</label>&nbsp;&nbsp;&nbsp;
+              <label><input v-model="form.reliable" :value="-1" type="radio" name="reliable">Not realiable</label>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-    </div>
+
+        <div class="form-group mcq_input has-feedback">
+          <h5>Would you recommend this project?</h5>
+          <div class="input-group">
+            <div class="radio">
+              <label><input v-model="form.recommendation" :value="1" type="radio" class="definitely_recommend" name="recommendation">Yes, definitely</label>&nbsp;&nbsp;&nbsp;
+              <label><input v-model="form.recommendation" :value="0" type="radio" class="no_recommend" name="recommendation">Not sure</label>&nbsp;&nbsp;&nbsp;
+              <label><input v-model="form.recommendation" :value="-1" type="radio" class="no_recommend" name="recommendation">Nope</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mcq_input">
+          <h5>Is the documentation helpful?</h5>
+          <div class="input-group">
+            <div class="radio">
+              <label><input v-model="form.documentation" :value="1" type="radio" name="documentation">Yes, helpful</label>&nbsp;&nbsp;&nbsp;
+              <label><input v-model="form.documentation" :value="0" type="radio" name="documentation">Somewhat helpful</label>&nbsp;&nbsp;&nbsp;
+              <label><input v-model="form.documentation" :value="-1" type="radio" name="documentation">Not that helpful</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </b-modal>
   </section>
 </template>
 
@@ -241,14 +226,20 @@ export default {
     }
   },
   methods: {
-    submit() {
+    submit(evt) {
+      evt.preventDefault()
       if (this.form.documentation === '' || this.form.reliable === '' || this.form.recommendation === '') {
         this.$Alert.info({ content: 'Please select an option' })
         return false
       }
       reviewRepos(this.slug, this.form).then(() => {
         this.$Alert.info({ content: 'Thanks so much' })
-        this.$router.go()
+        this.$refs.reviewModalRef.hide()
+        this.form = {
+          reliable: '',
+          recommendation: '',
+          documentation: ''
+        }
       })
     }
   }

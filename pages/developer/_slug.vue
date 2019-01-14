@@ -9,14 +9,14 @@
         </div>
         <div class="col-md-9 col-sm-8">
           <div class="repo-title">
-            <h1 style="margin-bottom: 20px;">
+            <h1 style="margin-bottom: 10px;">
               <i v-if="developer.type === 'Organization'" class="fas fa-users" title="Organization"/> <i v-else class="fas fa-user" title="User"/> {{ developer.name }}  <span>( {{ developer.login }} )</span>
             </h1>
           </div>
           <div class="menu" style="margin-bottom: 10px;">
-            <a v-if="developer.blog" :href="developer.blog" target="_blank" rel="nofollow" title=" $developer->blog "><i class="fas fa-home fa-2x"/> Homepage </a> &nbsp;&nbsp;
-            <a :href="developer.html_url" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github fa-2x"/> Github </a> &nbsp;&nbsp;
-            <a v-if="developer.public_gists > 0" :href="`https://gist.github.com/${developer.login}`" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github-square fa-2x"/> Github Gist </a> &nbsp;&nbsp;
+            <a v-if="developer.blog" :href="developer.blog" target="_blank" rel="nofollow" title=" $developer->blog "><i class="fas fa-home"/> Homepage </a> &nbsp;&nbsp;
+            <a :href="developer.html_url" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github"/> Github </a> &nbsp;&nbsp;
+            <a v-if="developer.public_gists > 0" :href="`https://gist.github.com/${developer.login}`" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github-square"/> Github Gist </a> &nbsp;&nbsp;
           </div>
           <div class="params">
             <div v-if="developer.type === 'User'" style="margin-bottom: 10px;">
@@ -33,7 +33,7 @@
         <article class="col-md-12">
           <script id="_carbonads_js" async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=devhubio" />
 
-          <h2>About {{ developer.name ? developer.name : developer.login }} </h2>
+          <h1>About {{ developer.name ? developer.name : developer.login }} </h1>
           <p>
             Summing up all of {{ developer.name ? developer.name : developer.login }} 's repositories they have {{ owner_repos.length }}  own repositories @if($contribute_count > 0) and  $contribute_count  contribute repositories @endif.
           </p>
@@ -51,7 +51,7 @@
       <div class="row">
         <div class="col-md-12">
           <template v-if="owner_repos.length > 0">
-            <h2>Repository</h2>
+            <h3>Repository</h3>
             <div class="row">
               <div v-for="(item, index) in owner_repos" :key="index" class="col-md-3">
                 <div class="card card-body" style="height: 200px;">
@@ -71,7 +71,7 @@
           </template>
 
           <template v-if="contribute_repos.length > 0">
-            <h2>Contribute</h2>
+            <h3>Contribute</h3>
             <div class="row">
               <div v-for="(item, index) in contribute_repos" :key="index" class="col-md-3">
                 <div class="card card-body" style="height: 400px;">
