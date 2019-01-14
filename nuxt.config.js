@@ -40,11 +40,11 @@ module.exports = {
       { ref: 'apple-touch-icon', size: '180x180', href: '/apple-touch-icon-180x180.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:400,300,700,500' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css' }
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css' }
     ],
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js' }
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js' }
     ]
   },
 

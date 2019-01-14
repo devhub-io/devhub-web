@@ -774,6 +774,10 @@ Responsive Styles
         text-align: left;
         margin-top: 22px;
     }
+
+  #main-nav .text-center {
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -812,6 +816,10 @@ Responsive Styles
         width: 220px;
         margin-left: -110px;
     }
+
+  #main-nav .text-center {
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (max-width: 575px) {
