@@ -96,6 +96,10 @@ export default {
 
     return { hottest, newest, trend, recommend, collections }
   },
+  head: {
+    title: 'DevHub.io - Development Tools Repositories Developers Hub',
+    titleTemplate: null
+  },
   filters: {
     date(val) {
       if (val === '' || val === undefined || val === null) {

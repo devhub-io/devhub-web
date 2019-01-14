@@ -16,6 +16,11 @@ export default {
     })
     const date = moment().format('YYYY-MM-DD')
     return { news, date }
+  },
+  head() {
+    return {
+      title: 'News'
+    }
   }
 }
 </script>

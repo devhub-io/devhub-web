@@ -29,6 +29,11 @@ export default {
       return res
     })
     return { topics }
+  },
+  head() {
+    return {
+      title: 'Topics'
+    }
   }
 }
 </script>

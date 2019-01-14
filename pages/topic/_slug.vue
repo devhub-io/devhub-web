@@ -62,6 +62,14 @@ export default {
       return res
     })
     return { topic, slug, page }
+  },
+  head() {
+    return {
+      title: `Topic: ${this.slug}`,
+      meta: [
+        { hid: 'description', name: 'description', content: this.topic.explain.text }
+      ]
+    }
   }
 }
 </script>

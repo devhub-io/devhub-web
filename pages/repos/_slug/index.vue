@@ -191,11 +191,6 @@ import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 export default {
   layout: 'default',
   components: { Paginate, ReposBreadcrumbs, Peity },
-  head: {
-    link: [
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css' }
-    ]
-  },
   async asyncData({ params }) {
     const slug = params.slug
     const result = await getRepos(slug).then(res => {
@@ -219,6 +214,17 @@ export default {
     result.markdown = md.use(emoji).render(result.repos.readme)
     result.slug = slug
     return result
+  },
+  head() {
+    return {
+      title: `${this.repos.owner}/${this.repos.repo} :${this.repos.description} by @${this.repos.owner} - Repository`,
+      meta: [
+        { hid: 'description', name: 'description', content: this.repos.description }
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css' }
+      ]
+    }
   },
   filters: {
     fromNow: (val) => {

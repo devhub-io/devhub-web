@@ -61,6 +61,9 @@ export default {
       return res
     })
     return { developers, type }
+  },
+  head: {
+    title: 'Developers'
   }
 }
 </script>

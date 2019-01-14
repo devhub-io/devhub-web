@@ -20,15 +20,15 @@
               <a :href="`https://news.ycombinator.com/item?id=${item.item_id}`" rel="nofollow" target="_blank" style="text-decoration: none;">
                 <h2 style="font-size: 26px; margin-bottom: 15px;"><span class="label label-default"> {{ item.score }} </span>  {{ item.title }} </h2>
               </a>
-              <nuxt-link v-if="item.repos" :to="`/repos/${item.repos.slug}`" style="font-size: 16px;text-decoration: none;" target="_blank">
+              <nuxt-link v-if="item.repos" :to="`/repos/${item.repos ? item.repos.slug : ''}`" style="font-size: 16px;text-decoration: none;" target="_blank">
                 <i class="fa fa-github"/>
-                {{ item.repos.owner }} / {{ item.repos.repo }}&nbsp;&nbsp;
+                {{ item.repos ? item.repos.owner : '' }} / {{ item.repos ? item.repos.repo : '' }}&nbsp;&nbsp;
 
                 <span title="Stargazers count">
-                  <i class="glyphicon glyphicon-star"/>  {{ item.repos.stargazers_count }}
+                  <i class="glyphicon glyphicon-star"/>  {{ item.repos ? item.repos.stargazers_count : '' }}
                 </span>
               </nuxt-link>
-              <p> {{ item.repos.description }} </p>
+              <p> {{ item.repos ? item.repos.description : '' }} </p>
             </div>
           </div>
         </div>

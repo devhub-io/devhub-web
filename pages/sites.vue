@@ -31,6 +31,9 @@ export default {
       return res
     })
     return { sites }
+  },
+  head: {
+    title: 'Sites'
   }
 }
 </script>

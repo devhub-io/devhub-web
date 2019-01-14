@@ -67,6 +67,11 @@ export default {
       error({ statusCode: 404, message: 'Post not found' })
     }
     return { repos, slug }
+  },
+  head() {
+    return {
+      title: this.slug
+    }
   }
 }
 </script>

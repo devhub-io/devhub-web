@@ -67,6 +67,11 @@ export default {
     }
 
     return { repos, slug }
+  },
+  head() {
+    return {
+      title: this.slug
+    }
   }
 }
 </script>

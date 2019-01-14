@@ -115,6 +115,11 @@ export default {
       return res
     })
   },
+  head() {
+    return {
+      title: `${this.developer.login} (${this.developer.name}) - Developer`
+    }
+  },
   filters: {
     fromNow: (val) => {
       return moment(val).fromNow()

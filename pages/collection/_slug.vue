@@ -46,6 +46,14 @@ export default {
       error({ statusCode: 404, message: 'Post not found' })
     }
     return { repos, collection }
+  },
+  head() {
+    return {
+      title: `${this.collection.title} - Collection`,
+      meta: [
+        { hid: 'description', name: 'description', content: this.collection.title }
+      ]
+    }
   }
 }
 </script>

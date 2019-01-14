@@ -64,6 +64,9 @@ export default {
     }
     return { page, keyword, repos }
   },
+  head: {
+    title: 'Search'
+  },
   methods: {
     search() {
       this.page = 1

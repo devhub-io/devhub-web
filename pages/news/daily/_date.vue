@@ -15,6 +15,11 @@ export default {
       return res
     })
     return { news, date }
+  },
+  head() {
+    return {
+      title: `News daily ${this.date}`
+    }
   }
 }
 </script>
