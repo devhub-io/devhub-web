@@ -14,9 +14,9 @@
             </h1>
           </div>
           <div class="menu" style="margin-bottom: 10px;">
-            <a v-if="developer.blog" :href="developer.blog" target="_blank" rel="nofollow" title=" $developer->blog "><i class="fas fa-home"/> Homepage </a> &nbsp;&nbsp;
-            <a :href="developer.html_url" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github"/> Github </a> &nbsp;&nbsp;
-            <a v-if="developer.public_gists > 0" :href="`https://gist.github.com/${developer.login}`" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github-square"/> Github Gist </a> &nbsp;&nbsp;
+            <a v-if="developer.blog" :href="developer.blog | link" target="_blank" rel="nofollow" title=" $developer->blog "><i class="fas fa-home"/> Homepage </a> &nbsp;&nbsp;
+            <a :href="developer.html_url | link" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github"/> Github </a> &nbsp;&nbsp;
+            <a v-if="developer.public_gists > 0" :href="`https://gist.github.com/${developer.login}` | link" target="_blank" class="gitbtn" rel="nofollow"><i class="fab fa-github-square"/> Github Gist </a> &nbsp;&nbsp;
           </div>
           <div class="params">
             <div v-if="developer.type === 'User'" style="margin-bottom: 10px;">
@@ -103,7 +103,6 @@ import { getDeveloper } from '@/api/developer'
 import Paginate from '@/components/general/paginate'
 import DeveloperBreadcrumbs from '@/components/general/breadcrumbs/developer'
 import Peity from 'vue-peity'
-import moment from 'moment'
 
 export default {
   layout: 'default',
@@ -118,11 +117,6 @@ export default {
   head() {
     return {
       title: `${this.developer.login} (${this.developer.name}) - Developer`
-    }
-  },
-  filters: {
-    fromNow: (val) => {
-      return moment(val).fromNow()
     }
   }
 }

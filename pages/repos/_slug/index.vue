@@ -21,12 +21,12 @@
             <p> {{ repos.description }} </p>
           </div>
           <div class="menu" style="margin-bottom: 10px;">
-            <a v-if="repos.homepage" :href="repos.homepage" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fas fa-home"/> Homepage </a> &nbsp;&nbsp;
-            <a v-if="repos.github" :href="repos.github" target="_blank" rel="nofollow"><i class="fab fa-github"/> Github </a> &nbsp;&nbsp;
+            <a v-if="repos.homepage" :href="repos.homepage | link" :title="repos.homepage" target="_blank" rel="nofollow"><i class="fas fa-home"/> Homepage </a> &nbsp;&nbsp;
+            <a v-if="repos.github" :href="repos.github | link" target="_blank" rel="nofollow"><i class="fab fa-github"/> Github </a> &nbsp;&nbsp;
             <a v-if="repos.have_questions" :href="`/repos/${repos.slug}/questions`" target="_blank"><i class="fab fa-stack-overflow"/> Questions </a> &nbsp;&nbsp;
             <a v-if="false" target="_blank" href="/" rel="nofollow"><i class="fas fa-comments-o"/> Gitter </a> &nbsp;&nbsp;
             <nuxt-link :to="`/developer/${repos.owner}`" ><i class="fas fa-user"/> Developer</nuxt-link> &nbsp;&nbsp;
-            <a v-if="repos.document_url" :href="repos.document_url" rel="nofollow" target="_blank"><i class="fas fa-book"/> Documentation</a> &nbsp;&nbsp;
+            <a v-if="repos.document_url" :href="repos.document_url | link" rel="nofollow" target="_blank"><i class="fas fa-book"/> Documentation</a> &nbsp;&nbsp;
             <nuxt-link v-if="false" :to="`repos/${repos.slug}/news`" target="_blank"><i class="fas fa-newspaper-o"/> News </nuxt-link> &nbsp;&nbsp;
           </div>
           <div class="params">
@@ -168,7 +168,6 @@ import MarkdownIt from 'markdown-it'
 import emoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 import Peity from 'vue-peity'
-import moment from 'moment'
 import { getRepos, reviewRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
@@ -209,11 +208,6 @@ export default {
       link: [
         { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css' }
       ]
-    }
-  },
-  filters: {
-    fromNow: (val) => {
-      return moment(val).fromNow()
     }
   },
   data() {

@@ -10,7 +10,7 @@
 
           <div class="card-body row">
             <div v-for="site in item" :key="site.title" class="col-md-2 site">
-              <a :href="site.url" :title="site.description" data-content=" $item->description " target="_blank" rel="nofollow">
+              <a :href="site.url | link" :title="site.description" data-content=" $item->description " target="_blank" rel="nofollow">
                 <img :alt="site.title" :title="site.title" :src="site.icon" class="favicon"> {{ site.title }}
               </a>
             </div>

@@ -82,7 +82,6 @@
 
 <script>
 import { getHomeRepos } from '@/api/repos'
-import moment from 'moment'
 import Peity from 'vue-peity'
 
 export default {
@@ -97,15 +96,6 @@ export default {
   head: {
     title: 'DevHub.io - Development Tools Repositories Developers Hub',
     titleTemplate: null
-  },
-  filters: {
-    date(val) {
-      if (val === '' || val === undefined || val === null) {
-        return '-'
-      } else {
-        return moment(val).format('YYYY-MM-DD')
-      }
-    }
   },
   data() {
     return {

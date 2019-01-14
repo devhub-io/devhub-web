@@ -65,7 +65,8 @@ module.exports = {
     { src: '~/plugins/welcome.js', ssr: true },
     { src: '~/plugins/alert.js', ssr: false },
     { src: '~/plugins/analytics.js', ssr: false },
-    { src: '~/plugins/doorbell.js', ssr: false }
+    { src: '~/plugins/doorbell.js', ssr: false },
+    { src: '~/plugins/filters.js' }
   ],
 
   /*
