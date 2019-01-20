@@ -4,36 +4,29 @@
       <h1 class="text-center">Ecosystems</h1>
       <div class="container">
         <div class="row">
-          <div v-for="(item, index) in developers.rows" :key="index" class="col-md-12">
+          <div v-for="(item, index) in ecosystems.rows" :key="index" class="col-md-12">
             <div class="card card-body">
               <div class="row">
                 <div class="col-md-6">
                   <h2 class="ecosystem-title">
-                    <nuxt-link to="/ecosystem/node">
-                      {{ item.login }} <span class="sub-title">ecosystem</span>
+                    <nuxt-link :to="`/ecosystem/${item.slug}`">
+                      {{ item.title }} <span class="sub-title">ecosystem</span>
                     </nuxt-link>
                   </h2>
                 </div>
                 <div class="col-md-6 ecosystem-links">
-                  <span>
-                    <a href="#"><i class="fas fa-link mini"/> Homepage</a>
+                  <span v-if="item.homepage">
+                    <a :href="item.homepage | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Homepage</a>
                   </span>
-                  <span>
-                    <a href="#"><i class="fas fa-link mini"/> Github</a>
+                  <span v-if="item.github">
+                    <a :href="item.github | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Github</a>
                   </span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-5">
-                  <div class="wiki">
-                    Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
-                    JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML
-                    and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write command
-                    line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is
-                    sent to the user's web browser. Consequently, Node.js represents a "JavaScript everywhere" paradigm,[6] unifying web application
-                    development around a single programming language, rather than different languages for server side and client side scripts.
-                  </div>
-                  <a href="#">Wikipedia</a>
+                  <div class="wiki">{{ item.description }}</div>
+                  <a v-if="item.wiki" :href="item.wiki | link" target="_blank" rel="nofollow">Wikipedia</a>
                 </div>
                 <div class="col-md-7">
                   <div class="row">
@@ -52,7 +45,7 @@
         </div>
         <div class="row pagination">
           <div class="col-md-12">
-            <Paginate :page="developers.page" :total="developers.count" :last-page="developers.last_page" :base-url="$route.path" />
+            <Paginate :page="ecosystems.page" :total="ecosystems.count" :last-page="ecosystems.last_page" :base-url="$route.path" />
           </div>
         </div>
       </div>
@@ -61,7 +54,7 @@
 </template>
 
 <script>
-import { getDevelopers } from '@/api/developer'
+import { getEcosystems } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
 
 export default {
@@ -69,12 +62,11 @@ export default {
   components: { Paginate },
   watchQuery: ['page', 'type'],
   async asyncData({ query }) {
-    const type = query.type || 'User'
     const page = query.page || 1
-    const developers = await getDevelopers({ type, page, limit: 12 }).then(res => {
+    const ecosystems = await getEcosystems({ page, limit: 12 }).then(res => {
       return res
     })
-    return { developers, type }
+    return { ecosystems }
   },
   head: {
     title: 'Ecosystems'

@@ -1,32 +1,25 @@
 <template>
   <section id="content">
     <div class="single-product-area">
-      <h1 class="text-center ecosystem-title">Node.js <span class="sub-title">ecosystem</span></h1>
+      <h1 class="text-center ecosystem-title">{{ topic.title }} <span class="sub-title">ecosystem</span></h1>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="card card-body">
               <div class="row">
                 <div class="col-md-12 ecosystem-links">
-                  <span>
-                    <a href="#"><i class="fas fa-link mini"/> Homepage</a>
+                  <span v-if="topic.homepage">
+                    <a :href="topic.homepage | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Homepage</a>
                   </span>
-                  <span>
-                    <a href="#"><i class="fas fa-link mini"/> Github</a>
+                  <span v-if="topic.github">
+                    <a :href="topic.github | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Github</a>
                   </span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-7">
-                  <div class="wiki">
-                    Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
-                    JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML
-                    and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write command
-                    line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is
-                    sent to the user's web browser. Consequently, Node.js represents a "JavaScript everywhere" paradigm,[6] unifying web application
-                    development around a single programming language, rather than different languages for server side and client side scripts.
-                  </div>
-                  <a href="#">Wikipedia</a>
+                  <div class="wiki">{{ topic.description }}</div>
+                  <a v-if="topic.wiki" :href="topic.wiki | link" target="_blank" rel="nofollow">Wikipedia</a>
                 </div>
                 <div class="col-md-5">
                   <div class="card card-body">
@@ -46,9 +39,9 @@
                 </div>
               </div>
               <div class="row">
-                <div v-for="i in 15" :key="i" class="col-md-6">
+                <div v-for="item in collections" :key="item.id" class="col-md-6">
                   <div class="card card-body collection">
-                    <nuxt-link to="/ecosystem/node/docs" class="root-collection">Tools 1</nuxt-link>
+                    <nuxt-link :to="`/ecosystem/${slug}/${item.slug}`" class="root-collection">{{ item.title }}</nuxt-link>
                     <div class="row">
                       <div v-for="i in 6" :key="i" class="col-md-4">
                         <nuxt-link to="/ecosystem/node/docs">
@@ -70,24 +63,28 @@
 </template>
 
 <script>
-import { getDevelopers } from '@/api/developer'
+import { getEcosystem } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
 
 export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
-  async asyncData({ query, params }) {
+  async asyncData({ params }) {
     const slug = params.slug
-    const type = query.type || 'User'
-    const page = query.page || 1
-    const developers = await getDevelopers({ type, page, limit: 12 }).then(res => {
+    const ecosystem = await getEcosystem(slug).then(res => {
       return res
     })
-    return { developers, type, slug }
+    ecosystem.slug = slug
+    return ecosystem
   },
-  head: {
-    title: 'Ecosystem'
+  head() {
+    return {
+      title: `${this.topic.title} - Ecosystem`,
+      meta: [
+        { hid: 'description', name: 'description', content: this.topic.description }
+      ]
+    }
   }
 }
 </script>

@@ -10,7 +10,7 @@
             <h1 class="text-center">Misc elements</h1>
             <div class="product-content-right">
               <div class="row">
-                <div v-for="(item, index) in repos.rows" :key="index" class="col-md-3">
+                <div v-for="(item, index) in items" :key="index" class="col-md-3">
                   <div class="card card-body" style="height: 400px;">
                     <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover ? item.cover + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="150"></nuxt-link>
                     <div class="caption">
@@ -21,7 +21,7 @@
                         <span title="star">
                           <i class="fas fa-star"/> {{ item.stargazers_count }}
                         </span>
-                        <Peity :type="'line'" :data="item.trends" title="Trends"/>
+                        <!--<Peity :type="'line'" :data="item.trends" title="Trends"/>-->
                       </div>
                       <p>{{ item.description }}</p>
                     </div>
@@ -33,24 +33,12 @@
           <div class="col-xl-2 col-md-2 bd-toc">
             <h4>Node.js</h4>
             <ul class="section-nav">
-              <li class="toc-entry toc-h2"><a href="#approach">Approach</a></li>
-              <li class="toc-entry toc-h2"><a href="#page-defaults">Page defaults</a></li>
-              <li class="toc-entry toc-h2"><a href="#native-font-stack">Native font stack</a></li>
-              <li class="toc-entry toc-h2"><a href="#headings-and-paragraphs">Headings and paragraphs</a></li>
-              <li class="toc-entry toc-h2"><a href="#lists">Lists</a></li>
-              <li class="toc-entry toc-h2"><a href="#preformatted-text">Preformatted text</a></li>
-              <li class="toc-entry toc-h2"><a href="#tables">Tables</a></li>
-              <li class="toc-entry toc-h2"><a href="#forms">Forms</a></li>
-              <li class="toc-entry toc-h2 active">
-                <a href="#misc-elements">Misc elements</a>
+              <li v-for="one in outline" :key="one.id" class="toc-entry toc-h2">
+                <nuxt-link :to="`/ecosystem/${topic_slug}/${one.slug}`">{{ one.title }}</nuxt-link>
                 <ul>
-                  <li class="toc-entry toc-h3"><a href="#address">Address</a></li>
-                  <li class="toc-entry toc-h3"><a href="#blockquote">Blockquote</a></li>
-                  <li class="toc-entry toc-h3"><a href="#inline-elements">Inline elements</a></li>
-                  <li class="toc-entry toc-h3"><a href="#summary">Summary</a></li>
+                  <li v-for="two in one.children" :key="two.id" class="toc-entry toc-h3"><nuxt-link :to="`/ecosystem/${topic_slug}/${two.slug}`">{{ two.title }}</nuxt-link></li>
                 </ul>
               </li>
-              <li class="toc-entry toc-h2"><a href="#html5-hidden-attribute">HTML5 [hidden] attribute</a></li>
             </ul>
           </div>
         </div>
@@ -60,38 +48,30 @@
 </template>
 
 <script>
-import { getHottest, getNewest, getTrend } from '@/api/repos'
-import Paginate from '@/components/general/paginate'
+import { getEcosystem, getEcosystemOutline, getEcosystemCollectionItems } from '@/api/ecosystem'
 import Peity from 'vue-peity'
 
 export default {
   layout: 'default',
-  components: { Paginate, Peity },
+  components: { Peity },
   watchQuery: ['page'],
   async asyncData({ query, params, error }) {
-    const slug = 'popular' // params.slug
-    const page = query.page || 1
-    let repos = {}
-    if (slug === 'popular') {
-      repos = await getHottest({ page, limit: 12 }).then(res => {
-        return res
-      })
-    } else if (slug === 'newest') {
-      repos = await getNewest({ page, limit: 12 }).then(res => {
-        return res
-      })
-    } else if (slug === 'trend') {
-      repos = await getTrend({ page, limit: 12 }).then(res => {
-        return res
-      })
-    } else {
-      // error({ statusCode: 404, message: 'Post not found' })
-    }
-    return { repos, slug }
+    const topic_slug = params.slug
+    const collection_slug = params.item
+    const items = await getEcosystemCollectionItems(topic_slug, collection_slug).then(res => {
+      return res
+    })
+    const ecosystem = await getEcosystem(topic_slug).then(res => {
+      return res
+    })
+    const outline = await getEcosystemOutline(topic_slug).then(res => {
+      return res
+    })
+    return { ecosystem, outline, topic_slug, collection_slug, items }
   },
   head() {
     return {
-      title: this.slug
+      title: this.collection_slug
     }
   }
 }
