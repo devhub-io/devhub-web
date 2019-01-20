@@ -31,14 +31,6 @@ export function getTopicRepos(topic, params) {
   })
 }
 
-export function getCollections(params) {
-  return request({
-    url: `/repos/collections`,
-    method: 'get',
-    params: params
-  })
-}
-
 export function getRecommend(params) {
   return request({
     url: `/repos/recommend`,
@@ -81,13 +73,6 @@ export function getRepos(slug) {
 export function getHomeRepos() {
   return request({
     url: `/repos/home`,
-    method: 'get'
-  })
-}
-
-export function getCollectionRepos(slug) {
-  return request({
-    url: `/repos/collection/${slug}`,
     method: 'get'
   })
 }

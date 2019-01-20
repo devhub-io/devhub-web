@@ -562,7 +562,7 @@ input[type="email"]:focus {
 /*****************************************************
 *** Topics ***
 *****************************************************/
-#topics {
+#guess {
     padding: 200px 0 100px;
     position: relative;
     overflow: hidden;
@@ -861,8 +861,8 @@ Responsive Styles
     }
 
     /*** Header ***/
-    #topics {
-        padding: 160px 0 460px;
+    #guess {
+        padding: 160px 0 160px;
     }
 
     /*** Footer ***/

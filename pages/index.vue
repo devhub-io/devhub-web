@@ -1,20 +1,5 @@
 <template>
   <div>
-    <section id="topics">
-      <div class="container">
-        <h1 class="text-center">Topics</h1>
-        <div class="row">
-          <div class="row top-50">
-            <div v-for="(item, index) in collections.rows" :key="'topics' + index" class="col-lg-4 center">
-              <nuxt-link :to="`/collection/${item.slug}`">
-                <img :src="item.image ? item.image : '/img/270x270.png'" :title="item.title" :alt="item.title" width="270" height="270" class="lazyload">
-              </nuxt-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="guess">
       <div class="container">
         <h1 class="text-center">Guess you like it</h1>
@@ -76,7 +61,7 @@
           </div>
         </div>
       </div>
-    </section><!-- //Subscribe -->
+    </section>
   </div>
 </template>
 
@@ -87,11 +72,11 @@ import Peity from 'vue-peity'
 export default {
   components: { Peity },
   async asyncData() {
-    const { hottest, newest, trend, recommend, collections } = await getHomeRepos().then(res => {
+    const { hottest, newest, trend, recommend } = await getHomeRepos().then(res => {
       return res
     })
 
-    return { hottest, newest, trend, recommend, collections }
+    return { hottest, newest, trend, recommend }
   },
   head: {
     title: 'DevHub.io - Development Tools Repositories Developers Hub',
