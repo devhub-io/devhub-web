@@ -8,8 +8,8 @@
           <a :href="void(0)" class="menu-close" @click="closeMenu"><i class="fas fa-times"/></a>
           <div class="logo" style="color: #ffffff">DevHub.io</div>
           <ul>
+            <li><nuxt-link to="/ecosystems">Ecosystems</nuxt-link></li>
             <li><nuxt-link to="/developers">Developers</nuxt-link></li>
-            <li><nuxt-link to="/topics">Topics</nuxt-link></li>
             <li><nuxt-link to="/news">News</nuxt-link></li>
             <li><a :href="void(0)" rel="nofollow" @click="login">My account</a></li>
             <li><nuxt-link to="/sites">Sites</nuxt-link></li>
@@ -18,7 +18,7 @@
 
           <div class="slide_out_menu_footer">
             <div class="more-info">
-              <p>Developed by <nuxt-link to="/">Devhub</nuxt-link></p>
+              <p>Developed by <nuxt-link to="/">Devhub.io</nuxt-link></p>
             </div>
             <ul class="socials">
               <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fab fa-twitter"/></a></li>
@@ -31,8 +31,8 @@
         <div class="row">
           <div class="col-md-4">
             <ul class="left">
-              <li><a href="/developers">Developers</a></li>
-              <li><a href="/topics">Topics</a></li>
+              <li><nuxt-link to="/ecosystems">Ecosystems</nuxt-link></li>
+              <li><nuxt-link to="/developers">Developers</nuxt-link></li>
               <li><nuxt-link to="/news">News</nuxt-link></li>
             </ul>
           </div>
