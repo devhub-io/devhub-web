@@ -7,36 +7,60 @@
             <div>&nbsp;</div>
           </div>
           <div class="col-12 col-md-8 col-xl-8 py-md-3 pl-md-5 bd-content">
-            <h1 class="text-center">Misc elements</h1>
+            <h1 class="text-center">{{ collection.title }}</h1>
             <div class="product-content-right">
-              <div class="row">
-                <div v-for="(item, index) in items" :key="index" class="col-md-3">
-                  <div class="card card-body" style="height: 400px;">
-                    <nuxt-link :to="`/repos/${item.slug}`"><img :src="item.cover ? item.cover + '&s=200' : '/img/200x200.png'" alt=" $item->login " title=" $item->login " class="lazyload" width="150"></nuxt-link>
-                    <div class="caption">
-                      <nuxt-link :to="`/repos/${item.slug}`">
-                        <h5>{{ item.title }}</h5>
-                      </nuxt-link>
-                      <div style="margin-bottom: 10px">
-                        <span title="star">
-                          <i class="fas fa-star"/> {{ item.stargazers_count }}
-                        </span>
-                        <!--<Peity :type="'line'" :data="item.trends" title="Trends"/>-->
-                      </div>
-                      <p>{{ item.description }}</p>
+              <div class="card-columns">
+                <div v-for="(item, index) in items" :key="index">
+                  <div v-if="item.type === 'text'" class="card text-center">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.title }}</h5>
+                    </div>
+                  </div>
+                  <div v-if="item.type === 'repos' && item.foreign" class="card">
+                    <img :src="item.foreign.cover ? item.foreign.cover + '&s=200' : '/img/200x200.png'" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.foreign.title }}</h5>
+                      <p class="card-text">{{ item.foreign.description }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                  <div v-if="item.type === 'developers' && item.foreign" class="card">
+                    <img :src="item.foreign.avatar_url ? item.foreign.avatar_url + '&s=200' : '/img/200x200.png'" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.foreign.name }}</h5>
+                      <p class="card-text">{{ item.foreign.description }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                  <div v-if="item.type === 'sites' && item.foreign" class="card">
+                    <img :src="item.foreign.screenshot && item.foreign.screenshot !== '' ? item.foreign.screenshot: '/img/200x200.png'" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.foreign.title }}</h5>
+                      <p class="card-text">{{ item.foreign.description }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                  <div v-if="item.type === 'links' && item.foreign" class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.foreign.title }}</h5>
+                      <p class="card-text">{{ item.foreign.summary }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                   </div>
                 </div>
+                <div v-if="items.length === 0" class="col-md-12">No data</div>
               </div>
             </div>
           </div>
           <div class="col-xl-2 col-md-2 bd-toc">
-            <h4>Node.js</h4>
+            <h4>{{ topic.title }}</h4>
             <ul class="section-nav">
-              <li v-for="one in outline" :key="one.id" class="toc-entry toc-h2">
-                <nuxt-link :to="`/ecosystem/${topic_slug}/${one.slug}`">{{ one.title }}</nuxt-link>
+              <li v-for="one in outline" :key="one.id" :class="{ 'toc-entry': true, 'toc-h2': true, active: collection.slug === one.slug }">
+                <nuxt-link :to="`/ecosystem/${topic.slug}/${one.slug}`">{{ one.title }}</nuxt-link>
                 <ul>
-                  <li v-for="two in one.children" :key="two.id" class="toc-entry toc-h3"><nuxt-link :to="`/ecosystem/${topic_slug}/${two.slug}`">{{ two.title }}</nuxt-link></li>
+                  <li v-for="two in one.children" :key="two.id" :class="{ 'toc-entry': true, 'toc-h3': true, active: collection.slug === two.slug }">
+                    <nuxt-link :to="`/ecosystem/${topic.slug}/${two.slug}`">{{ two.title }}</nuxt-link>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -48,7 +72,7 @@
 </template>
 
 <script>
-import { getEcosystem, getEcosystemOutline, getEcosystemCollectionItems } from '@/api/ecosystem'
+import { getEcosystemCollectionItems } from '@/api/ecosystem'
 import Peity from 'vue-peity'
 
 export default {
@@ -58,20 +82,13 @@ export default {
   async asyncData({ query, params, error }) {
     const topic_slug = params.slug
     const collection_slug = params.item
-    const items = await getEcosystemCollectionItems(topic_slug, collection_slug).then(res => {
+    return await getEcosystemCollectionItems(topic_slug, collection_slug).then(res => {
       return res
     })
-    const ecosystem = await getEcosystem(topic_slug).then(res => {
-      return res
-    })
-    const outline = await getEcosystemOutline(topic_slug).then(res => {
-      return res
-    })
-    return { ecosystem, outline, topic_slug, collection_slug, items }
   },
   head() {
     return {
-      title: this.collection_slug
+      title: `${this.topic.title} - ${this.collection.title}`
     }
   }
 }
@@ -110,5 +127,8 @@ export default {
   }
   .active > a:first-child {
     color: #267df4;
+  }
+  .card-columns {
+    column-count: 4;
   }
 </style>

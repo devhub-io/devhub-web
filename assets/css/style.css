@@ -475,10 +475,6 @@ input[type="email"]:focus {
     padding: 45px;
 }
 
-.breadcrumb {
-    margin-top: 25px;
-}
-
 #carbonads {
     display: block;
     overflow: hidden;

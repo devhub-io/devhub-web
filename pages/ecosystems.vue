@@ -1,8 +1,8 @@
 <template>
   <section id="content">
     <div class="single-product-area">
-      <h1 class="text-center">Ecosystems</h1>
       <div class="container">
+        <h1 class="text-center">Ecosystems</h1>
         <div class="row">
           <div v-for="(item, index) in ecosystems.rows" :key="index" class="col-md-12">
             <div class="card card-body">
@@ -30,10 +30,10 @@
                 </div>
                 <div class="col-md-7">
                   <div class="row">
-                    <div v-for="i in 15" :key="i" class="col-md-3">
-                      <nuxt-link to="/ecosystem/node/docs">
+                    <div v-for="(collection, index) in item.collections" :key="`c_${index}`" class="col-md-4">
+                      <nuxt-link :to="`/ecosystem/${item.slug}/${collection.slug}`">
                         <div class="card card-body collection">
-                          Tools 1
+                          {{ collection.title }}
                         </div>
                       </nuxt-link>
                     </div>

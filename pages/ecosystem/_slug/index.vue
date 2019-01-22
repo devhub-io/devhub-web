@@ -1,57 +1,55 @@
 <template>
   <section id="content">
     <div class="single-product-area">
-      <h1 class="text-center ecosystem-title">{{ topic.title }} <span class="sub-title">ecosystem</span></h1>
       <div class="container">
+        <h1 class="text-center ecosystem-title">{{ topic.title }} <span class="sub-title">ecosystem</span></h1>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12 ecosystem-links">
+            <span v-if="topic.homepage">
+              <a :href="topic.homepage | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Homepage</a>
+            </span>
+            <span v-if="topic.github">
+              <a :href="topic.github | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Github</a>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7 wiki-block">
+            <div class="wiki">{{ wiki.summary }}</div>
+            <a v-if="topic.wiki" :href="topic.wiki | link" target="_blank" class="wiki-link" rel="nofollow">Wikipedia</a>
+          </div>
+          <div class="col-md-5">
             <div class="card card-body">
-              <div class="row">
-                <div class="col-md-12 ecosystem-links">
-                  <span v-if="topic.homepage">
-                    <a :href="topic.homepage | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Homepage</a>
-                  </span>
-                  <span v-if="topic.github">
-                    <a :href="topic.github | link" target="_blank" rel="nofollow"><i class="fas fa-link mini"/> Github</a>
-                  </span>
-                </div>
+              <div class="row attr-row">
+                <div class="col-md-5">Initial release:</div>
+                <div class="col-md-7">May 27, 2009; 9 years ago</div>
               </div>
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="wiki">{{ topic.description }}</div>
-                  <a v-if="topic.wiki" :href="topic.wiki | link" target="_blank" rel="nofollow">Wikipedia</a>
-                </div>
-                <div class="col-md-5">
-                  <div class="card card-body">
-                    <div class="row attr-row">
-                      <div class="col-md-5">Initial release:</div>
-                      <div class="col-md-7">May 27, 2009; 9 years ago</div>
-                    </div>
-                    <div class="row attr-row">
-                      <div class="col-md-5">License:</div>
-                      <div class="col-md-7">MIT license</div>
-                    </div>
-                    <div v-for="i in 3" :key="i" class="row attr-row">
-                      <div class="col-md-5">Operating system:</div>
-                      <div class="col-md-7">Linux, macOS, Microsoft Windows, SmartOS, FreeBSD, IBM AIX</div>
-                    </div>
-                  </div>
-                </div>
+              <div class="row attr-row">
+                <div class="col-md-5">License:</div>
+                <div class="col-md-7">MIT license</div>
               </div>
-              <div class="row">
-                <div v-for="item in collections" :key="item.id" class="col-md-6">
-                  <div class="card card-body collection">
-                    <nuxt-link :to="`/ecosystem/${slug}/${item.slug}`" class="root-collection">{{ item.title }}</nuxt-link>
-                    <div class="row">
-                      <div v-for="i in 6" :key="i" class="col-md-4">
-                        <nuxt-link to="/ecosystem/node/docs">
-                          <div class="card card-body collection">
-                            Tools 1
-                          </div>
-                        </nuxt-link>
+              <div v-for="i in 3" :key="i" class="row attr-row">
+                <div class="col-md-5">Operating system:</div>
+                <div class="col-md-7">Linux, macOS, Microsoft Windows, SmartOS, FreeBSD, IBM AIX</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-columns">
+          <div v-for="item in collections" :key="item.id" class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">
+                <nuxt-link :to="`/ecosystem/${slug}/${item.slug}`" class="root-collection">{{ item.title }}</nuxt-link>
+              </h5>
+              <div class="card-text">
+                <div class=" card-columns">
+                  <nuxt-link v-for="two in item.children" :key="two.id" :to="`/ecosystem/${slug}/${two.slug}`">
+                    <div class="card text-center">
+                      <div class="card-body">
+                        <h6 class="card-title">{{ two.title }}</h6>
                       </div>
                     </div>
-                  </div>
+                  </nuxt-link>
                 </div>
               </div>
             </div>
@@ -92,6 +90,8 @@ export default {
 <style scoped>
   .ecosystem-title {
     font-size: 2.5rem;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding-bottom: 20px;
   }
   .ecosystem-title a {
     color: #212529 !important;
@@ -111,8 +111,10 @@ export default {
     font-size: 1.8rem;
   }
   .wiki {
-    max-height: 150px;
     overflow-y: hidden;
+  }
+  .wiki-block {
+    margin-bottom: 25px;
   }
   .collection {
     text-align: center;
@@ -127,11 +129,7 @@ export default {
     margin-bottom: 15px;
   }
 
-  @media only screen and (max-width: 768px) {
-    .ecosystem-homepage {
-      font-size: 1rem;
-      margin-bottom: 15px;
-      text-align: left;
-    }
+  .card-columns {
+    column-count: 2;
   }
 </style>
