@@ -18,19 +18,11 @@
             <div class="wiki">{{ wiki.summary }}</div>
             <a v-if="topic.wiki" :href="topic.wiki | link" target="_blank" class="wiki-link" rel="nofollow">Wikipedia</a>
           </div>
-          <div class="col-md-5">
+          <div v-if="attributes.length > 0" class="col-md-5">
             <div class="card card-body">
-              <div class="row attr-row">
-                <div class="col-md-5">Initial release:</div>
-                <div class="col-md-7">May 27, 2009; 9 years ago</div>
-              </div>
-              <div class="row attr-row">
-                <div class="col-md-5">License:</div>
-                <div class="col-md-7">MIT license</div>
-              </div>
-              <div v-for="i in 3" :key="i" class="row attr-row">
-                <div class="col-md-5">Operating system:</div>
-                <div class="col-md-7">Linux, macOS, Microsoft Windows, SmartOS, FreeBSD, IBM AIX</div>
+              <div v-for="item in attributes" :key="item.id" class="row attr-row">
+                <div class="col-md-5">{{ item.key }}:</div>
+                <div class="col-md-7">{{ item.value }}</div>
               </div>
             </div>
           </div>
