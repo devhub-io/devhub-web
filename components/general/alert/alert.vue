@@ -59,9 +59,10 @@ export default {
   .alert-content {
     display: inline-block;
     padding: 8px 16px;
-    background: #ffffff;
+    background: #007bff;
     border-radius: 3px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
     margin-bottom: 8px;
+    color: #ffffff;
   }
 </style>

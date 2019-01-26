@@ -21,3 +21,11 @@ export function getCount() {
     method: 'get'
   })
 }
+
+export function feedback(params) {
+  return request({
+    url: `/feedback`,
+    method: 'post',
+    data: params
+  })
+}

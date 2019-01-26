@@ -163,16 +163,36 @@
         </div>
       </div>
     </footer>
+
+    <button v-b-modal.feedbackModal id="feedback-button" class="bottom_right" style="visibility: hidden;">Feedback</button>
+    <b-modal id="feedbackModal" ref="feedbackModal" title="Feedback" ok-title="Send" @ok="sendFeedback">
+      <form id="feedback-form" style="padding:10px;" method="get" role="form" class="form-horizontal bv-form" novalidate="novalidate">
+        <div class="form-group mcq_input has-feedback">
+          <div class="form-group">
+            <textarea v-model="feedbackForm.message" class="form-control" rows="3" placeholder="Send us your comments or suggestions..."/>
+          </div>
+          <div class="form-group">
+            <input v-model="feedbackForm.email" type="email" class="form-control" placeholder="Your email address">
+          </div>
+        </div>
+      </form>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import { getToken } from '@/utils/auth'
+import { feedback } from '@/api/site'
+
 export default {
   data() {
     return {
       scrolled: false,
-      navigation: false
+      navigation: false,
+      feedbackForm: {
+        message: '',
+        email: ''
+      }
     }
   },
   mounted() {
@@ -200,6 +220,33 @@ export default {
     },
     closeMenu() {
       this.navigation = false
+    },
+    sendFeedback(evt) {
+      evt.preventDefault()
+      if (this.feedbackForm.message === '') {
+        this.$Alert.info({ content: 'Please input message' })
+        return false
+      }
+      if (this.feedbackForm.email === '') {
+        this.$Alert.info({ content: 'Please input email' })
+        return false
+      }
+      if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.feedbackForm.email)) {
+        this.$Alert.info({ content: 'Invalid email' })
+        return false
+      }
+      feedback(this.feedbackForm)
+        .then(() => {
+          this.$Alert.info({ content: 'Feedback sent!' })
+          this.$refs.feedbackModal.hide()
+          this.feedbackForm = {
+            message: '',
+            email: ''
+          }
+        })
+        .catch(() => {
+          this.$Alert.info({ content: 'Validation Failed' })
+        })
     }
   }
 }
