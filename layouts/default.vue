@@ -41,8 +41,20 @@
           </div>
           <div class="col-md-4">
             <ul class="right">
-              <li><a :href="void(0)" :class="{ help: $store.getters.token === null || $store.getters.token === '' }" rel="nofollow" @click="login">My account</a></li>
-              <li><nuxt-link to="/sites">Sites</nuxt-link></li>
+              <li v-if="$store.getters.token === null || $store.getters.token === ''"><a :href="void(0)" class="help" rel="nofollow" @click="login">My account</a></li>
+              <li v-else>
+                <b-nav-item-dropdown right>
+                  <template slot="button-content">
+                    <span>My account</span>
+                  </template>
+                  <b-dropdown-item href="#">Your Workflow</b-dropdown-item>
+                  <b-dropdown-item href="#">Your Profile</b-dropdown-item>
+                  <b-dropdown-divider />
+                  <b-dropdown-item href="/settings">Settings</b-dropdown-item>
+                  <b-dropdown-item href="#">Sign out</b-dropdown-item>
+                </b-nav-item-dropdown>
+              </li>
+              <!--<li><nuxt-link to="/sites">Sites</nuxt-link></li>-->
               <li><nuxt-link to="/search" class="btn btn-blue">Search...</nuxt-link></li>
             </ul>
           </div>
@@ -72,10 +84,10 @@
           <div class="col-lg-2 offset-md-4 col-md-4 col-6 footer-links">
             <ul>
               <li><p class="title">WEBSITE</p></li>
+              <li><nuxt-link to="/terms">Terms and Conditions</nuxt-link></li>
+              <li><nuxt-link to="/privacy">Privacy Policy</nuxt-link></li>
               <li><nuxt-link to="#">About</nuxt-link></li>
-              <li><nuxt-link to="#">Contact Us</nuxt-link></li>
               <li><a href="//status.devhub.io/">Status</a></li>
-              <li><a href="#">Api</a></li>
               <li><a href="feed">Feed</a></li>
             </ul>
           </div>
