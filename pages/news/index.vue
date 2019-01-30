@@ -11,9 +11,7 @@ export default {
   layout: 'default',
   components: { News },
   async asyncData() {
-    const news = await getNews().then(res => {
-      return res
-    })
+    const news = await getNews()
     const date = moment().format('YYYY-MM-DD')
     return { news, date }
   },

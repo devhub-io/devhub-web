@@ -26,10 +26,8 @@ import { getSites } from '@/api/site'
 
 export default {
   layout: 'default',
-  async asyncData({ query }) {
-    const sites = await getSites().then(res => {
-      return res
-    })
+  async asyncData() {
+    const sites = await getSites()
     return { sites }
   },
   head: {

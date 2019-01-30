@@ -72,10 +72,7 @@ import Peity from 'vue-peity'
 export default {
   components: { Peity },
   async asyncData() {
-    const { hottest, newest, trend, recommend } = await getHomeRepos().then(res => {
-      return res
-    })
-
+    const { hottest, newest, trend, recommend } = await getHomeRepos()
     return { hottest, newest, trend, recommend }
   },
   head: {

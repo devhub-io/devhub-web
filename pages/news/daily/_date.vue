@@ -11,9 +11,7 @@ export default {
   components: { News },
   async asyncData({ params }) {
     const date = params.date
-    const news = await getNews({ date }).then(res => {
-      return res
-    })
+    const news = await getNews({ date })
     return { news, date }
   },
   head() {

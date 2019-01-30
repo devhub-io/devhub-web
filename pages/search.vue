@@ -58,9 +58,7 @@ export default {
       rows: []
     }
     if (keyword.length > 0) {
-      repos = await searchRepos({ page: page, limit: 12, keyword: keyword }).then(res => {
-        return res
-      })
+      repos = await searchRepos({ page: page, limit: 12, keyword: keyword })
     }
     return { page, keyword, repos }
   },

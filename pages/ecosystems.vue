@@ -63,9 +63,7 @@ export default {
   watchQuery: ['page', 'type'],
   async asyncData({ query }) {
     const page = query.page || 1
-    const ecosystems = await getEcosystems({ page, limit: 12 }).then(res => {
-      return res
-    })
+    const ecosystems = await getEcosystems({ page, limit: 12 })
     return { ecosystems }
   },
   head: {

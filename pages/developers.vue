@@ -58,9 +58,7 @@ export default {
   async asyncData({ query }) {
     const type = query.type || 'User'
     const page = query.page || 1
-    const developers = await getDevelopers({ type, page, limit: 12 }).then(res => {
-      return res
-    })
+    const developers = await getDevelopers({ type, page, limit: 12 })
     return { developers, type }
   },
   head: {

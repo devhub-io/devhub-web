@@ -113,9 +113,7 @@ export default {
   async asyncData({ query, params, error }) {
     const topic_slug = params.slug
     const collection_slug = params.item
-    return await getEcosystemCollectionItems(topic_slug, collection_slug).then(res => {
-      return res
-    })
+    return await getEcosystemCollectionItems(topic_slug, collection_slug)
   },
   head() {
     return {

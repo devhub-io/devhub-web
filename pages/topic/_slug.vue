@@ -58,9 +58,7 @@ export default {
   async asyncData({ query, params }) {
     const slug = params.slug
     const page = query.page || 1
-    const topic = await getTopicRepos(slug, { limit: 12, page: page }).then(res => {
-      return res
-    })
+    const topic = await getTopicRepos(slug, { limit: 12, page: page })
     return { topic, slug, page }
   },
   head() {

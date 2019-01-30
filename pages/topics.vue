@@ -25,9 +25,7 @@ import { getTopics } from '@/api/repos'
 export default {
   layout: 'default',
   async asyncData() {
-    const topics = await getTopics().then(res => {
-      return res
-    })
+    const topics = await getTopics()
     return { topics }
   },
   head() {

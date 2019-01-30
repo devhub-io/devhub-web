@@ -110,9 +110,7 @@ export default {
   watchQuery: ['page', 'type'],
   async asyncData({ params }) {
     const slug = params.slug
-    return await getDeveloper(slug).then(res => {
-      return res
-    })
+    return await getDeveloper(slug)
   },
   head() {
     return {

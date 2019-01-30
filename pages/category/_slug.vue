@@ -59,9 +59,7 @@ export default {
     const page = query.page || 1
     let repos = {}
     try {
-      repos = await getCategoryRepos(slug, { page, limit: 12 }).then(res => {
-        return res
-      })
+      repos = await getCategoryRepos(slug, { page, limit: 12 })
     } catch (e) {
       error({ statusCode: 404, message: 'Post not found' })
     }

@@ -81,9 +81,7 @@ export default {
   watchQuery: ['page', 'type'],
   async asyncData({ params }) {
     const slug = params.slug
-    const ecosystem = await getEcosystem(slug).then(res => {
-      return res
-    })
+    const ecosystem = await getEcosystem(slug)
     ecosystem.slug = slug
     return ecosystem
   },

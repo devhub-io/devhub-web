@@ -52,17 +52,11 @@ export default {
     const page = query.page || 1
     let repos = {}
     if (slug === 'popular') {
-      repos = await getHottest({ page, limit: 12 }).then(res => {
-        return res
-      })
+      repos = await getHottest({ page, limit: 12 })
     } else if (slug === 'newest') {
-      repos = await getNewest({ page, limit: 12 }).then(res => {
-        return res
-      })
+      repos = await getNewest({ page, limit: 12 })
     } else if (slug === 'trend') {
-      repos = await getTrend({ page, limit: 12 }).then(res => {
-        return res
-      })
+      repos = await getTrend({ page, limit: 12 })
     } else {
       error({ statusCode: 404, message: 'Post not found' })
     }

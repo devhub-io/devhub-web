@@ -177,9 +177,7 @@ export default {
   components: { Paginate, ReposBreadcrumbs, Peity },
   async asyncData({ params }) {
     const slug = params.slug
-    const result = await getRepos(slug).then(res => {
-      return res
-    })
+    const result = await getRepos(slug)
     const md = new MarkdownIt({
       html: true,
       highlight: (str, lang) => {
