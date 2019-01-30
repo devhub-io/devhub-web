@@ -13,14 +13,14 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'DevHub.io - Development Tools Repositories Developers Hub',
+    title: 'DevHub.io - Development Ecosystems, Workflow, Repositories, Developers Hub',
     titleTemplate: '%s | DevHub.io',
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Development Tools Repositories Developers Hub' },
-      { hid: 'keywords', name: 'keywords', content: 'Development, DevHub.io, Repositories, Developers, Tools, Libraries, server, app, reading' },
+      { hid: 'description', name: 'description', content: 'Development Ecosystems, Workflow, Repositories, Developers Hub' },
+      { hid: 'keywords', name: 'keywords', content: 'DevHub.io, Development, Repositories, Developers, Ecosystems, Workflow, Libraries' },
       { name: 'theme-color', content: '#1abc9c' }
     ],
     link: [

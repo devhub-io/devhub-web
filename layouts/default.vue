@@ -2,17 +2,15 @@
   <div>
     <header id="main-nav" :class="{ active: scrolled }">
       <div class="container">
-        <a id="navigation" :class="{ open: navigation }" href="#" @click="openMenu"><i class="fas fa-bars"/></a>
+        <a id="navigation" :class="{ open: navigation }" :href="void(0)" @click="openMenu"><i class="fas fa-bars"/></a>
 
         <div id="slide_out_menu" :class="{ scrolled: scrolled, open: navigation }">
           <a :href="void(0)" class="menu-close" @click="closeMenu"><i class="fas fa-times"/></a>
           <div class="logo" style="color: #ffffff">DevHub.io</div>
           <ul>
             <li><nuxt-link to="/ecosystems">Ecosystems</nuxt-link></li>
-            <li><nuxt-link to="/developers">Developers</nuxt-link></li>
-            <li><nuxt-link to="/news">News</nuxt-link></li>
+            <li><nuxt-link to="/workflow">Workflow</nuxt-link></li>
             <li><a :href="void(0)" rel="nofollow" @click="login">My account</a></li>
-            <li><nuxt-link to="/sites">Sites</nuxt-link></li>
             <li><nuxt-link to="search" class="btn btn-blue">Search...</nuxt-link></li>
           </ul>
 
@@ -32,8 +30,7 @@
           <div class="col-md-4">
             <ul class="left">
               <li><nuxt-link to="/ecosystems">Ecosystems</nuxt-link></li>
-              <li><nuxt-link to="/developers">Developers</nuxt-link></li>
-              <li><nuxt-link to="/news">News</nuxt-link></li>
+              <li><nuxt-link to="/workflow">Workflow</nuxt-link></li>
             </ul>
           </div>
           <div class="col-md-4 text-center">
@@ -47,11 +44,11 @@
                   <template slot="button-content">
                     <span>My account</span>
                   </template>
-                  <b-dropdown-item href="#">Your Workflow</b-dropdown-item>
-                  <b-dropdown-item href="#">Your Profile</b-dropdown-item>
+                  <b-dropdown-item href="/user?tab=workflow">Your Workflow</b-dropdown-item>
+                  <b-dropdown-item href="/user?tab=stars">Your Stars</b-dropdown-item>
                   <b-dropdown-divider />
-                  <b-dropdown-item href="/settings">Settings</b-dropdown-item>
-                  <b-dropdown-item href="#">Sign out</b-dropdown-item>
+                  <b-dropdown-item href="/user/settings">Settings</b-dropdown-item>
+                  <b-dropdown-item href="/user/logout">Sign out</b-dropdown-item>
                 </b-nav-item-dropdown>
               </li>
               <!--<li><nuxt-link to="/sites">Sites</nuxt-link></li>-->
@@ -70,10 +67,10 @@
           <div class="col-lg-3">
             <nuxt-link to="/" style="color: #26272d; font-weight: 700; text-transform: uppercase;font-size: 12px;">DevHub.io</nuxt-link>
             <p>
-              Recommended high-quality free and open source development tools, resources, reading.<br>
+              Recommended high-quality free and open source development ecosystems, workflow, repositories.<br>
               Currently tracking
-              <nuxt-link to="/list/newest">{{ $store.getters.count.repos || 0 }}</nuxt-link>open source projects,
-              <nuxt-link to="/developers">{{ $store.getters.count.developers || 0 }}</nuxt-link>developers
+              <nuxt-link to="/list/newest">{{ $store.getters.count.repos || 0 }}</nuxt-link> open source projects,
+              <nuxt-link to="/developers">{{ $store.getters.count.developers || 0 }}</nuxt-link> developers
             </p>
             <ul class="socials">
               <li><a href="https://twitter.com/HubDevelop" target="_blank"><i class="fab fa-twitter"/></a></li>
@@ -81,7 +78,7 @@
               <li><a href="mailto:devhub.io@gmail.com"><i class="fas fa-envelope"/></a></li>
             </ul>
           </div>
-          <div class="col-lg-2 offset-md-4 col-md-4 col-6 footer-links">
+          <div class="col-lg-2 col-md-4 col-6 footer-links offset-lg-3">
             <ul>
               <li><p class="title">WEBSITE</p></li>
               <li><nuxt-link to="/terms">Terms and Conditions</nuxt-link></li>
@@ -89,6 +86,15 @@
               <li><nuxt-link to="#">About</nuxt-link></li>
               <li><a href="//status.devhub.io/">Status</a></li>
               <li><a href="feed">Feed</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 footer-links">
+            <ul>
+              <li><p class="title">EXPLORE</p></li>
+              <li><nuxt-link to="/developers">Developers</nuxt-link></li>
+              <li><nuxt-link to="/topics">Topics</nuxt-link></li>
+              <li><nuxt-link to="/news">News</nuxt-link></li>
+              <li><nuxt-link to="/sites">Sites</nuxt-link></li>
             </ul>
           </div>
           <div class="col-lg-2 col-md-4 col-6 footer-links">
@@ -221,6 +227,8 @@ export default {
       if (process.client) {
         if (this.$store.getters.token === null || this.$store.getters.token === '') {
           window.location.href = `${process.env.BASE_API}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
+        } else {
+          this.$router.push('/user')
         }
       }
     },

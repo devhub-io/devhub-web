@@ -7,7 +7,6 @@
           <div class="col-md-8 card card-body">
             <h2>Emails</h2>
             <p><input type="text" class="form-control" placeholder="email"></p>
-            <p>Emails enabled</p>
             <button type="button" class="btn btn-primary btn-sm button-delete">Update Email Preferences</button>
           </div>
         </div>
@@ -15,7 +14,7 @@
           <div class="col-md-8 card card-body">
             <h2>Accounts</h2>
             <p>Connected Accounts</p>
-            <button type="button" class="btn btn-primary btn-sm button-delete">Github</button>
+            <button type="button" class="btn btn-primary btn-sm button-delete"><i class="fab fa-github"/> Username</button>
           </div>
         </div>
         <div class="row">
