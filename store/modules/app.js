@@ -9,7 +9,8 @@ const app = {
     count: {
       repos: 0,
       developers: 0
-    }
+    },
+    showLogin: false
   },
   mutations: {
     TOGGLE_DEVICE: (state, device) => {
@@ -17,6 +18,9 @@ const app = {
     },
     SET_COUNT: (state, count) => {
       state.count = count
+    },
+    SHOW_LOGIN: (state, isShow) => {
+      state.showLogin = isShow
     }
   },
   actions: {
@@ -45,6 +49,12 @@ const app = {
     },
     setSize({ commit }, size) {
       commit('SET_SIZE', size)
+    },
+    showLoginModal({ commit }) {
+      commit('SHOW_LOGIN', true)
+    },
+    hideLoginModal({ commit }) {
+      commit('SHOW_LOGIN', false)
     }
   }
 }

@@ -147,7 +147,7 @@ const user = {
         const data = {
           roles: ['admin'],
           token: 'admin',
-          introduction: '我是超级管理员',
+          introduction: 'admin',
           avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
           name: 'Super Admin'
         }

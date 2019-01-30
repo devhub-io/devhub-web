@@ -195,6 +195,13 @@
         </div>
       </form>
     </b-modal>
+    <b-modal id="loginModal" ref="loginModal" :visible="$store.getters.showLogin" :title="'Login'" :hide-footer="true" @change="changeLoginModalState">
+      <div class="form-group mcq_input has-feedback">
+        <div class="form-group">
+          <button class="btn btn-blue" @click="oauth"><i class="fab fa-github"/> Sign in with Github</button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -223,13 +230,21 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
+    changeLoginModalState(state) {
+      if (state === false) {
+        this.$store.dispatch('hideLoginModal')
+      }
+    },
     login() {
+      if (this.$store.getters.token === null || this.$store.getters.token === '') {
+        this.$store.dispatch('showLoginModal')
+      } else {
+        this.$router.push('/user')
+      }
+    },
+    oauth() {
       if (process.client) {
-        if (this.$store.getters.token === null || this.$store.getters.token === '') {
-          window.location.href = `${process.env.BASE_API}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
-        } else {
-          this.$router.push('/user')
-        }
+        window.location.href = `${process.env.BASE_API}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
       }
     },
     handleScroll() {

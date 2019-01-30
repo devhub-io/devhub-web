@@ -36,14 +36,14 @@
 <script>
 // import { getEcosystem } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
-// import { feedback } from '@/api/site'
+import { getStars } from '@/api/user'
 
 export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
   async asyncData({ params }) {
-    const ecosystem = {}
+    const ecosystem = await getStars()
     return ecosystem
   },
   head() {

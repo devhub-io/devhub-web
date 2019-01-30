@@ -44,7 +44,10 @@
               <a v-for="(item, index) in topics" :key="index" :href="`/topic/${item.topic}`" class="badge badge-primary" style="display: inline-block;">{{ item.topic }}</a>
             </div>
             <div>
-              <button v-b-modal.reviewModal type="button" class="btn btn-info" style="font-size: 12px; padding: 5px;">
+              <button type="button" class="btn btn-info btn-repos" @click="changeStar">
+                <i class="fas fa-star"/> {{ isStar ? 'Unstar' : 'Star' }}
+              </button>
+              <button v-b-modal.reviewModal type="button" class="btn btn-info btn-repos">
                 I use {{ repos.owner }} / {{ repos.repo }}
               </button>
             </div>
@@ -169,6 +172,7 @@ import emoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 import Peity from 'vue-peity'
 import { getRepos, reviewRepos } from '@/api/repos'
+import { star } from '@/api/user'
 import Paginate from '@/components/general/paginate'
 import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 
@@ -195,6 +199,7 @@ export default {
     })
     result.markdown = md.use(emoji).render(result.repos.readme)
     result.slug = slug
+    result.isStar = result.star !== null
     return result
   },
   head() {
@@ -233,6 +238,17 @@ export default {
           documentation: ''
         }
       })
+    },
+    changeStar() {
+      star({ type: 'repos', foreign_id: this.repos.id, star: !this.isStar })
+        .then(() => {
+          this.isStar = !this.isStar
+        })
+        .catch(e => {
+          if (e.response && e.response.status === 401) {
+            this.$store.dispatch('showLoginModal')
+          }
+        })
     }
   }
 }
@@ -249,7 +265,6 @@ export default {
   .breadcrumb {
     margin-top: 25px;
   }
-
   #carbonads {
     display: block;
     overflow: hidden;
@@ -260,32 +275,28 @@ export default {
     font-size: 16px;
     line-height: 1.5;;
   }
-
   #carbonads a:hover {
     color: inherit;
     text-decoration: none;
   }
-
   #carbonads span {
     position: relative;
     display: block;
     overflow: hidden;
   }
-
   .carbon-img {
     float: left;
     margin-right: 1em;
   }
-
-  .carbon-img img { display: block; }
-
+  .carbon-img img {
+    display: block;
+  }
   .carbon-text {
     display: block;
     float: left;
     max-width: calc(100% - 130px - 1em);
     text-align: left;
   }
-
   .carbon-poweredby {
     position: absolute;
     right: 0;
@@ -294,8 +305,12 @@ export default {
     text-transform: uppercase;
     font-size: 10px;
   }
-
   .dependencies, .tags {
     font-size: .9rem;
+  }
+  .btn-repos {
+    font-size: 12px;
+    padding: 5px 15px;
+    color: #fff
   }
 </style>
