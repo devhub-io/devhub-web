@@ -244,7 +244,7 @@ export default {
     },
     oauth() {
       if (process.client) {
-        window.location.href = `${process.env.BASE_API}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
+        window.location.href = `${process.env.API_URL}/passport/github?source=${encodeURIComponent(process.env.WEB_URL + '/auth')}`
       }
     },
     handleScroll() {
