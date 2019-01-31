@@ -48,17 +48,16 @@
 </template>
 
 <script>
-import { getDevelopers } from '@/api/developer'
 import Paginate from '@/components/general/paginate'
 
 export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
-  async asyncData({ query }) {
+  async asyncData({ query, store }) {
     const type = query.type || 'User'
     const page = query.page || 1
-    const developers = await getDevelopers({ type, page, limit: 12 })
+    const developers = await store.dispatch('getDevelopers', { type, page, limit: 12 })
     return { developers, type }
   },
   head: {

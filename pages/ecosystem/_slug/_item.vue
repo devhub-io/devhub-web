@@ -102,18 +102,16 @@
 </template>
 
 <script>
-import { getEcosystemCollectionItems } from '@/api/ecosystem'
 import Peity from 'vue-peity'
-import { feedback } from '@/api/site'
 
 export default {
   layout: 'default',
   components: { Peity },
   watchQuery: ['page'],
-  async asyncData({ query, params, error }) {
+  async asyncData({ query, params, store }) {
     const topic_slug = params.slug
     const collection_slug = params.item
-    return await getEcosystemCollectionItems(topic_slug, collection_slug)
+    return await store.dispatch('getEcosystemCollectionItems', { topic_slug, collection_slug })
   },
   head() {
     return {
@@ -152,7 +150,7 @@ export default {
         collection: this.collection.slug,
         url: this.suggestForm.url
       }
-      feedback(params)
+      this.$store.dispatch('feedback', params)
         .then(() => {
           this.$Alert.info({ content: 'Feedback sent!' })
           this.$refs.suggestModal.hide()

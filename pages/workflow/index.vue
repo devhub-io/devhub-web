@@ -15,9 +15,7 @@
 </template>
 
 <script>
-// import { getEcosystem } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
-// import { feedback } from '@/api/site'
 
 export default {
   layout: 'default',

@@ -20,12 +20,11 @@
 </template>
 
 <script>
-import { getTopics } from '@/api/repos'
 
 export default {
   layout: 'default',
-  async asyncData() {
-    const topics = await getTopics()
+  async asyncData({ store }) {
+    const topics = await store.dispatch('getTopics')
     return { topics }
   },
   head() {

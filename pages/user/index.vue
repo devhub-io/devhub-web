@@ -34,16 +34,14 @@
 </template>
 
 <script>
-// import { getEcosystem } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
-import { getStars } from '@/api/user'
 
 export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
-  async asyncData({ params }) {
-    const ecosystem = await getStars()
+  async asyncData({ store }) {
+    const ecosystem = await store.dispatch('getStars')
     return ecosystem
   },
   head() {

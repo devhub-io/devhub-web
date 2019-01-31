@@ -206,9 +206,6 @@
 </template>
 
 <script>
-import { getToken } from '@/utils/auth'
-import { feedback } from '@/api/site'
-
 export default {
   data() {
     return {
@@ -221,7 +218,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('SET_TOKEN', getToken())
+    this.$store.commit('SET_TOKEN', this.$storage.getUniversal('token'))
   },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -270,7 +267,7 @@ export default {
         this.$Alert.info({ content: 'Invalid email' })
         return false
       }
-      feedback(this.feedbackForm)
+      this.$store.dispatch('feedback', this.feedbackForm)
         .then(() => {
           this.$Alert.info({ content: 'Feedback sent!' })
           this.$refs.feedbackModal.hide()

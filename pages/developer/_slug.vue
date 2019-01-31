@@ -99,7 +99,6 @@
 </template>
 
 <script>
-import { getDeveloper } from '@/api/developer'
 import Paginate from '@/components/general/paginate'
 import DeveloperBreadcrumbs from '@/components/general/breadcrumbs/developer'
 import Peity from 'vue-peity'
@@ -108,9 +107,9 @@ export default {
   layout: 'default',
   components: { Paginate, DeveloperBreadcrumbs, Peity },
   watchQuery: ['page', 'type'],
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const slug = params.slug
-    return await getDeveloper(slug)
+    return await store.dispatch('getDeveloper', slug)
   },
   head() {
     return {

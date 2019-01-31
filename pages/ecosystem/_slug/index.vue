@@ -71,17 +71,15 @@
 </template>
 
 <script>
-import { getEcosystem } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
-import { feedback } from '@/api/site'
 
 export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const slug = params.slug
-    const ecosystem = await getEcosystem(slug)
+    const ecosystem = await store.dispatch('getEcosystem', slug)
     ecosystem.slug = slug
     return ecosystem
   },
@@ -122,7 +120,7 @@ export default {
         title: this.topic.title,
         slug: this.topic.slug
       }
-      feedback(params)
+      this.$store.dispatch('feedback', params)
         .then(() => {
           this.$Alert.info({ content: 'Feedback sent!' })
           this.$refs.suggestModal.hide()

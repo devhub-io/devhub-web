@@ -54,16 +54,15 @@
 </template>
 
 <script>
-import { getEcosystems } from '@/api/ecosystem'
 import Paginate from '@/components/general/paginate'
 
 export default {
   layout: 'default',
   components: { Paginate },
   watchQuery: ['page', 'type'],
-  async asyncData({ query }) {
+  async asyncData({ query, store }) {
     const page = query.page || 1
-    const ecosystems = await getEcosystems({ page, limit: 12 })
+    const ecosystems = await store.dispatch('getEcosystems', { page, limit: 12 })
     return { ecosystems }
   },
   head: {

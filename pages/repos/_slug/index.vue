@@ -171,17 +171,15 @@ import MarkdownIt from 'markdown-it'
 import emoji from 'markdown-it-emoji'
 import hljs from 'highlight.js'
 import Peity from 'vue-peity'
-import { getRepos, reviewRepos } from '@/api/repos'
-import { star } from '@/api/user'
 import Paginate from '@/components/general/paginate'
 import ReposBreadcrumbs from '@/components/general/breadcrumbs/repos'
 
 export default {
   layout: 'default',
   components: { Paginate, ReposBreadcrumbs, Peity },
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const slug = params.slug
-    const result = await getRepos(slug)
+    const result = await store.dispatch('getRepos', slug)
     const md = new MarkdownIt({
       html: true,
       highlight: (str, lang) => {
@@ -229,7 +227,7 @@ export default {
         this.$Alert.info({ content: 'Please select an option' })
         return false
       }
-      reviewRepos(this.slug, this.form).then(() => {
+      this.$store.dispatch('reviewRepos', { slug: this.slug, data: this.form }).then(() => {
         this.$Alert.info({ content: 'Thanks so much' })
         this.$refs.reviewModalRef.hide()
         this.form = {
@@ -240,7 +238,7 @@ export default {
       })
     },
     changeStar() {
-      star({ type: 'repos', foreign_id: this.repos.id, star: !this.isStar })
+      this.$store.dispatch('star', { type: 'repos', foreign_id: this.repos.id, star: !this.isStar })
         .then(() => {
           this.isStar = !this.isStar
         })

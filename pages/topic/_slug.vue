@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { getTopicRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import Peity from 'vue-peity'
 
@@ -55,10 +54,10 @@ export default {
   layout: 'default',
   components: { Paginate, Peity },
   watchQuery: ['page'],
-  async asyncData({ query, params }) {
+  async asyncData({ query, params, store }) {
     const slug = params.slug
     const page = query.page || 1
-    const topic = await getTopicRepos(slug, { limit: 12, page: page })
+    const topic = await store.dispatch('getTopicRepos', { topic: slug, params: { limit: 12, page: page }})
     return { topic, slug, page }
   },
   head() {

@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import { getHottest, getNewest, getTrend } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import Peity from 'vue-peity'
 
@@ -47,16 +46,16 @@ export default {
   layout: 'default',
   components: { Paginate, Peity },
   watchQuery: ['page'],
-  async asyncData({ query, params, error }) {
+  async asyncData({ query, params, error, store }) {
     const slug = params.slug
     const page = query.page || 1
     let repos = {}
     if (slug === 'popular') {
-      repos = await getHottest({ page, limit: 12 })
+      repos = await store.dispatch('getHottest', { page, limit: 12 })
     } else if (slug === 'newest') {
-      repos = await getNewest({ page, limit: 12 })
+      repos = await store.dispatch('getNewest', { page, limit: 12 })
     } else if (slug === 'trend') {
-      repos = await getTrend({ page, limit: 12 })
+      repos = await store.dispatch('getTrend', { page, limit: 12 })
     } else {
       error({ statusCode: 404, message: 'Post not found' })
     }

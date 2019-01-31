@@ -1,12 +1,9 @@
-import { authToken } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
-
 const user = {
   state: {
     user: '',
     status: '',
     code: '',
-    token: getToken(),
+    token: '',
     name: '',
     avatar: '',
     introduction: '',
@@ -48,13 +45,13 @@ const user = {
     LoginByToken({ commit }, token) {
       return new Promise((resolve, reject) => {
         commit('SET_TOKEN', token)
-        setToken(token)
-        authToken(token).then(() => {
+        this.$storage.setUniversal('token', token)
+        this.$axios.$get('/auth').then(() => {
           resolve()
         }).catch(error => {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
-          removeToken()
+          this.$storage.removeUniversal('token')
           reject(error)
         })
       })
@@ -116,7 +113,7 @@ const user = {
         // })
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
-        removeToken()
+        this.$storage.removeUniversal('token')
         resolve()
       })
     },
@@ -125,7 +122,7 @@ const user = {
     FedLogOut({ commit }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
-        removeToken()
+        this.$storage.removeUniversal('token')
         resolve()
       })
     },
@@ -134,7 +131,7 @@ const user = {
     ChangeRoles({ commit, dispatch }, role) {
       return new Promise(resolve => {
         commit('SET_TOKEN', role)
-        setToken(role)
+        // setToken(role)
         // getUserInfo(role).then(response => {
         //   const data = response.data
         //   commit('SET_ROLES', data.roles)
@@ -158,6 +155,13 @@ const user = {
         dispatch('GenerateRoutes', data) // 动态修改权限后 重绘侧边菜单
         resolve()
       })
+    },
+
+    getStars({ commit }, params) {
+      return this.$axios.$get('/stars', { params })
+    },
+    star({ commit }, data) {
+      return this.$axios.$post('/star', data)
     }
   }
 }

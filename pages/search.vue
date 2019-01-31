@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import { searchRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import Peity from 'vue-peity'
 
@@ -48,7 +47,7 @@ export default {
   layout: 'default',
   components: { Paginate, Peity },
   watchQuery: ['page', 'keyword'],
-  async asyncData({ query }) {
+  async asyncData({ query, store }) {
     const page = query.page || 1
     const keyword = query.keyword || ''
     let repos = {
@@ -58,7 +57,7 @@ export default {
       rows: []
     }
     if (keyword.length > 0) {
-      repos = await searchRepos({ page: page, limit: 12, keyword: keyword })
+      repos = await store.dispatch('searchRepos', { page: page, limit: 12, keyword: keyword })
     }
     return { page, keyword, repos }
   },
@@ -69,7 +68,7 @@ export default {
     search() {
       this.page = 1
       if (this.keyword.length > 0) {
-        searchRepos({ page: this.page, limit: 12, keyword: this.keyword }).then(res => {
+        this.$store.dispatch('searchRepos', { page: this.page, limit: 12, keyword: this.keyword }).then(res => {
           this.repos = res
         })
       }

@@ -22,12 +22,10 @@
 </template>
 
 <script>
-import { getSites } from '@/api/site'
-
 export default {
   layout: 'default',
-  async asyncData() {
-    const sites = await getSites()
+  async asyncData({ store }) {
+    const sites = await store.dispatch('getSites')
     return { sites }
   },
   head: {

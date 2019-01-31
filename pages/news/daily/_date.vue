@@ -3,15 +3,14 @@
 </template>
 
 <script>
-import { getNews } from '@/api/repos'
 import News from '@/components/business/news'
 
 export default {
   layout: 'default',
   components: { News },
-  async asyncData({ params }) {
+  async asyncData({ params, store }) {
     const date = params.date
-    const news = await getNews({ date })
+    const news = await store.dispatch('getNews', { date })
     return { news, date }
   },
   head() {

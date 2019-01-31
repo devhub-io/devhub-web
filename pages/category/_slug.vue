@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import { getCategoryRepos } from '@/api/repos'
 import Paginate from '@/components/general/paginate'
 import Peity from 'vue-peity'
 
@@ -54,12 +53,12 @@ export default {
   layout: 'default',
   components: { Paginate, Peity },
   watchQuery: ['page'],
-  async asyncData({ query, params, error }) {
+  async asyncData({ query, params, error, store }) {
     const slug = params.slug
     const page = query.page || 1
     let repos = {}
     try {
-      repos = await getCategoryRepos(slug, { page, limit: 12 })
+      repos = await store.dispatch('getCategoryRepos', { slug, params: { page, limit: 12 }})
     } catch (e) {
       error({ statusCode: 404, message: 'Post not found' })
     }

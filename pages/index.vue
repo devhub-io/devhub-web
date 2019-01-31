@@ -66,13 +66,12 @@
 </template>
 
 <script>
-import { getHomeRepos } from '@/api/repos'
 import Peity from 'vue-peity'
 
 export default {
   components: { Peity },
-  async asyncData() {
-    const { hottest, newest, trend, recommend } = await getHomeRepos()
+  async asyncData({ store }) {
+    const { hottest, newest, trend, recommend } = await store.dispatch('getHomeRepos')
     return { hottest, newest, trend, recommend }
   },
   head: {

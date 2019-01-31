@@ -1,5 +1,3 @@
-import { getCategories } from '@/api/repos'
-
 const category = {
   state: {
     categories: []
@@ -15,7 +13,7 @@ const category = {
     // 获取栏目
     nuxtServerInit({ commit }) {
       return new Promise((resolve, reject) => {
-        getCategories().then(res => {
+        this.$axios.$get('/category/top').then(res => {
           commit('SET_CATEGORIES', res)
           resolve()
         }).catch(error => {
