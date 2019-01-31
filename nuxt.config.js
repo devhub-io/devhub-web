@@ -62,11 +62,11 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/axios.js' },
-    { src: '~/plugins/welcome.js', ssr: false },
-    { src: '~/plugins/alert.js', ssr: false },
-    { src: '~/plugins/analytics.js', ssr: false },
-    { src: '~/plugins/filters.js' }
+    '~/plugins/axios.js',
+    '~/plugins/filters.js',
+    '~/plugins/alert.client.js',
+    '~/plugins/analytics.client.js',
+    '~/plugins/welcome.client.js'
   ],
 
   /*

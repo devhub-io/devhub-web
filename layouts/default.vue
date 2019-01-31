@@ -38,9 +38,11 @@
           </div>
           <div class="col-md-4">
             <ul class="right">
-              <li v-if="$store.getters.token === null || $store.getters.token === ''"><a :href="void(0)" class="help" rel="nofollow" @click="login">My account</a></li>
+              <li v-if="$store.getters.token === null || $store.getters.token === ''">
+                <a :href="void(0)" class="help" rel="nofollow" @click="login">My account</a>
+              </li>
               <li v-else>
-                <b-nav-item-dropdown right>
+                <b-nav-item-dropdown>
                   <template slot="button-content">
                     <span>My account</span>
                   </template>
@@ -51,7 +53,6 @@
                   <b-dropdown-item href="/user/logout">Sign out</b-dropdown-item>
                 </b-nav-item-dropdown>
               </li>
-              <!--<li><nuxt-link to="/sites">Sites</nuxt-link></li>-->
               <li><nuxt-link to="/search" class="btn btn-blue">Search...</nuxt-link></li>
             </ul>
           </div>
@@ -206,6 +207,8 @@
 </template>
 
 <script>
+import { validateEmail } from '@/utils/validate'
+
 export default {
   data() {
     return {
@@ -263,7 +266,7 @@ export default {
         this.$Alert.info({ content: 'Please input email' })
         return false
       }
-      if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.feedbackForm.email)) {
+      if (!validateEmail(this.feedbackForm.email)) {
         this.$Alert.info({ content: 'Invalid email' })
         return false
       }

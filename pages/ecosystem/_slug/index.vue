@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { validateEmail } from '@/utils/validate'
 import Paginate from '@/components/general/paginate'
 
 export default {
@@ -110,7 +111,7 @@ export default {
         this.$Alert.info({ content: 'Please input email' })
         return false
       }
-      if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.suggestForm.email)) {
+      if (!validateEmail(this.suggestForm.email)) {
         this.$Alert.info({ content: 'Invalid email' })
         return false
       }
