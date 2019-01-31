@@ -6,7 +6,7 @@ Vue.use(Rollbar, {
   captureUncaught: true,
   captureUnhandledRejections: true,
   enabled: true,
-  source_map_enabled: true,
+  source_map_enabled: false,
   environment: process.env.NODE_ENV,
   payload: {
     client: {
@@ -16,3 +16,8 @@ Vue.use(Rollbar, {
     }
   }
 })
+
+Vue.config.errorHandler = (err, vm, info) => {
+  console.log(err)
+  Vue.rollbar.error(err)
+}

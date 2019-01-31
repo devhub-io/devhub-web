@@ -64,6 +64,7 @@ module.exports = {
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/filters.js',
+    '~/plugins/rollbar.js',
     '~/plugins/alert.client.js',
     '~/plugins/analytics.client.js',
     '~/plugins/welcome.client.js'
