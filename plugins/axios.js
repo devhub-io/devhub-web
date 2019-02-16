@@ -1,7 +1,11 @@
 export default function({ $axios, app }) {
   $axios.onRequest(config => {
     config.timeout = 30000
-    config.baseURL = process.env.API_URL
+    if (process.client) {
+      config.baseURL = process.env.API_URL_BROWSER
+    } else {
+      config.baseURL = process.env.API_URL
+    }
     const token = app.$storage.getUniversal('token')
     if (token !== null || token !== undefined || token !== '') {
       config.headers['Authorization'] = 'Bearer ' + token

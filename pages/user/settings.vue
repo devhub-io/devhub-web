@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-8 card card-body">
             <h2>Emails</h2>
-            <p><input type="text" class="form-control" placeholder="email"></p>
+            <p><input v-model="user.email" type="text" class="form-control" placeholder="email"></p>
             <button type="button" class="btn btn-primary btn-sm button-delete">Update Email Preferences</button>
           </div>
         </div>
@@ -14,7 +14,7 @@
           <div class="col-md-8 card card-body">
             <h2>Accounts</h2>
             <p>Connected Accounts</p>
-            <button type="button" class="btn btn-primary btn-sm button-delete"><i class="fab fa-github"/> Username</button>
+            <button type="button" class="btn btn-primary btn-sm button-delete"><i class="fab fa-github"/> {{ user.name }}</button>
           </div>
         </div>
         <div class="row">
@@ -28,6 +28,39 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  layout: 'default',
+  watchQuery: ['page', 'type'],
+  async asyncData({ store }) {
+    const user = await store.dispatch('getUser')
+    return { user }
+  },
+  head() {
+    return {
+      title: `Settings - User`,
+      meta: [
+        { hid: 'description', name: 'description', content: 'Settings' }
+      ]
+    }
+  },
+  data() {
+    return {
+      suggestForm: {
+        message: '',
+        email: ''
+      }
+    }
+  },
+  mounted() {
+
+  },
+  methods: {
+
+  }
+}
+</script>
 
 <style scoped>
   h1 {

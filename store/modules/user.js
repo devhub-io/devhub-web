@@ -162,6 +162,9 @@ const user = {
     },
     star({ commit }, data) {
       return this.$axios.$post('/star', data)
+    },
+    getUser({ commit }) {
+      return this.$axios.$get('/user')
     }
   }
 }

@@ -5,12 +5,10 @@
         <div class="row">
           <div class="col-md-3">
             <div class="card">
-              <img :src="true ? 'https://avatars0.githubusercontent.com/u/1270641?s=460&v=4' + '&s=200' : '/img/200x200.png'" class="card-img-top" alt="...">
+              <img :src="user.avatar.length > 0 ? user.avatar + '&s=200' : '/img/200x200.png'" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Username</h5>
-                <p class="card-text"><i class="fas fa-star"/> ...</p>
-                <p class="card-text">....</p>
-                <p class="card-text"><small class="text-muted">Last updated {{ new Date()| fromNow }}</small></p>
+                <h5 class="card-title">{{ user.name }}</h5>
+                <p class="card-text"><small class="text-muted">Last updated {{ user.last_activated_at | fromNow }}</small></p>
               </div>
             </div>
           </div>
@@ -41,12 +39,13 @@ export default {
   components: { Paginate },
   watchQuery: ['page', 'type'],
   async asyncData({ store }) {
+    const user = await store.dispatch('getUser')
     const ecosystem = await store.dispatch('getStars')
-    return ecosystem
+    return { user, ecosystem }
   },
   head() {
     return {
-      title: `Overview - User`,
+      title: `Workflow - User`,
       meta: [
         { hid: 'description', name: 'description', content: 'User' }
       ]
