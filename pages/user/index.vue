@@ -22,15 +22,24 @@
               </li>
             </ul>
             <div v-if="tab === 'workflow'">
-              workflow
+              <div class="container workflow-tab">
+                <div class="row">
+                  <button class="btn btn-info btn-opt">Add workflow</button>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3>11111</h3>
+                  </div>
+                </div>
+              </div>
             </div>
             <div v-else-if="tab === 'stars'">
-              <section id="top" class="stars-block">
+              <section id="top" class="tab-block">
                 <div class="container">
                   <div v-for="(item, index) in stars.rows" :key="'stars' + index" class="row">
                     <div class="col-md-3 title"> <nuxt-link :to="`/repos/${item.foreign.slug}`">{{ item.foreign.owner }} / {{ item.foreign.repo }} </nuxt-link></div>
                     <div class="col-md-6 desc"> <span><i class="fas fa-star"/>  {{ item.foreign.stargazers_count }}</span> {{ item.foreign.description }} </div>
-                    <div class="col-md-1"><button class="btn btn-info btn-unstar" @click="changeStar(item.foreign_id)">Unstar</button></div>
+                    <div class="col-md-1"><button class="btn btn-info btn-opt" @click="changeStar(item.foreign_id)">Unstar</button></div>
                   </div>
                 </div>
               </section>
@@ -94,12 +103,15 @@ export default {
 </script>
 
 <style scoped>
-  .stars-block {
+  .tab-block {
     padding: 50px 0 50px !important;
   }
-  .btn-unstar {
+  .btn-opt {
     font-size: 12px;
     padding: 5px 15px;
     color: #fff
+  }
+  .workflow-tab {
+    margin-top: 25px;
   }
 </style>
